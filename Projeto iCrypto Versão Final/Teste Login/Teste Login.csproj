@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C0CC156F-2BD5-49F6-9443-A1A3F3BCD878}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Teste_Login</RootNamespace>
+    <AssemblyName>Teste Login</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Db4objects.Db4o">
+      <HintPath>C:\Users\joaov\Desktop\db4o-8.0\bin\net-4.0\Db4objects.Db4o.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EnviarMensagem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnviarMensagem.Designer.cs">
+      <DependentUpon>EnviarMensagem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms Cifra de Cesar\CifraDeCesar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms Cifra de Cesar\CifraDeCesar.Designer.cs">
+      <DependentUpon>CifraDeCesar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms Esteganografia\Esteganografia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms Esteganografia\Esteganografia.Designer.cs">
+      <DependentUpon>Esteganografia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms_AES\frmAES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms_AES\frmAES.Designer.cs">
+      <DependentUpon>frmAES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms_AES\SecretPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms_AES\SecretPass.Designer.cs">
+      <DependentUpon>SecretPass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms_AES\SMTPEnvioTexto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms_AES\SMTPEnvioTexto.Designer.cs">
+      <DependentUpon>SMTPEnvioTexto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms Codigo Morse\frmCodigoMorse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms Codigo Morse\frmCodigoMorse.Designer.cs">
+      <DependentUpon>frmCodigoMorse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms RSA\frmDigitarChave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms RSA\frmDigitarChave.Designer.cs">
+      <DependentUpon>frmDigitarChave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms RSA\frmEnviarChaveRSAEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms RSA\frmEnviarChaveRSAEmail.Designer.cs">
+      <DependentUpon>frmEnviarChaveRSAEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms RSA\frmRSA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms RSA\frmRSA.Designer.cs">
+      <DependentUpon>frmRSA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms_AES\SobreAES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms_AES\SobreAES.Designer.cs">
+      <DependentUpon>SobreAES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadastro.Designer.cs">
+      <DependentUpon>frmCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEsqueciSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEsqueciSenha.Designer.cs">
+      <DependentUpon>frmEsqueciSenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms Esteganografia\frmHelpGeralEsteganografia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms Esteganografia\frmHelpGeralEsteganografia.Designer.cs">
+      <DependentUpon>frmHelpGeralEsteganografia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms RSA\frmGerarEImportarChaveRSA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms RSA\frmGerarEImportarChaveRSA.Designer.cs">
+      <DependentUpon>frmGerarEImportarChaveRSA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms Esteganografia\HelpAbrirWinRarEsteganografia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms Esteganografia\HelpAbrirWinRarEsteganografia.Designer.cs">
+      <DependentUpon>HelpAbrirWinRarEsteganografia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenosSeguroGmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenosSeguroGmail.Designer.cs">
+      <DependentUpon>frmMenosSeguroGmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Principal\Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Principal\Historico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\Historico.Designer.cs">
+      <DependentUpon>Historico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServidorSMTP.cs" />
+    <Compile Include="Usuario.cs" />
+    <EmbeddedResource Include="EnviarMensagem.resx">
+      <DependentUpon>EnviarMensagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms Cifra de Cesar\CifraDeCesar.resx">
+      <DependentUpon>CifraDeCesar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms Esteganografia\Esteganografia.resx">
+      <DependentUpon>Esteganografia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms RSA\frmGerarEImportarChaveRSA.resx">
+      <DependentUpon>frmGerarEImportarChaveRSA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms_AES\frmAES.resx">
+      <DependentUpon>frmAES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms_AES\SecretPass.resx">
+      <DependentUpon>SecretPass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms_AES\SMTPEnvioTexto.resx">
+      <DependentUpon>SMTPEnvioTexto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms Codigo Morse\frmCodigoMorse.resx">
+      <DependentUpon>frmCodigoMorse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms RSA\frmDigitarChave.resx">
+      <DependentUpon>frmDigitarChave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms RSA\frmEnviarChaveRSAEmail.resx">
+      <DependentUpon>frmEnviarChaveRSAEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms RSA\frmRSA.resx">
+      <DependentUpon>frmRSA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms_AES\SobreAES.resx">
+      <DependentUpon>SobreAES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCadastro.resx">
+      <DependentUpon>frmCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEsqueciSenha.resx">
+      <DependentUpon>frmEsqueciSenha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms Esteganografia\frmHelpGeralEsteganografia.resx">
+      <DependentUpon>frmHelpGeralEsteganografia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms Esteganografia\HelpAbrirWinRarEsteganografia.resx">
+      <DependentUpon>HelpAbrirWinRarEsteganografia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenosSeguroGmail.resx">
+      <DependentUpon>frmMenosSeguroGmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\Historico.resx">
+      <DependentUpon>Historico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\ImagemLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\icone.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\icone1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\icons8-exit-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\icons8-exit-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crypto_022.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iCrypto-HelpRSA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iCrypto-HelpRSADark.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

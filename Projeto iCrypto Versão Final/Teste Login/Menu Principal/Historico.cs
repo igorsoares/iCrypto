@@ -24,6 +24,7 @@ namespace Projeto1_semestre
         IObjectContainer banco;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         const char delimitadorFinal = 'ק';
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
         public Historico(Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
@@ -32,66 +33,26 @@ namespace Projeto1_semestre
             if (DarkTheme)
             {
                 this.BackColor = SystemColors.ControlDarkDark;
-                tpAES.BackColor = SystemColors.ControlDarkDark;
-                tpAesFiles.BackColor = SystemColors.ControlDarkDark;
-                tpCesar.BackColor = SystemColors.ControlDarkDark;
-                tpEsteganografia.BackColor = SystemColors.ControlDarkDark;
-                tpMorse.BackColor = SystemColors.ControlDarkDark;
-                tpRSA.BackColor = SystemColors.ControlDarkDark;
+                //TabPages
+                temaEscuro.darkTabControl(tbcMenuHistorico, true);
 
                 //DataGridAES
-                dataGridViewAES.BackgroundColor = SystemColors.ControlDarkDark;
-                dataGridViewAES.DefaultCellStyle.BackColor = SystemColors.ActiveBorder;
-                dataGridViewAES.DefaultCellStyle.ForeColor = Color.Black;
-                dataGridViewAES.DefaultCellStyle.SelectionBackColor = SystemColors.ControlDarkDark;
-                dataGridViewAES.DefaultCellStyle.SelectionForeColor = Color.White;
-                dataGridViewAES.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
-                dataGridViewAES.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                temaEscuro.darkDataGrid(dataGridViewAES);
 
                 //DataGridAESFiles
-                dataGridViewAESArquivo.BackgroundColor = SystemColors.ControlDarkDark;
-                dataGridViewAESArquivo.DefaultCellStyle.BackColor = SystemColors.ActiveBorder;
-                dataGridViewAESArquivo.DefaultCellStyle.ForeColor = Color.Black;
-                dataGridViewAESArquivo.DefaultCellStyle.SelectionBackColor = SystemColors.ControlDarkDark;
-                dataGridViewAESArquivo.DefaultCellStyle.SelectionForeColor = Color.White;
-                dataGridViewAESArquivo.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
-                dataGridViewAESArquivo.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                temaEscuro.darkDataGrid(dataGridViewAESArquivo);
 
                 //DataGridRSA
-                dgvHistoricoRSA.BackgroundColor = SystemColors.ControlDarkDark;
-                dgvHistoricoRSA.DefaultCellStyle.BackColor = SystemColors.ActiveBorder;
-                dgvHistoricoRSA.DefaultCellStyle.ForeColor = Color.Black;
-                dgvHistoricoRSA.DefaultCellStyle.SelectionBackColor = SystemColors.ControlDarkDark;
-                dgvHistoricoRSA.DefaultCellStyle.SelectionForeColor = Color.White;
-                dgvHistoricoRSA.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
-                dgvHistoricoRSA.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                temaEscuro.darkDataGrid(dgvHistoricoRSA);
 
                 //DataGridCesar
-                dgvCesar.BackgroundColor = SystemColors.ControlDarkDark;
-                dgvCesar.DefaultCellStyle.BackColor = SystemColors.ActiveBorder;
-                dgvCesar.DefaultCellStyle.ForeColor = Color.Black;
-                dgvCesar.DefaultCellStyle.SelectionBackColor = SystemColors.ControlDarkDark;
-                dgvCesar.DefaultCellStyle.SelectionForeColor = Color.White;
-                dgvCesar.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
-                dgvCesar.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                temaEscuro.darkDataGrid(dgvCesar);
 
                 //DataGridMorse
-                dgvMorse.BackgroundColor = SystemColors.ControlDarkDark;
-                dgvMorse.DefaultCellStyle.BackColor = SystemColors.ActiveBorder;
-                dgvMorse.DefaultCellStyle.ForeColor = Color.Black;
-                dgvMorse.DefaultCellStyle.SelectionBackColor = SystemColors.ControlDarkDark;
-                dgvMorse.DefaultCellStyle.SelectionForeColor = Color.White;
-                dgvMorse.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
-                dgvMorse.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                temaEscuro.darkDataGrid(dgvCesar);
 
                 //DataGridEsteganografia
-                dgvHistoricoEsteganografia.BackgroundColor = SystemColors.ControlDarkDark;
-                dgvHistoricoEsteganografia.DefaultCellStyle.BackColor = SystemColors.ActiveBorder;
-                dgvHistoricoEsteganografia.DefaultCellStyle.ForeColor = Color.Black;
-                dgvHistoricoEsteganografia.DefaultCellStyle.SelectionBackColor = SystemColors.ControlDarkDark;
-                dgvHistoricoEsteganografia.DefaultCellStyle.SelectionForeColor = Color.White;
-                dgvHistoricoEsteganografia.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
-                dgvHistoricoEsteganografia.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                temaEscuro.darkDataGrid(dgvHistoricoEsteganografia);
             }
 
             usuario.nome = usuarioLogado.nome;

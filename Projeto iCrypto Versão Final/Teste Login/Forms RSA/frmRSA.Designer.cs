@@ -31,14 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRSA));
             this.gboxTextoOriginal = new System.Windows.Forms.GroupBox();
             this.btnRetirarChave = new System.Windows.Forms.Button();
-            this.lbAtualKeySize = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.btnColarOirginal = new System.Windows.Forms.Button();
             this.btnLimparOriginal = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAlgoritmo = new System.Windows.Forms.Button();
             this.cboxModo = new System.Windows.Forms.ComboBox();
             this.txtOriginal = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbTipoChaveAtual = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lbAtualKeySize = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.tcMenuRSA = new System.Windows.Forms.TabControl();
             this.tpAlgoritmo = new System.Windows.Forms.TabPage();
             this.gpTextoCifrado = new System.Windows.Forms.GroupBox();
@@ -48,6 +52,7 @@
             this.txtTextoFinal = new System.Windows.Forms.TextBox();
             this.tpChaves = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.txtChavePrivada = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.gboxMetodoExportar = new System.Windows.Forms.GroupBox();
@@ -80,29 +85,30 @@
             this.tpAjuda = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.picHelpRSA = new System.Windows.Forms.PictureBox();
             this.ofdAbrirTxt = new System.Windows.Forms.OpenFileDialog();
             this.sfdSalvarTxt = new System.Windows.Forms.SaveFileDialog();
             this.pdlogPropriedadesImpressao = new System.Windows.Forms.PrintDialog();
             this.pdocImprimirChave = new System.Drawing.Printing.PrintDocument();
-            this.picLogo = new System.Windows.Forms.PictureBox();
-            this.picHelpRSA = new System.Windows.Forms.PictureBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lbTipoChaveAtual = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.gboxTextoOriginal.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tcMenuRSA.SuspendLayout();
             this.tpAlgoritmo.SuspendLayout();
             this.gpTextoCifrado.SuspendLayout();
             this.tpChaves.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.gboxMetodoExportar.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tpAjuda.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHelpRSA)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // gboxTextoOriginal
@@ -137,24 +143,6 @@
             this.btnRetirarChave.Text = "Retirar chave";
             this.btnRetirarChave.UseVisualStyleBackColor = true;
             this.btnRetirarChave.Click += new System.EventHandler(this.btnRetirarChave_Click);
-            // 
-            // lbAtualKeySize
-            // 
-            this.lbAtualKeySize.AutoSize = true;
-            this.lbAtualKeySize.Location = new System.Drawing.Point(183, 13);
-            this.lbAtualKeySize.Name = "lbAtualKeySize";
-            this.lbAtualKeySize.Size = new System.Drawing.Size(33, 13);
-            this.lbAtualKeySize.TabIndex = 1;
-            this.lbAtualKeySize.Text = "N/D";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 13);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(171, 13);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Tamanho da chave atual:";
             // 
             // btnColarOirginal
             // 
@@ -222,6 +210,62 @@
             this.txtOriginal.Size = new System.Drawing.Size(1333, 194);
             this.txtOriginal.TabIndex = 0;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lbTipoChaveAtual);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Location = new System.Drawing.Point(566, 212);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(253, 33);
+            this.groupBox3.TabIndex = 14;
+            this.groupBox3.TabStop = false;
+            // 
+            // lbTipoChaveAtual
+            // 
+            this.lbTipoChaveAtual.AutoSize = true;
+            this.lbTipoChaveAtual.Location = new System.Drawing.Point(151, 13);
+            this.lbTipoChaveAtual.Name = "lbTipoChaveAtual";
+            this.lbTipoChaveAtual.Size = new System.Drawing.Size(78, 13);
+            this.lbTipoChaveAtual.TabIndex = 1;
+            this.lbTipoChaveAtual.Text = "Sem chave";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 13);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(139, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Tipo de chave atual:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lbAtualKeySize);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Location = new System.Drawing.Point(825, 212);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(289, 33);
+            this.groupBox4.TabIndex = 15;
+            this.groupBox4.TabStop = false;
+            // 
+            // lbAtualKeySize
+            // 
+            this.lbAtualKeySize.AutoSize = true;
+            this.lbAtualKeySize.Location = new System.Drawing.Point(183, 13);
+            this.lbAtualKeySize.Name = "lbAtualKeySize";
+            this.lbAtualKeySize.Size = new System.Drawing.Size(33, 13);
+            this.lbAtualKeySize.TabIndex = 1;
+            this.lbAtualKeySize.Text = "N/D";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 13);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(171, 13);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Tamanho da chave atual:";
+            // 
             // tcMenuRSA
             // 
             this.tcMenuRSA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -236,7 +280,7 @@
             this.tcMenuRSA.Location = new System.Drawing.Point(0, 0);
             this.tcMenuRSA.Name = "tcMenuRSA";
             this.tcMenuRSA.SelectedIndex = 0;
-            this.tcMenuRSA.Size = new System.Drawing.Size(1372, 750);
+            this.tcMenuRSA.Size = new System.Drawing.Size(1422, 750);
             this.tcMenuRSA.TabIndex = 1;
             // 
             // tpAlgoritmo
@@ -347,6 +391,17 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Exportar chaves";
+            // 
+            // picLogo
+            // 
+            this.picLogo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.picLogo.Image = global::Teste_Login.Properties.Resources.logo1;
+            this.picLogo.Location = new System.Drawing.Point(7, 367);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(191, 187);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLogo.TabIndex = 25;
+            this.picLogo.TabStop = false;
             // 
             // txtChavePrivada
             // 
@@ -695,37 +750,45 @@
             // tpAjuda
             // 
             this.tpAjuda.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tpAjuda.Controls.Add(this.label11);
-            this.tpAjuda.Controls.Add(this.label10);
-            this.tpAjuda.Controls.Add(this.picHelpRSA);
+            this.tpAjuda.Controls.Add(this.groupBox7);
+            this.tpAjuda.Controls.Add(this.groupBox6);
+            this.tpAjuda.Controls.Add(this.groupBox5);
             this.tpAjuda.Location = new System.Drawing.Point(4, 22);
             this.tpAjuda.Name = "tpAjuda";
             this.tpAjuda.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAjuda.Size = new System.Drawing.Size(1364, 724);
+            this.tpAjuda.Size = new System.Drawing.Size(1414, 724);
             this.tpAjuda.TabIndex = 2;
             this.tpAjuda.Text = "Como utilizar";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label11.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(8, 271);
+            this.label11.Location = new System.Drawing.Point(6, 17);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(1036, 306);
+            this.label11.Size = new System.Drawing.Size(1034, 304);
             this.label11.TabIndex = 2;
             this.label11.Text = resources.GetString("label11.Text");
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label10.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(8, 18);
+            this.label10.Location = new System.Drawing.Point(6, 17);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(1036, 226);
+            this.label10.Size = new System.Drawing.Size(1034, 224);
             this.label10.TabIndex = 1;
             this.label10.Text = resources.GetString("label10.Text");
+            // 
+            // picHelpRSA
+            // 
+            this.picHelpRSA.Image = global::Teste_Login.Properties.Resources.iCrypto_HelpRSA;
+            this.picHelpRSA.Location = new System.Drawing.Point(6, 17);
+            this.picHelpRSA.Name = "picHelpRSA";
+            this.picHelpRSA.Size = new System.Drawing.Size(331, 559);
+            this.picHelpRSA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picHelpRSA.TabIndex = 0;
+            this.picHelpRSA.TabStop = false;
             // 
             // sfdSalvarTxt
             // 
@@ -740,72 +803,39 @@
             // 
             this.pdocImprimirChave.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pdocImprimirChave_PrintPage);
             // 
-            // picLogo
+            // groupBox5
             // 
-            this.picLogo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.picLogo.Image = global::Teste_Login.Properties.Resources.logo1;
-            this.picLogo.Location = new System.Drawing.Point(7, 367);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(191, 187);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLogo.TabIndex = 25;
-            this.picLogo.TabStop = false;
+            this.groupBox5.Controls.Add(this.label10);
+            this.groupBox5.Location = new System.Drawing.Point(11, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1044, 249);
+            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabStop = false;
             // 
-            // picHelpRSA
+            // groupBox6
             // 
-            this.picHelpRSA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picHelpRSA.Image = global::Teste_Login.Properties.Resources.iCrypto_HelpRSA;
-            this.picHelpRSA.Location = new System.Drawing.Point(1048, 18);
-            this.picHelpRSA.Name = "picHelpRSA";
-            this.picHelpRSA.Size = new System.Drawing.Size(306, 559);
-            this.picHelpRSA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picHelpRSA.TabIndex = 0;
-            this.picHelpRSA.TabStop = false;
+            this.groupBox6.Controls.Add(this.label11);
+            this.groupBox6.Location = new System.Drawing.Point(11, 261);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(1044, 339);
+            this.groupBox6.TabIndex = 4;
+            this.groupBox6.TabStop = false;
             // 
-            // label12
+            // groupBox7
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 13);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(139, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Tipo de chave atual:";
-            // 
-            // lbTipoChaveAtual
-            // 
-            this.lbTipoChaveAtual.AutoSize = true;
-            this.lbTipoChaveAtual.Location = new System.Drawing.Point(151, 13);
-            this.lbTipoChaveAtual.Name = "lbTipoChaveAtual";
-            this.lbTipoChaveAtual.Size = new System.Drawing.Size(78, 13);
-            this.lbTipoChaveAtual.TabIndex = 1;
-            this.lbTipoChaveAtual.Text = "Sem chave";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lbTipoChaveAtual);
-            this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Location = new System.Drawing.Point(566, 212);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(253, 33);
-            this.groupBox3.TabIndex = 14;
-            this.groupBox3.TabStop = false;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.lbAtualKeySize);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Location = new System.Drawing.Point(825, 212);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(289, 33);
-            this.groupBox4.TabIndex = 15;
-            this.groupBox4.TabStop = false;
+            this.groupBox7.Controls.Add(this.picHelpRSA);
+            this.groupBox7.Location = new System.Drawing.Point(1061, 6);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(343, 594);
+            this.groupBox7.TabIndex = 5;
+            this.groupBox7.TabStop = false;
             // 
             // frmRSA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1420, 749);
             this.Controls.Add(this.tcMenuRSA);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRSA";
@@ -816,6 +846,10 @@
             this.Load += new System.EventHandler(this.frmRSA_Load);
             this.gboxTextoOriginal.ResumeLayout(false);
             this.gboxTextoOriginal.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tcMenuRSA.ResumeLayout(false);
             this.tpAlgoritmo.ResumeLayout(false);
             this.gpTextoCifrado.ResumeLayout(false);
@@ -823,18 +857,18 @@
             this.tpChaves.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.gboxMetodoExportar.ResumeLayout(false);
             this.gboxMetodoExportar.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tpAjuda.ResumeLayout(false);
-            this.tpAjuda.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHelpRSA)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -902,6 +936,9 @@
         private System.Windows.Forms.Label lbTipoChaveAtual;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox5;
     }
 }
 

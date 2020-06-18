@@ -22,9 +22,12 @@ namespace Teste_Login
             dataGrid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         }
 
-        public void darkTextBox(TextBox textBox)
+        public void darkTextBox(TextBox textBox, bool dark)
         {
-            textBox.BackColor = SystemColors.ControlDark;
+            if (dark)
+                textBox.BackColor = SystemColors.ControlDark;
+            else
+                textBox.BackColor = Color.White;
         }
 
         public void darkComboBox(ComboBox comboBox)
@@ -32,25 +35,55 @@ namespace Teste_Login
             comboBox.BackColor = SystemColors.ScrollBar;
         }
 
-        public void darkLogo(PictureBox logo)
+        public void darkLogo(PictureBox logo, bool dark)
         {
-            logo.Image = Resources.logo2;
+            if (dark)
+                logo.Image = Resources.logo2;
+            else
+                logo.Image = Resources.logo1;
         }
 
-        public void darkMenuStrip(MenuStrip menu)
+        public void darkMenuStrip(MenuStrip menu, bool dark)
         {
-            menu.BackColor = Color.Black;
-            foreach (ToolStripMenuItem item in menu.Items)
+            if (dark)
             {
-                item.ForeColor = SystemColors.AppWorkspace;
-                item.BackColor = Color.Black;
-                foreach (ToolStripDropDownItem teste in item.DropDownItems)
+                menu.BackColor = Color.Black;
+                foreach (ToolStripMenuItem item in menu.Items)
                 {
-                    teste.BackColor = SystemColors.ControlDark;
+                    item.ForeColor = SystemColors.AppWorkspace;
+                    item.BackColor = Color.Black;
+                    foreach (ToolStripDropDownItem teste in item.DropDownItems)
+                    {
+                        teste.BackColor = SystemColors.ControlDark;
+                    }
+
                 }
-                
             }
-            
+            else
+            {
+                menu.BackColor = Color.White;
+                foreach (ToolStripMenuItem item in menu.Items)
+                {
+                    item.ForeColor = Color.Black;
+                    item.BackColor = Color.White;
+                    foreach (ToolStripDropDownItem teste in item.DropDownItems)
+                    {
+                        teste.BackColor = Color.White;
+                    }
+
+                }
+            }
+        }
+
+        public void darkTabControl(TabControl menu, bool dark)
+        {
+            foreach (TabPage pagina in menu.TabPages)
+            {
+                if (dark)
+                    pagina.BackColor = SystemColors.ControlDarkDark;
+                else
+                    pagina.BackColor = SystemColors.ActiveCaption;
+            }
         }
     }
 }

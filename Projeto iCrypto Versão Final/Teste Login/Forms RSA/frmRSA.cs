@@ -25,7 +25,7 @@ namespace RSA_versao_final
         int numCaracter = 0;
         bool DarkTheme = false;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
-
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
         public frmRSA(Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
@@ -34,9 +34,7 @@ namespace RSA_versao_final
             {
                 //Cores de fundo
                 this.BackColor = SystemColors.ControlDarkDark;
-                tpAjuda.BackColor = SystemColors.ControlDarkDark;
-                tpAlgoritmo.BackColor = SystemColors.ControlDarkDark;
-                tpChaves.BackColor = SystemColors.ControlDarkDark;
+                temaEscuro.darkTabControl(tcMenuRSA, true);
                 //TextBoxes
                 txtCaminhoTxt.BackColor = SystemColors.ControlDark;
                 txtChave.BackColor = SystemColors.ControlDark;

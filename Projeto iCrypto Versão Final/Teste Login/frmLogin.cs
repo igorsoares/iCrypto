@@ -155,24 +155,28 @@ namespace Teste_Login
             }
         }
 
+        private void mudarTextBoxes(bool dark)
+        {
+            darkTheme.darkTextBox(txtSenha, dark);
+            darkTheme.darkTextBox(txtUsuario, dark);
+        }
+
         private void cboxDarkTheme_CheckedChanged(object sender, EventArgs e)
         {
             if (cboxDarkTheme.Checked)
             {
                 this.BackColor = SystemColors.ControlDarkDark;
-                darkTheme.darkTextBox(txtSenha);
-                darkTheme.darkTextBox(txtUsuario);
+                mudarTextBoxes(true);
                 colorIn = SystemColors.ScrollBar;
-                darkTheme.darkLogo(picLogo);
+                darkTheme.darkLogo(picLogo, true);
                 DarkTheme = true;
             }
             else
             {
                 this.BackColor = SystemColors.ActiveCaption;
-                txtSenha.BackColor = SystemColors.Window;
-                txtUsuario.BackColor = SystemColors.Window;
+                mudarTextBoxes(false);
                 colorIn = Color.Blue;
-                picLogo.Image = Resources.logo1;
+                darkTheme.darkLogo(picLogo, false);
                 DarkTheme = false;
             }
         }

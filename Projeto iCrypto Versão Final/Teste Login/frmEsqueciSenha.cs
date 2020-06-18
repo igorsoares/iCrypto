@@ -183,22 +183,26 @@ namespace Teste_Login
             ttpMensagem.Hide(picHelp);
         }
 
+        private void mudarTextBoxes(bool dark)
+        {
+            temaEscuro.darkTextBox(txtEmail, dark);
+            temaEscuro.darkTextBox(txtNome, dark);
+        }
+
         private void cboxDarkTheme_CheckedChanged(object sender, EventArgs e)
         {
             if (cboxDarkTheme.Checked)
             {
                 this.BackColor = SystemColors.ControlDarkDark;
-                temaEscuro.darkTextBox(txtEmail);
-                temaEscuro.darkTextBox(txtNome);
-                temaEscuro.darkLogo(picLogo);
+                mudarTextBoxes(true);
+                temaEscuro.darkLogo(picLogo, true);
                 DarkTheme = true;
             }
             else
             {
                 this.BackColor = SystemColors.ActiveCaption;
-                txtEmail.BackColor = SystemColors.Window;
-                txtNome.BackColor = SystemColors.Window;
-                picLogo.Image = Resources.logo1;
+                mudarTextBoxes(false);
+                temaEscuro.darkLogo(picLogo, false);
                 DarkTheme = false;
             }
         }

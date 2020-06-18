@@ -473,6 +473,19 @@ namespace Projeto1_semestre
             }
         }
 
+        private void mudarTextBoxes(bool dark)
+        {
+            temaEscuro.darkTextBox(txtEmailSMTP, dark);
+            temaEscuro.darkTextBox(txtPorta, dark);
+            temaEscuro.darkTextBox(txtSenhaSMTP, dark);
+            temaEscuro.darkTextBox(txtServidor, dark);
+            temaEscuro.darkTextBox(tbxEmail, dark);
+            temaEscuro.darkTextBox(tbxNome, dark);
+            temaEscuro.darkTextBox(tbxNovaSenha, dark);
+            temaEscuro.darkTextBox(tbxNovaSenhaConfirm, dark);
+            temaEscuro.darkTextBox(tbxUser, dark);
+        }
+
         private void temaEscuroOn_Click(object sender, EventArgs e)
         {
             //MenuDoTema
@@ -482,41 +495,15 @@ namespace Projeto1_semestre
             temaEscuroOff.BackColor = SystemColors.ControlDark;
             this.BackColor = SystemColors.ControlDarkDark;
             //TextBoxes
-            tpMinhaConta.BackColor = SystemColors.ControlDarkDark;
-            tpServerSMTP.BackColor = SystemColors.ControlDarkDark;
-            tpLimparHistorico.BackColor = SystemColors.ControlDarkDark;
-            txtEmailSMTP.BackColor = SystemColors.ControlDark;
-            txtPorta.BackColor = SystemColors.ControlDark;
-            txtSenhaSMTP.BackColor = SystemColors.ControlDark;
-            txtServidor.BackColor = SystemColors.ControlDark;
-            tbxEmail.BackColor = SystemColors.ControlDark;
-            tbxNome.BackColor = SystemColors.ControlDark;
-            tbxNovaSenha.BackColor = SystemColors.ControlDark;
-            tbxNovaSenhaConfirm.BackColor = SystemColors.ControlDark;
-            tbxUser.BackColor = SystemColors.ControlDark;
+            mudarTextBoxes(true);
+            //TabControl
+            temaEscuro.darkTabControl(tbcInfosConta, true);
             //Imagens
-            temaEscuro.darkLogo(picLogo1);
-            temaEscuro.darkLogo(picLogo2);
+            temaEscuro.darkLogo(picLogo1, true);
+            temaEscuro.darkLogo(picLogo2, true);
             //Menus
-            temaEscuro.darkMenuStrip(menuSuperior);
-            /*
-            menuSuperior.BackColor = Color.Black;
-            tsmiCriptografia.ForeColor = SystemColors.AppWorkspace;
-            tsmiCriptografia.BackColor = Color.Black;
-            tsmiSair.ForeColor = SystemColors.AppWorkspace;
-            tsmiSair.BackColor = Color.Black;
-            tsmiTema.ForeColor = SystemColors.AppWorkspace;
-            tsmiTema.BackColor = Color.Black;
-            tsmiOpcoes.ForeColor = SystemColors.AppWorkspace;
-            tsmiOpcoes.BackColor = Color.Black;
-            aESToolStripMenuItem.BackColor = SystemColors.ControlDark;
-            rSAToolStripMenuItem.BackColor = SystemColors.ControlDark;
-            esteganografiaToolStripMenuItem.BackColor = SystemColors.ControlDark;
-            códigoMorseToolStripMenuItem.BackColor = SystemColors.ControlDark;
-            cifraDeCesarToolStripMenuItem.BackColor = SystemColors.ControlDark;
-            hisóricoToolStripMenuItem.BackColor = SystemColors.ControlDark;
+            temaEscuro.darkMenuStrip(menuSuperior, true);
             DarkTheme = true;
-            */
         }
 
         private void temaEscuroOff_Click(object sender, EventArgs e)
@@ -528,37 +515,14 @@ namespace Projeto1_semestre
             temaEscuroOff.BackColor = Color.White;
             this.BackColor = SystemColors.ActiveCaption;
             //TextBoxes
-            tpMinhaConta.BackColor = SystemColors.ActiveCaption;
-            tpServerSMTP.BackColor = SystemColors.ActiveCaption;
-            tpLimparHistorico.BackColor = SystemColors.ActiveCaption;
-            txtEmailSMTP.BackColor = SystemColors.Window;
-            txtPorta.BackColor = SystemColors.Window;
-            txtSenhaSMTP.BackColor = SystemColors.Window;
-            txtServidor.BackColor = SystemColors.Window;
-            tbxEmail.BackColor = SystemColors.Window;
-            tbxNome.BackColor = SystemColors.Window;
-            tbxNovaSenha.BackColor = SystemColors.Window;
-            tbxNovaSenhaConfirm.BackColor = SystemColors.Window;
-            tbxUser.BackColor = SystemColors.Window;
+            mudarTextBoxes(false);
+            //TabControl
+            temaEscuro.darkTabControl(tbcInfosConta, false);
             //Imagens
-            picLogo1.Image = Resources.logo1;
-            picLogo2.Image = Resources.logo1;
+            temaEscuro.darkLogo(picLogo1, false);
+            temaEscuro.darkLogo(picLogo2, false);
             //Menus
-            menuSuperior.BackColor = Color.White;
-            tsmiCriptografia.ForeColor = Color.Black;
-            tsmiCriptografia.BackColor = Color.White;
-            tsmiSair.ForeColor = Color.Black;
-            tsmiSair.BackColor = Color.White;
-            tsmiTema.ForeColor = Color.Black;
-            tsmiTema.BackColor = Color.White;
-            tsmiOpcoes.ForeColor = Color.Black;
-            tsmiOpcoes.BackColor = Color.White;
-            aESToolStripMenuItem.BackColor = Color.White;
-            rSAToolStripMenuItem.BackColor = Color.White;
-            esteganografiaToolStripMenuItem.BackColor = Color.White;
-            códigoMorseToolStripMenuItem.BackColor = Color.White;
-            cifraDeCesarToolStripMenuItem.BackColor = Color.White;
-            hisóricoToolStripMenuItem.BackColor = Color.White;
+            temaEscuro.darkMenuStrip(menuSuperior, true);
             DarkTheme = false;
         }
 

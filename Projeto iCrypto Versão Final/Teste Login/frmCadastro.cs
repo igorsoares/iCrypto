@@ -493,36 +493,33 @@ namespace Teste_Login
             }
         }
 
+        private void mudarTextBoxes(bool dark)
+        {
+            temaEscuro.darkTextBox(txtConfirmarSenha, dark);
+            temaEscuro.darkTextBox(txtEmail, dark);
+            temaEscuro.darkTextBox(txtEmailSMTP, dark);
+            temaEscuro.darkTextBox(txtNome, dark);
+            temaEscuro.darkTextBox(txtPorta, dark);
+            temaEscuro.darkTextBox(txtSenha, dark);
+            temaEscuro.darkTextBox(txtSenhaSMTP, dark);
+            temaEscuro.darkTextBox(txtServidor, dark);
+            temaEscuro.darkTextBox(txtUsuario, dark);
+        }
+
         private void cboxDarkTheme_CheckedChanged(object sender, EventArgs e)
         {
             if (cboxDarkTheme.Checked)
             {
                 this.BackColor = SystemColors.ControlDarkDark;
-                temaEscuro.darkTextBox(txtConfirmarSenha);
-                temaEscuro.darkTextBox(txtEmail);
-                temaEscuro.darkTextBox(txtEmailSMTP);
-                temaEscuro.darkTextBox(txtNome);
-                temaEscuro.darkTextBox(txtPorta);
-                temaEscuro.darkTextBox(txtSenha);
-                temaEscuro.darkTextBox(txtSenhaSMTP);
-                temaEscuro.darkTextBox(txtServidor);
-                temaEscuro.darkTextBox(txtUsuario);
-                temaEscuro.darkLogo(picLogo);
+                mudarTextBoxes(true);
+                temaEscuro.darkLogo(picLogo, true);
                 DarkTheme = true;
             }
             else
             {
                 this.BackColor = SystemColors.ActiveCaption;
-                txtConfirmarSenha.BackColor = SystemColors.Window;
-                txtEmail.BackColor = SystemColors.Window;
-                txtEmailSMTP.BackColor = SystemColors.Window;
-                txtNome.BackColor = SystemColors.Window;
-                txtPorta.BackColor = SystemColors.Window;
-                txtSenha.BackColor = SystemColors.Window;
-                txtSenhaSMTP.BackColor = SystemColors.Window;
-                txtServidor.BackColor = SystemColors.Window;
-                txtUsuario.BackColor = SystemColors.Window;
-                picLogo.Image = Resources.logo1;
+                mudarTextBoxes(false);
+                temaEscuro.darkLogo(picLogo, false);
                 DarkTheme = false;
             }
         }

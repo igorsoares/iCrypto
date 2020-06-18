@@ -20,6 +20,7 @@ namespace Teste_Login
         string servidor, respostaGmail;
         int porta;
         string[] enderecoEmail;
+        bool DarkTheme = false;
 
         public EnviarMensagem(string textoSaida, Usuario usuarioLogado, bool DarkTheme)
         {
@@ -36,6 +37,7 @@ namespace Teste_Login
                 txtEmail.BackColor = SystemColors.ControlDark;
                 txtMensagem.BackColor = SystemColors.ControlDark;
                 txtSenha.BackColor = SystemColors.ControlDark;
+                this.DarkTheme = true;
             }
         }
 
@@ -186,7 +188,7 @@ namespace Teste_Login
 
                         if (enderecoEmail[1].Equals("gmail.com"))
                         {
-                            frmMenosSeguroGmail teste = new frmMenosSeguroGmail();
+                            frmMenosSeguroGmail teste = new frmMenosSeguroGmail(DarkTheme);
                             teste.ShowDialog();
                             respostaGmail = teste.retornoString();
                             if (respostaGmail.Equals("sim"))

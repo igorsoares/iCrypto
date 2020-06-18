@@ -19,6 +19,7 @@ namespace Teste_Login
     {
         IObjectContainer banco;
         Random gerador = new Random();
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
         string informacoes, novaSenha = "";
         string mensagem = "Marque esta caixa apenas se quiser utilizar" +
             "\num e-mail na qual você possui acesso, porém " +
@@ -187,9 +188,9 @@ namespace Teste_Login
             if (cboxDarkTheme.Checked)
             {
                 this.BackColor = SystemColors.ControlDarkDark;
-                txtEmail.BackColor = SystemColors.ControlDark;
-                txtNome.BackColor = SystemColors.ControlDark;
-                picLogo.Image = Resources.logo2;
+                temaEscuro.darkTextBox(txtEmail);
+                temaEscuro.darkTextBox(txtNome);
+                temaEscuro.darkLogo(picLogo);
                 DarkTheme = true;
             }
             else

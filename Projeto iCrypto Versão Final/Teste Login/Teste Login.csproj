@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Db4objects.Db4o">
-      <HintPath>C:\Users\joaov\Desktop\db4o-8.0\bin\net-4.0\Db4objects.Db4o.dll</HintPath>
+      <HintPath>..\..\..\db4o-8.0\bin\net-4.0\Db4objects.Db4o.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -173,6 +173,7 @@
     <Compile Include="Menu Principal\Historico.Designer.cs">
       <DependentUpon>Historico.cs</DependentUpon>
     </Compile>
+    <Compile Include="metodosDarkTheme.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServidorSMTP.cs" />

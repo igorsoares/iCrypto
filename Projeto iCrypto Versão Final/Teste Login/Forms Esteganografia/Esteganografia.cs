@@ -31,12 +31,25 @@ namespace Esteganografia_versao_final
         int porta;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         string respostaGmail;
+        bool DarkTheme;
 
-        public Esteganografia(Usuario usuarioLogado)
+        public Esteganografia(Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
             usuario = usuarioLogado;
             banco = Db4oFactory.OpenFile(caminhoBanco);
+
+            if (DarkTheme)
+            {
+                metodosDarkTheme metodosDarkTheme = new metodosDarkTheme();
+                this.DarkTheme = true;
+                this.BackColor = SystemColors.ControlDarkDark;
+                //DataGrids
+                metodosDarkTheme.darkDataGrid(dgvAnexos);
+                metodosDarkTheme.darkDataGrid(dgvArquivoFinal);
+                metodosDarkTheme.darkDataGrid(dgvArquivoOriginal);
+                metodosDarkTheme.darkDataGrid(dgvFileHide);
+            }
         }
 
         private bool validarCamposEmail()
@@ -288,7 +301,7 @@ namespace Esteganografia_versao_final
 
                         if (enderecoEmail[1].Equals("gmail.com"))
                         {
-                            frmMenosSeguroGmail teste = new frmMenosSeguroGmail();
+                            frmMenosSeguroGmail teste = new frmMenosSeguroGmail(DarkTheme);
                             teste.ShowDialog();
                             respostaGmail = teste.retornoString();
                             if (respostaGmail.Equals("sim"))

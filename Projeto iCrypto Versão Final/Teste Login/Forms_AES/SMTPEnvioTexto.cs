@@ -24,6 +24,7 @@ namespace Projeto_AES
         Usuario usuario;
         SmtpClient cliente;
         ArrayList arquivos_email;
+        bool DarkTheme;
 
         public SMTPEnvioTexto(string conteudo, ArrayList arquivos_email, Usuario usuario)
         {
@@ -213,7 +214,7 @@ namespace Projeto_AES
                     if (tbEmail.Text.Contains("@gmail"))
                     {
 
-                        frmMenosSeguroGmail obj = new frmMenosSeguroGmail();
+                        frmMenosSeguroGmail obj = new frmMenosSeguroGmail(DarkTheme);
                         obj.ShowDialog();
                         string ret = obj.retornoString();
                         if (ret.Equals("sim"))

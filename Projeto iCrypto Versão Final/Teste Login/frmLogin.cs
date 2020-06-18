@@ -21,6 +21,7 @@ namespace Teste_Login
         string caminhoBanco =  Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         Color colorIn, colorOut = Color.Black;
         bool DarkTheme;
+        metodosDarkTheme darkTheme = new metodosDarkTheme();
 
         public frmLogin()
         {
@@ -159,10 +160,10 @@ namespace Teste_Login
             if (cboxDarkTheme.Checked)
             {
                 this.BackColor = SystemColors.ControlDarkDark;
-                txtSenha.BackColor = SystemColors.ControlDark;
-                txtUsuario.BackColor = SystemColors.ControlDark;
+                darkTheme.darkTextBox(txtSenha);
+                darkTheme.darkTextBox(txtUsuario);
                 colorIn = SystemColors.ScrollBar;
-                picLogo.Image = Resources.logo2;
+                darkTheme.darkLogo(picLogo);
                 DarkTheme = true;
             }
             else

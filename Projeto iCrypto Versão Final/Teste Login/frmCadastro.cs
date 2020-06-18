@@ -19,6 +19,7 @@ namespace Teste_Login
     public partial class frmCadastro : Form
     {
         IObjectContainer banco;
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
         string caracteres, numeros;
         bool letra, validar, DarkTheme;
         int[] algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -497,16 +498,16 @@ namespace Teste_Login
             if (cboxDarkTheme.Checked)
             {
                 this.BackColor = SystemColors.ControlDarkDark;
-                txtConfirmarSenha.BackColor = SystemColors.ControlDark;
-                txtEmail.BackColor = SystemColors.ControlDark;
-                txtEmailSMTP.BackColor = SystemColors.ControlDark;
-                txtNome.BackColor = SystemColors.ControlDark;
-                txtPorta.BackColor = SystemColors.ControlDark;
-                txtSenha.BackColor = SystemColors.ControlDark;
-                txtSenhaSMTP.BackColor = SystemColors.ControlDark;
-                txtServidor.BackColor = SystemColors.ControlDark;
-                txtUsuario.BackColor = SystemColors.ControlDark;
-                picLogo.Image = Resources.logo2;
+                temaEscuro.darkTextBox(txtConfirmarSenha);
+                temaEscuro.darkTextBox(txtEmail);
+                temaEscuro.darkTextBox(txtEmailSMTP);
+                temaEscuro.darkTextBox(txtNome);
+                temaEscuro.darkTextBox(txtPorta);
+                temaEscuro.darkTextBox(txtSenha);
+                temaEscuro.darkTextBox(txtSenhaSMTP);
+                temaEscuro.darkTextBox(txtServidor);
+                temaEscuro.darkTextBox(txtUsuario);
+                temaEscuro.darkLogo(picLogo);
                 DarkTheme = true;
             }
             else

@@ -22,6 +22,7 @@ namespace Projeto1_semestre
     public partial class frmMenu : Form
     {
         Usuario usuario = new Usuario();
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
         IObjectContainer banco;
         bool validar, letra, DarkTheme;
         int[] algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -81,10 +82,6 @@ namespace Projeto1_semestre
             }
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -140,7 +137,7 @@ namespace Projeto1_semestre
         {
             banco.Close();
             this.Hide();
-            Esteganografia formEsteganografia = new Esteganografia(usuario);
+            Esteganografia formEsteganografia = new Esteganografia(usuario, DarkTheme);
             formEsteganografia.ShowDialog();
             this.Show();
             banco = Db4oFactory.OpenFile(caminhoBanco);
@@ -498,9 +495,11 @@ namespace Projeto1_semestre
             tbxNovaSenhaConfirm.BackColor = SystemColors.ControlDark;
             tbxUser.BackColor = SystemColors.ControlDark;
             //Imagens
-            picLogo1.Image = Resources.logo2;
-            picLogo2.Image = Resources.logo2;
+            temaEscuro.darkLogo(picLogo1);
+            temaEscuro.darkLogo(picLogo2);
             //Menus
+            temaEscuro.darkMenuStrip(menuSuperior);
+            /*
             menuSuperior.BackColor = Color.Black;
             tsmiCriptografia.ForeColor = SystemColors.AppWorkspace;
             tsmiCriptografia.BackColor = Color.Black;
@@ -517,6 +516,7 @@ namespace Projeto1_semestre
             cifraDeCesarToolStripMenuItem.BackColor = SystemColors.ControlDark;
             hisóricoToolStripMenuItem.BackColor = SystemColors.ControlDark;
             DarkTheme = true;
+            */
         }
 
         private void temaEscuroOff_Click(object sender, EventArgs e)

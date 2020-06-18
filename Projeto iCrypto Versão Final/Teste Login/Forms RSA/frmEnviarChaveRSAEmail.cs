@@ -22,6 +22,7 @@ namespace Teste_Login
         string[] enderecoEmail;
         IObjectContainer banco;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
+        bool DarkTheme;
         public frmEnviarChaveRSAEmail(Usuario usuarioLogado, string chaveExportar, string tipoChave, string caminhoArquivo, bool DarkTheme)
         {
             InitializeComponent();
@@ -48,6 +49,7 @@ namespace Teste_Login
                 //CheckBox
                 cboxMetodoEnvio.BackColor = SystemColors.ScrollBar;
                 cboxSalvarNovamente.BackColor = SystemColors.ScrollBar;
+                this.DarkTheme = true;
             }
         }
 
@@ -233,7 +235,7 @@ namespace Teste_Login
 
                         if (enderecoEmail[1].Equals("gmail.com"))
                         {
-                            frmMenosSeguroGmail teste = new frmMenosSeguroGmail();
+                            frmMenosSeguroGmail teste = new frmMenosSeguroGmail(DarkTheme);
                             teste.ShowDialog();
                             respostaGmail = teste.retornoString();
                             if (respostaGmail.Equals("sim"))

@@ -13,9 +13,13 @@ namespace Teste_Login
     public partial class frmMenosSeguroGmail : Form
     {
         string retorno = string.Empty;
-        public frmMenosSeguroGmail()
+        public frmMenosSeguroGmail(bool DarkTheme)
         {
             InitializeComponent();
+            if (DarkTheme)
+            {
+                this.BackColor = SystemColors.ControlDarkDark;
+            }
         }
 
 

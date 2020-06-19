@@ -17,6 +17,7 @@ namespace Teste_Login
     public partial class frmEnviarChaveRSAEmail : Form
     {
         Usuario usuario = new Usuario();
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
         string servidor, chaveExportar, tipoChave, caminhoArquivo, respostaGmail;
         int porta;
         string[] enderecoEmail;
@@ -41,14 +42,13 @@ namespace Teste_Login
             {
                 this.BackColor = SystemColors.ControlDarkDark;
                 //TextBoxes
-                txtAssunto.BackColor = SystemColors.ControlDark;
-                txtDestinatario.BackColor = SystemColors.ControlDark;
-                txtEmail.BackColor = SystemColors.ControlDark;
-                txtMensagem.BackColor = SystemColors.ControlDark;
-                txtSenha.BackColor = SystemColors.ControlDark;
-                //CheckBox
-                cboxMetodoEnvio.BackColor = SystemColors.ScrollBar;
-                cboxSalvarNovamente.BackColor = SystemColors.ScrollBar;
+                temaEscuro.darkTextBox(txtAssunto, true);
+                temaEscuro.darkTextBox(txtDestinatario, true);
+                temaEscuro.darkTextBox(txtEmail, true);
+                temaEscuro.darkTextBox(txtMensagem, true);
+                temaEscuro.darkTextBox(txtSenha, true);
+                //ComboBox
+                temaEscuro.darkComboBox(cboxMetodoEnvio);
                 this.DarkTheme = true;
             }
         }

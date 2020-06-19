@@ -31,7 +31,9 @@ namespace Esteganografia_versao_final
         int porta;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         string respostaGmail;
+        metodosDarkTheme metodosDarkTheme = new metodosDarkTheme();
         bool DarkTheme;
+        Color cor = Color.Blue;
 
         public Esteganografia(Usuario usuarioLogado, bool DarkTheme)
         {
@@ -41,7 +43,6 @@ namespace Esteganografia_versao_final
 
             if (DarkTheme)
             {
-                metodosDarkTheme metodosDarkTheme = new metodosDarkTheme();
                 this.DarkTheme = true;
                 this.BackColor = SystemColors.ControlDarkDark;
                 //DataGrids
@@ -49,6 +50,24 @@ namespace Esteganografia_versao_final
                 metodosDarkTheme.darkDataGrid(dgvArquivoFinal);
                 metodosDarkTheme.darkDataGrid(dgvArquivoOriginal);
                 metodosDarkTheme.darkDataGrid(dgvFileHide);
+                //TextBoxes
+                metodosDarkTheme.darkTextBox(txtArquivoOriginal, true);
+                metodosDarkTheme.darkTextBox(txtAssunto, true);
+                metodosDarkTheme.darkTextBox(txtCaminhoAnexo, true);
+                metodosDarkTheme.darkTextBox(txtDestinatario, true);
+                metodosDarkTheme.darkTextBox(txtDiretorioFinal, true);
+                metodosDarkTheme.darkTextBox(txtEmail, true);
+                metodosDarkTheme.darkTextBox(txtFileHide, true);
+                metodosDarkTheme.darkTextBox(txtMensagem, true);
+                metodosDarkTheme.darkTextBox(txtNomeArquivo, true);
+                metodosDarkTheme.darkTextBox(txtSalvarArquivo, true);
+                metodosDarkTheme.darkTextBox(txtSenha, true);
+                //Botões
+                metodosDarkTheme.darkButton(btnPasta);
+                metodosDarkTheme.darkButton(btnFileHide);
+                metodosDarkTheme.darkButton(btnArquivoOriginal);
+                metodosDarkTheme.darkButton(btnSelecionarAnexo);
+                cor = SystemColors.ScrollBar;
             }
         }
 
@@ -379,7 +398,7 @@ namespace Esteganografia_versao_final
 
         private void lbAjudaWinRAR_MouseEnter(object sender, EventArgs e)
         {
-            lbAjudaWinRAR.ForeColor = Color.Blue;
+            lbAjudaWinRAR.ForeColor = cor;
         }
 
         private void lbAjudaWinRAR_MouseLeave(object sender, EventArgs e)
@@ -394,7 +413,7 @@ namespace Esteganografia_versao_final
 
         private void lbDownloadWinRar_MouseEnter(object sender, EventArgs e)
         {
-            lbDownloadWinRar.ForeColor = Color.Blue;
+            lbDownloadWinRar.ForeColor = cor;
         }
 
         private void lbDownloadWinRar_MouseLeave(object sender, EventArgs e)
@@ -403,13 +422,13 @@ namespace Esteganografia_versao_final
         }
         private void lbHelpEsteganografia_Click(object sender, EventArgs e)
         {
-            frmHelpGeralEsteganografia frmAjudaEsteganografia = new frmHelpGeralEsteganografia();
+            frmHelpGeralEsteganografia frmAjudaEsteganografia = new frmHelpGeralEsteganografia(DarkTheme);
             frmAjudaEsteganografia.Show();
         }
 
         private void lbHelpEsteganografia_MouseEnter(object sender, EventArgs e)
         {
-            lbHelpEsteganografia.ForeColor = Color.Blue;
+            lbHelpEsteganografia.ForeColor = cor;
         }
 
         private void lbHelpEsteganografia_MouseLeave(object sender, EventArgs e)

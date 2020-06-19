@@ -701,7 +701,7 @@
             // btnSelecionarAnexo
             // 
             this.btnSelecionarAnexo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelecionarAnexo.BackColor = System.Drawing.Color.LightGray;
+            this.btnSelecionarAnexo.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnSelecionarAnexo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSelecionarAnexo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSelecionarAnexo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

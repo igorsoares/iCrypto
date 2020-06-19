@@ -66,11 +66,6 @@ namespace Projeto1_semestre
             banco = Db4oFactory.OpenFile(caminhoBanco);
         }
 
-        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void sairToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             DialogResult resposta = MessageBox.Show("Deseja realmente sair ?", "Saída", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -96,11 +91,6 @@ namespace Projeto1_semestre
             historico.ShowDialog();
             this.Show();
             banco = Db4oFactory.OpenFile(caminhoBanco);
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void rSAToolStripMenuItem_Click(object sender, EventArgs e)
@@ -522,7 +512,7 @@ namespace Projeto1_semestre
             temaEscuro.darkLogo(picLogo1, false);
             temaEscuro.darkLogo(picLogo2, false);
             //Menus
-            temaEscuro.darkMenuStrip(menuSuperior, true);
+            temaEscuro.darkMenuStrip(menuSuperior, false);
             DarkTheme = false;
         }
 

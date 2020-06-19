@@ -36,20 +36,20 @@ namespace RSA_versao_final
                 this.BackColor = SystemColors.ControlDarkDark;
                 temaEscuro.darkTabControl(tcMenuRSA, true);
                 //TextBoxes
-                txtCaminhoTxt.BackColor = SystemColors.ControlDark;
-                txtChave.BackColor = SystemColors.ControlDark;
-                txtChavePrivada.BackColor = SystemColors.ControlDark; 
-                txtChavePublica.BackColor = SystemColors.ControlDark;
-                txtOriginal.BackColor = SystemColors.ControlDark;
-                txtTextoFinal.BackColor = SystemColors.ControlDark;
+                temaEscuro.darkTextBox(txtCaminhoTxt, true);
+                temaEscuro.darkTextBox(txtChave, true);
+                temaEscuro.darkTextBox(txtChavePrivada, true);
+                temaEscuro.darkTextBox(txtChavePublica, true);
+                temaEscuro.darkTextBox(txtOriginal, true);
+                temaEscuro.darkTextBox(txtTextoFinal, true);
                 //ComboBoxes
-                cboxExportarChave.BackColor = SystemColors.ScrollBar;
-                cboxGerarImportar.BackColor = SystemColors.ScrollBar;
-                cboxModo.BackColor = SystemColors.ScrollBar;
-                cboxTamanhoChaves.BackColor = SystemColors.ScrollBar;
-                cboxTipoChave.BackColor = SystemColors.ScrollBar;
+                temaEscuro.darkComboBox(cboxExportarChave);
+                temaEscuro.darkComboBox(cboxGerarImportar);
+                temaEscuro.darkComboBox(cboxModo);
+                temaEscuro.darkComboBox(cboxTamanhoChaves);
+                temaEscuro.darkComboBox(cboxTipoChave);
                 //Logo e imagens
-                picLogo.Image = Resources.logo2;
+                temaEscuro.darkLogo(picLogo, true);
                 picHelpRSA.Image = Resources.iCrypto_HelpRSADark;
                 this.DarkTheme = true;
             }

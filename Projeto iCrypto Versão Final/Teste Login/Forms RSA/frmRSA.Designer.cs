@@ -83,16 +83,16 @@
             this.cboxTamanhoChaves = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tpAjuda = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.picHelpRSA = new System.Windows.Forms.PictureBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.ofdAbrirTxt = new System.Windows.Forms.OpenFileDialog();
             this.sfdSalvarTxt = new System.Windows.Forms.SaveFileDialog();
             this.pdlogPropriedadesImpressao = new System.Windows.Forms.PrintDialog();
             this.pdocImprimirChave = new System.Drawing.Printing.PrintDocument();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.gboxTextoOriginal.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -105,10 +105,10 @@
             this.gboxMetodoExportar.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tpAjuda.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picHelpRSA)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picHelpRSA)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // gboxTextoOriginal
@@ -280,7 +280,7 @@
             this.tcMenuRSA.Location = new System.Drawing.Point(0, 0);
             this.tcMenuRSA.Name = "tcMenuRSA";
             this.tcMenuRSA.SelectedIndex = 0;
-            this.tcMenuRSA.Size = new System.Drawing.Size(1422, 750);
+            this.tcMenuRSA.Size = new System.Drawing.Size(1372, 750);
             this.tcMenuRSA.TabIndex = 1;
             // 
             // tpAlgoritmo
@@ -756,9 +756,37 @@
             this.tpAjuda.Location = new System.Drawing.Point(4, 22);
             this.tpAjuda.Name = "tpAjuda";
             this.tpAjuda.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAjuda.Size = new System.Drawing.Size(1414, 724);
+            this.tpAjuda.Size = new System.Drawing.Size(1364, 724);
             this.tpAjuda.TabIndex = 2;
             this.tpAjuda.Text = "Como utilizar";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.picHelpRSA);
+            this.groupBox7.Location = new System.Drawing.Point(1061, 6);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(343, 594);
+            this.groupBox7.TabIndex = 5;
+            this.groupBox7.TabStop = false;
+            // 
+            // picHelpRSA
+            // 
+            this.picHelpRSA.Image = global::Teste_Login.Properties.Resources.iCrypto_HelpRSA;
+            this.picHelpRSA.Location = new System.Drawing.Point(6, 20);
+            this.picHelpRSA.Name = "picHelpRSA";
+            this.picHelpRSA.Size = new System.Drawing.Size(291, 559);
+            this.picHelpRSA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picHelpRSA.TabIndex = 0;
+            this.picHelpRSA.TabStop = false;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label11);
+            this.groupBox6.Location = new System.Drawing.Point(11, 261);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(1044, 339);
+            this.groupBox6.TabIndex = 4;
+            this.groupBox6.TabStop = false;
             // 
             // label11
             // 
@@ -770,6 +798,15 @@
             this.label11.TabIndex = 2;
             this.label11.Text = resources.GetString("label11.Text");
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label10);
+            this.groupBox5.Location = new System.Drawing.Point(11, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1044, 249);
+            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabStop = false;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -779,16 +816,6 @@
             this.label10.Size = new System.Drawing.Size(1034, 224);
             this.label10.TabIndex = 1;
             this.label10.Text = resources.GetString("label10.Text");
-            // 
-            // picHelpRSA
-            // 
-            this.picHelpRSA.Image = global::Teste_Login.Properties.Resources.iCrypto_HelpRSA;
-            this.picHelpRSA.Location = new System.Drawing.Point(6, 17);
-            this.picHelpRSA.Name = "picHelpRSA";
-            this.picHelpRSA.Size = new System.Drawing.Size(331, 559);
-            this.picHelpRSA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picHelpRSA.TabIndex = 0;
-            this.picHelpRSA.TabStop = false;
             // 
             // sfdSalvarTxt
             // 
@@ -803,39 +830,12 @@
             // 
             this.pdocImprimirChave.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pdocImprimirChave_PrintPage);
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Location = new System.Drawing.Point(11, 6);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1044, 249);
-            this.groupBox5.TabIndex = 3;
-            this.groupBox5.TabStop = false;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.label11);
-            this.groupBox6.Location = new System.Drawing.Point(11, 261);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(1044, 339);
-            this.groupBox6.TabIndex = 4;
-            this.groupBox6.TabStop = false;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.picHelpRSA);
-            this.groupBox7.Location = new System.Drawing.Point(1061, 6);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(343, 594);
-            this.groupBox7.TabIndex = 5;
-            this.groupBox7.TabStop = false;
-            // 
             // frmRSA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1420, 749);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.tcMenuRSA);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRSA";
@@ -863,12 +863,12 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tpAjuda.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picHelpRSA)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }

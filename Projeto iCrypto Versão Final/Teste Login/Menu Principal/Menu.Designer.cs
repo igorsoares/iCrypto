@@ -208,7 +208,6 @@
             this.picLogo1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picLogo1.TabIndex = 2;
             this.picLogo1.TabStop = false;
-            this.picLogo1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // tpMinhaConta
             // 

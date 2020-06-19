@@ -43,6 +43,11 @@ namespace Teste_Login
                 logo.Image = Resources.logo1;
         }
 
+        public void darkButton(Button botao)
+        {
+            botao.BackColor = SystemColors.ControlDarkDark;
+        }
+
         public void darkMenuStrip(MenuStrip menu, bool dark)
         {
             if (dark)

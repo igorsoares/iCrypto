@@ -12,9 +12,13 @@ namespace Teste_Login
 {
     public partial class frmHelpGeralEsteganografia : Form
     {
-        public frmHelpGeralEsteganografia()
+        public frmHelpGeralEsteganografia(bool DarkTheme)
         {
             InitializeComponent();
+            if (DarkTheme)
+            {
+                this.BackColor = SystemColors.ControlDarkDark;
+            }
         }
     }
 }

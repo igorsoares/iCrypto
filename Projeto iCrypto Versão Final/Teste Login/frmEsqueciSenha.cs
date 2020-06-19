@@ -40,7 +40,7 @@ namespace Teste_Login
         {
             if (String.IsNullOrEmpty(txtEmail.Text))
             {
-                MessageBox.Show("Insira um endereço de e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Windows.Forms.MessageBox.Show("Insira um endereço de e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
@@ -82,7 +82,7 @@ namespace Teste_Login
                     }
                     else
                     {
-                        MessageBox.Show("Este e-mail não está cadastrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        System.Windows.Forms.MessageBox.Show("Este e-mail não está cadastrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtEmail.Focus();
                         return;
                     }
@@ -91,7 +91,7 @@ namespace Teste_Login
                 {
                     if (String.IsNullOrEmpty(txtNome.Text))
                     {
-                        MessageBox.Show("Você deve digitar um nome!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        System.Windows.Forms.MessageBox.Show("Você deve digitar um nome!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtNome.Focus();
                         return;
                     }
@@ -129,7 +129,7 @@ namespace Teste_Login
                     }
                     else
                     {
-                        MessageBox.Show("Este nome não está cadastrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        System.Windows.Forms.MessageBox.Show("Este nome não está cadastrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
@@ -149,13 +149,13 @@ namespace Teste_Login
                         cliente.EnableSsl = true;
                         cliente.Send(email);
                     }
-                    MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    System.Windows.Forms.MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     banco.Close();
                     this.Close();
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show(erro.Message);
+                    System.Windows.Forms.MessageBox.Show(erro.Message);
                 }
             }
         }

@@ -77,7 +77,7 @@ namespace Teste_Login
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Certifique-se de que você possui um " +
+                    System.Windows.Forms.MessageBox.Show("Certifique-se de que você possui um " +
                         "\nservidor SMTP personalizado em seu cadastro", "Um erro inesperado aconteceu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -101,19 +101,19 @@ namespace Teste_Login
         {
             if (String.IsNullOrEmpty(txtEmail.Text))
             {
-                MessageBox.Show("Nenhum endereço de e-mail foi inserido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Windows.Forms.MessageBox.Show("Nenhum endereço de e-mail foi inserido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtEmail.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtSenha.Text))
             {
-                MessageBox.Show("A senha do e-mail é necessária!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Windows.Forms.MessageBox.Show("A senha do e-mail é necessária!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSenha.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtDestinatario.Text))
             {
-                MessageBox.Show("Nenhum endereço de e-mail destinatário foi inserido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Windows.Forms.MessageBox.Show("Nenhum endereço de e-mail destinatário foi inserido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDestinatario.Focus();
                 return false;
             }
@@ -148,7 +148,7 @@ namespace Teste_Login
                     }
                     else
                     {
-                        MessageBox.Show("Não temos suporte para este tipo de servidor." +
+                        System.Windows.Forms.MessageBox.Show("Não temos suporte para este tipo de servidor." +
                             "\nTente utilizar um email do google (gmail), hotmail, live.com ou" +
                             "\noutlook e confira se o e-mail está correto", "Servidor sem suporte", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -177,7 +177,7 @@ namespace Teste_Login
                             try
                             {
                                 cliente.Send(email);
-                                MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                System.Windows.Forms.MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return;
                             }
                             catch (Exception)
@@ -195,22 +195,22 @@ namespace Teste_Login
                             {
                                 Process.Start("https://myaccount.google.com/lesssecureapps");
                                 System.Threading.Thread.Sleep(1000);
-                                DialogResult ativou = MessageBox.Show("A opção menos segura foi ativada?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                                DialogResult ativou = System.Windows.Forms.MessageBox.Show("A opção menos segura foi ativada?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                                 if (ativou.Equals(DialogResult.Yes))
                                 {
                                     cliente.Send(email);
-                                    MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    System.Windows.Forms.MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     return;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    System.Windows.Forms.MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     return;
                                 }
                             }
                             else if (respostaGmail.Equals("nao"))
                             {
-                                MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                System.Windows.Forms.MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return;
                             }
                             else if (respostaGmail.Equals("ativado"))
@@ -218,12 +218,12 @@ namespace Teste_Login
                                 try
                                 {
                                     cliente.Send(email);
-                                    MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    System.Windows.Forms.MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     return;
                                 }
                                 catch (Exception)
                                 {
-                                    MessageBox.Show("O envio falhou!" +
+                                    System.Windows.Forms.MessageBox.Show("O envio falhou!" +
                     "\n" +
                     "\nCertifique que o e-mail está correto e é válido" +
                     "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
@@ -237,7 +237,7 @@ namespace Teste_Login
                             try
                             {
                                 cliente.Send(email);
-                                MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                System.Windows.Forms.MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return;
                             }
                             catch (Exception)
@@ -250,7 +250,7 @@ namespace Teste_Login
             }
             catch (Exception)
             {
-                MessageBox.Show("O envio falhou!" +
+                System.Windows.Forms.MessageBox.Show("O envio falhou!" +
                     "\n" +
                     "\nCertifique que o e-mail está correto e é válido" +
                     "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +

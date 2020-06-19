@@ -22,6 +22,7 @@ namespace Teste_Login
         Color colorIn, colorOut = Color.Black;
         bool DarkTheme;
         metodosDarkTheme darkTheme = new metodosDarkTheme();
+        frmMessageBox MessageBox;
 
         public frmLogin()
         {
@@ -43,13 +44,21 @@ namespace Teste_Login
         {
             if (String.IsNullOrEmpty(txtUsuario.Text))
             {
+                /*
                 MessageBox.Show("O usuário é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUsuario.Focus();
+                */
+                MessageBox = new frmMessageBox("Warning", "O usuário é obrigatório", "Aviso", DarkTheme, false);
+                MessageBox.ShowDialog();
                 return false;
             }
             if (String.IsNullOrEmpty(txtSenha.Text))
             {
+                /*
                 MessageBox.Show("A senha é obrigatória", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                */
+                MessageBox = new frmMessageBox("Warning", "A senha é obrigatória", "Aviso", DarkTheme, false);
+                MessageBox.ShowDialog();
                 txtSenha.Focus();
                 return false;
             }
@@ -118,12 +127,20 @@ namespace Teste_Login
                     }
                     else
                     {
+                        /*
                         MessageBox.Show("Senha incorreta!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        */
+                        MessageBox = new frmMessageBox("Warning", "Senha incorreta!", "Aviso", DarkTheme, false);
+                        MessageBox.ShowDialog();
                     }
                 }
                 else
                 {
+                    /*
                     MessageBox.Show("Usuário não cadastrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    */
+                    MessageBox = new frmMessageBox("Warning", "Usuário não cadastrado!", "Aviso", DarkTheme, false);
+                    MessageBox.ShowDialog();
                 }
             }
         }

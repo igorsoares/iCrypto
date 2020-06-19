@@ -216,3 +216,5 @@ C:\Users\User\Desktop\iCrypto\Projeto iCrypto Versão Final\Teste Login\bin\Debu
 C:\Users\User\Desktop\iCrypto\Projeto iCrypto Versão Final\Teste Login\obj\Debug\Teste Login.csproj.CopyComplete
 C:\Users\User\Desktop\iCrypto\Projeto iCrypto Versão Final\Teste Login\obj\Debug\Teste Login.exe
 C:\Users\User\Desktop\iCrypto\Projeto iCrypto Versão Final\Teste Login\obj\Debug\Teste Login.pdb
+C:\Users\joaov\Desktop\iCrypto\Projeto iCrypto Versão Final\Teste Login\obj\Debug\Teste_Login.frmMessageBox.resources
+C:\Users\joaov\Desktop\iCrypto\Projeto iCrypto Versão Final\Teste Login\obj\Debug\Teste_Login.MessageBox.resources

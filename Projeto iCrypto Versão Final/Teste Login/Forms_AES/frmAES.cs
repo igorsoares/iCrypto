@@ -121,12 +121,12 @@ namespace Projeto_AES
         // MÉTODOS CLICK -------------------------------------------
         private void CifraTexto_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Cifra");
+            System.Windows.Forms.MessageBox.Show("Cifra");
         }
 
         private void DecifraTexto_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Decifra");
+            System.Windows.Forms.MessageBox.Show("Decifra");
         }
 
         private void btFileDialog_Click(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace Projeto_AES
                 return;
             }catch(Exception ex)
             {
-                MessageBox.Show(ex.Message,"Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                System.Windows.Forms.MessageBox.Show(ex.Message,"Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -237,7 +237,7 @@ namespace Projeto_AES
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message,"Erro");
+                System.Windows.Forms.MessageBox.Show(ex.Message,"Erro");
                 return;
             }
             
@@ -252,7 +252,7 @@ namespace Projeto_AES
 
                 if (richTexto1.Text.Length == 0)
                 {
-                    MessageBox.Show("Digite algum texto", "Erro", MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBox.Show("Digite algum texto", "Erro", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
@@ -279,7 +279,7 @@ namespace Projeto_AES
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Erro ao processar. Chave pode estar incorreta.", "Erro",
+                System.Windows.Forms.MessageBox.Show("Erro ao processar. Chave pode estar incorreta.", "Erro",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -312,7 +312,7 @@ namespace Projeto_AES
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erro");
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Erro");
                 
             }
             return encriptedFile;
@@ -365,7 +365,7 @@ namespace Projeto_AES
                 {
                     if (arquivo.EndsWith(".exe"))
                     {
-                        MessageBox.Show("Ocorreu um erro. Arquivos executáveis não podem ser enviados por email.",
+                        System.Windows.Forms.MessageBox.Show("Ocorreu um erro. Arquivos executáveis não podem ser enviados por email.",
                             "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         arquivos_email.Remove(arquivo);
                         error = 1;
@@ -422,7 +422,7 @@ namespace Projeto_AES
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                System.Windows.Forms.MessageBox.Show(ex.Message);
                 return;
             }
 
@@ -530,7 +530,7 @@ namespace Projeto_AES
                     if (error == 1)
                         return;
                     // comprime o arquivo
-                    DialogResult retorno = MessageBox.Show("Arquivos resultam em um espaço maior que 25MB.. Deseja " +
+                    DialogResult retorno = System.Windows.Forms.MessageBox.Show("Arquivos resultam em um espaço maior que 25MB.. Deseja " +
                         "comprimir esses arquivos ? ", "Aviso", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
                     string defaultDirectory= @"C:\iCrypto\AESFile\";
@@ -560,7 +560,7 @@ namespace Projeto_AES
                         ArrayList tmp = new ArrayList() { @"C:\iCrypto\ZipadoAES.rar" };
                         if (!VerificaMBArquivos(tmp))
                         {
-                            MessageBox.Show("Arquivo comprimido maior que 25MB, impossível ser enviado.",
+                            System.Windows.Forms.MessageBox.Show("Arquivo comprimido maior que 25MB, impossível ser enviado.",
                                 "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
@@ -574,7 +574,7 @@ namespace Projeto_AES
                     }
                     else
                     {
-                        MessageBox.Show("Impossível de ser anexado.", "Erro",
+                        System.Windows.Forms.MessageBox.Show("Impossível de ser anexado.", "Erro",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
@@ -607,7 +607,7 @@ namespace Projeto_AES
             }
             else
             {
-                MessageBox.Show("Cifre algo primeiro ..","Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                System.Windows.Forms.MessageBox.Show("Cifre algo primeiro ..","Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             
@@ -687,8 +687,8 @@ namespace Projeto_AES
                     string fileName = dgvAESFiles.Rows[i].Cells[0].Value.ToString();
                     if (!fileName.Contains(".aes"))
                     {
-                        MessageBox.Show("Arquivo "+fileName+" sem extensão .aes. Impossível de descriptografar.",
-                            "Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        System.Windows.Forms.MessageBox.Show("Arquivo "+ fileName + " sem extensão .aes. Impossível de descriptografar.",
+                            "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         DataGridViewRow obj = dgvAESFiles.Rows[i];
 
                         dgvAESFiles.Rows.Remove(obj);
@@ -734,7 +734,7 @@ namespace Projeto_AES
                     }
                     catch (System.UnauthorizedAccessException ex)
                     {
-                        MessageBox.Show("Erro. Verifique se o arquivo " + caminho_inteiro + " está funcional.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        System.Windows.Forms.MessageBox.Show("Erro. Verifique se o arquivo " + caminho_inteiro + " está funcional.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         DataGridViewRow linha = dgvAESFiles.Rows[i];
                         dgvAESFiles.Rows.Remove(linha);
                         return;
@@ -786,7 +786,7 @@ namespace Projeto_AES
                         if (error == 1)
                             return;
                         // comprime o arquivo
-                        DialogResult retorno = MessageBox.Show("Arquivos resultam em um espaço maior que 25MB.. Deseja " +
+                        DialogResult retorno = System.Windows.Forms.MessageBox.Show("Arquivos resultam em um espaço maior que 25MB.. Deseja " +
                             "comprimir esses arquivos ? ", "Aviso", MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question);
                         string defaultDirectory = @"C:\iCrypto\AESFile\";
@@ -816,7 +816,7 @@ namespace Projeto_AES
                             ArrayList tmp = new ArrayList() { @"C:\iCrypto\ZipadoAES.rar" };
                             if (!VerificaMBArquivos(tmp))
                             {
-                                MessageBox.Show("Arquivo comprimido maior que 25MB, impossível ser enviado.",
+                                System.Windows.Forms.MessageBox.Show("Arquivo comprimido maior que 25MB, impossível ser enviado.",
                                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
@@ -848,7 +848,7 @@ namespace Projeto_AES
                 return;
             }catch(System.Security.Cryptography.CryptographicException ex)
             {
-                MessageBox.Show("Erro ao descriptografar. Chave pode estar errada.",
+                System.Windows.Forms.MessageBox.Show("Erro ao descriptografar. Chave pode estar errada.",
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
@@ -924,7 +924,7 @@ namespace Projeto_AES
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                System.Windows.Forms.MessageBox.Show(ex.Message);
                 return;
             }
             
@@ -956,7 +956,7 @@ namespace Projeto_AES
                     salva.Write(texto);
                     salva.Close();
 
-                    MessageBox.Show("Salvamento realizado com sucesso.", "Aviso");
+                    System.Windows.Forms.MessageBox.Show("Salvamento realizado com sucesso.", "Aviso");
                 }catch(Exception ex)
                 {
                     // unica excessao : quando fecha sem selecionar.. Só saia.

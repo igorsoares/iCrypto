@@ -374,7 +374,7 @@ namespace CifraDeCesarProjeto1
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
 
@@ -473,7 +473,7 @@ namespace CifraDeCesarProjeto1
                         }
                         banco.Store(usuario);
 
-                        MessageBox.Show("Informações salvas com sucesso!!", "Informações", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    System.Windows.Forms.MessageBox.Show("Informações salvas com sucesso!!", "Informações", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     
 
@@ -481,7 +481,7 @@ namespace CifraDeCesarProjeto1
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                System.Windows.Forms.MessageBox.Show(ex.Message);
                 }
            
         }

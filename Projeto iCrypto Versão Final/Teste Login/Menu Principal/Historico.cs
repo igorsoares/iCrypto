@@ -137,7 +137,7 @@ namespace Projeto1_semestre
                     else
                     {
                         banco.Close();
-                        MessageBox.Show("Não há atividades registradas no AES!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        System.Windows.Forms.MessageBox.Show("Não há atividades registradas no AES!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return false;
                     }
 
@@ -212,7 +212,7 @@ namespace Projeto1_semestre
                 else
                 {
                     banco.Close();
-                    MessageBox.Show("Não há atividades com arquivos registradas no AES!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    System.Windows.Forms.MessageBox.Show("Não há atividades com arquivos registradas no AES!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
@@ -244,7 +244,7 @@ namespace Projeto1_semestre
 
                     if (String.IsNullOrEmpty(usuarioRSA.historicoRSA))
                     {
-                        MessageBox.Show("Não há atividades registradas no RSA!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        System.Windows.Forms.MessageBox.Show("Não há atividades registradas no RSA!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -316,7 +316,7 @@ namespace Projeto1_semestre
                     if (String.IsNullOrEmpty(usuarioEsteganografia.historicoEsteganografia))
                     {
                         banco.Close();
-                        MessageBox.Show("Não há atividades registradas na Esteganografia!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        System.Windows.Forms.MessageBox.Show("Não há atividades registradas na Esteganografia!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -401,7 +401,7 @@ namespace Projeto1_semestre
                     if (String.IsNullOrEmpty(usuarioCesar.historicoCesar))
                     {
                         banco.Close();
-                        MessageBox.Show("Não foi salva nenhuma atividade em Cifra de Cesar!!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        System.Windows.Forms.MessageBox.Show("Não foi salva nenhuma atividade em Cifra de Cesar!!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                     for (int pos = 0; pos < 5; pos++)
@@ -473,7 +473,7 @@ namespace Projeto1_semestre
                     if (String.IsNullOrEmpty(usuarioMorse.historicoMorse))
                     {
                         banco.Close();
-                        MessageBox.Show("Não foi salva nenhuma atividade em Código Morse!!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        System.Windows.Forms.MessageBox.Show("Não foi salva nenhuma atividade em Código Morse!!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                     for (int pos = 0; pos < 4; pos++)
@@ -669,7 +669,7 @@ namespace Projeto1_semestre
                     }
                     if (contador == x - 1)
                         return;
-                    DialogResult resu = MessageBox.Show("Deseja realmente excluir ?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resu = System.Windows.Forms.MessageBox.Show("Deseja realmente excluir ?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (resu.Equals(DialogResult.Yes))
                     {
                         RemoveLinhaUnica(datagrid, e);

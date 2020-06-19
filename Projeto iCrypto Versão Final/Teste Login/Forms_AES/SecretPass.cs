@@ -36,7 +36,7 @@ namespace Projeto_AES
         {
             if (String.IsNullOrEmpty(tbSenha.Text))
             {
-                MessageBox.Show("Insira uma senha secreta", "Erro", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show("Insira uma senha secreta", "Erro", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }

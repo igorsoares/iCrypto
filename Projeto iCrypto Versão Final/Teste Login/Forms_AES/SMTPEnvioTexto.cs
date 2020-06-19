@@ -101,7 +101,7 @@ namespace Projeto_AES
             }
             if (!verifyEmail)
             {
-                MessageBox.Show("Insira um e-mail válido", "Erro");
+                System.Windows.Forms.MessageBox.Show("Insira um e-mail válido", "Erro");
                 tbEmail.Focus();
                 return false;
             }
@@ -119,20 +119,20 @@ namespace Projeto_AES
 
                 if (String.IsNullOrEmpty(tbEmail.Text))
                 {
-                    MessageBox.Show("Insira um e-mail válido", "Erro");
+                    System.Windows.Forms.MessageBox.Show("Insira um e-mail válido", "Erro");
                     tbEmail.Focus();
                     return;
                 }
                 if (!tbEmail.Text.Split('@')[1].Contains('.'))
                 {
-                    MessageBox.Show("Insira um e-mail com domínio válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("Insira um e-mail com domínio válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tbEmail.Focus();
                     return;
                 }
 
                 if (String.IsNullOrEmpty(tbSenha.Text))
                 {
-                    MessageBox.Show("Insira uma senha", "Erro");
+                    System.Windows.Forms.MessageBox.Show("Insira uma senha", "Erro");
                     tbSenha.Focus();
                     return;
                 }
@@ -144,14 +144,14 @@ namespace Projeto_AES
                 string servidor = tbSmtp.Text;
                 if (servidor.Length <= 0)
                 {
-                    MessageBox.Show("Digite um servidor SMTP", "Erro", MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBox.Show("Digite um servidor SMTP", "Erro", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
                 int porta = 0;
                 if (String.IsNullOrEmpty(tbPorta.Text.ToString()))
                 {
-                    MessageBox.Show("Campo de porta é obrigatório.", "Erro", MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBox.Show("Campo de porta é obrigatório.", "Erro", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
@@ -162,7 +162,7 @@ namespace Projeto_AES
                 }
                 catch (FormatException ex)
                 {
-                    MessageBox.Show("Porta só deve ser digitada com números inteiros", "Erro", MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBox.Show("Porta só deve ser digitada com números inteiros", "Erro", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
@@ -177,7 +177,7 @@ namespace Projeto_AES
 
                 if (tbEmailTo.Text.Length == 0)
                 {
-                    MessageBox.Show("Digite um email destinatário", "Erro", MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBox.Show("Digite um email destinatário", "Erro", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
@@ -208,7 +208,7 @@ namespace Projeto_AES
                     }
                     if (tamanho_arquivos > 26214400L)
                     {
-                        MessageBox.Show("Os arquivos anexados resultam em um espaço maior que" +
+                        System.Windows.Forms.MessageBox.Show("Os arquivos anexados resultam em um espaço maior que" +
                             " 25MB. Email não será enviado.", "Erro", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         return;
@@ -235,16 +235,16 @@ namespace Projeto_AES
                         {
                             System.Diagnostics.Process.Start("https://myaccount.google.com/lesssecureapps");
                             System.Threading.Thread.Sleep(1000);
-                            DialogResult ativou = MessageBox.Show("A opção menos segura foi ativada?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                            DialogResult ativou = System.Windows.Forms.MessageBox.Show("A opção menos segura foi ativada?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                             if (ativou.Equals(DialogResult.Yes))
                             {
                                 cliente.Send(messageMail);
-                                MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                System.Windows.Forms.MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return;
                             }
                             else
                             {
-                                MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                System.Windows.Forms.MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return;
                             }
                         }
@@ -253,12 +253,12 @@ namespace Projeto_AES
                             try
                             {
                                 cliente.Send(messageMail);
-                                MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                System.Windows.Forms.MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("O envio falhou!" +
+                                System.Windows.Forms.MessageBox.Show("O envio falhou!" +
                     "\n" +
                     "\nCertifique que o e-mail está correto e é válido" +
                     "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
@@ -268,14 +268,14 @@ namespace Projeto_AES
                         }
                         else
                         {
-                            MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            System.Windows.Forms.MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
                     }
                     else
                     {
                         cliente.Send(messageMail);
-                        MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        System.Windows.Forms.MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                 }
@@ -290,18 +290,18 @@ namespace Projeto_AES
             }
             catch (SmtpException ex)
             {
-                MessageBox.Show("Informações de configurações erradas.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Windows.Forms.MessageBox.Show("Informações de configurações erradas.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             catch (FormatException ex)
             {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("O envio falhou!" +
+                System.Windows.Forms.MessageBox.Show("O envio falhou!" +
                     "\n" +
                     "\nCertifique que o e-mail está correto e é válido" +
                     "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
@@ -325,7 +325,7 @@ namespace Projeto_AES
                 //lbArquivos.Items.Remove(arquivoSelecionado);
                 if (dataGridViewAnexo.SelectedRows.Count == 0)
                 {
-                    MessageBox.Show("Nenhum arquivo foi selecionado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    System.Windows.Forms.MessageBox.Show("Nenhum arquivo foi selecionado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else
@@ -341,7 +341,7 @@ namespace Projeto_AES
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                System.Windows.Forms.MessageBox.Show(ex.Message);
                 return;
             }
         }
@@ -401,7 +401,7 @@ namespace Projeto_AES
 
                 if (nome_arquivo.EndsWith(".exe"))
                 {
-                    MessageBox.Show("Arquivos executáveis não podem ser enviados.", "Erro",
+                    System.Windows.Forms.MessageBox.Show("Arquivos executáveis não podem ser enviados.", "Erro",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -410,7 +410,7 @@ namespace Projeto_AES
                 arquivo.Add(nome_arquivo);
                 if (!VerificaMBArquivos(arquivo))
                 {
-                    MessageBox.Show(nome_arquivo.Split('\\')[nome_arquivo.Split('\\').Length - 1] + " maior que 25MB. Impossível de ser enviado", "Erro",
+                    System.Windows.Forms.MessageBox.Show(nome_arquivo.Split('\\')[nome_arquivo.Split('\\').Length - 1] + " maior que 25MB. Impossível de ser enviado", "Erro",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }

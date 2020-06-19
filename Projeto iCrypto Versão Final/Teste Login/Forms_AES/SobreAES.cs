@@ -12,9 +12,13 @@ namespace Teste_Login.Forms_AES
 {
     public partial class SobreAES : Form
     {
-        public SobreAES()
+        public SobreAES(bool DarkTheme)
         {
             InitializeComponent();
+            if (DarkTheme)
+            {
+                this.BackColor = SystemColors.ControlDarkDark;
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -107,7 +108,7 @@ namespace Projeto1_semestre
         {
             banco.Close();
             this.Hide();
-            frmCodigoMorse formCodigoMorse = new frmCodigoMorse(usuario);
+            frmCodigoMorse formCodigoMorse = new frmCodigoMorse(usuario, DarkTheme);
             formCodigoMorse.ShowDialog();
             this.Show();
             banco = Db4oFactory.OpenFile(caminhoBanco);
@@ -117,7 +118,7 @@ namespace Projeto1_semestre
         {
             banco.Close();
             this.Hide();
-            SecretPass formAES = new SecretPass(usuario);
+            SecretPass formAES = new SecretPass(usuario, DarkTheme);
             formAES.ShowDialog();
             this.Show();
             banco = Db4oFactory.OpenFile(caminhoBanco);
@@ -137,7 +138,7 @@ namespace Projeto1_semestre
         {
             banco.Close();
             this.Hide();
-            CifraCesar frmCifraDeCesar = new CifraCesar(usuario);
+            CifraCesar frmCifraDeCesar = new CifraCesar(usuario, DarkTheme);
             frmCifraDeCesar.ShowDialog();
             this.Show();
             banco = Db4oFactory.OpenFile(caminhoBanco);
@@ -478,6 +479,8 @@ namespace Projeto1_semestre
 
         private void temaEscuroOn_Click(object sender, EventArgs e)
         {
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme"))
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme");
             //MenuDoTema
             temaEscuroOn.Checked = true;
             temaEscuroOn.BackColor = SystemColors.ControlDark;
@@ -514,6 +517,8 @@ namespace Projeto1_semestre
             //Menus
             temaEscuro.darkMenuStrip(menuSuperior, false);
             DarkTheme = false;
+            if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme"))
+                Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme");
         }
 
         public bool TemaEscuro()

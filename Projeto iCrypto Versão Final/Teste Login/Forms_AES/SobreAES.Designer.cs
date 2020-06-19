@@ -176,7 +176,7 @@
             this.MinimizeBox = false;
             this.Name = "SobreAES";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SobreAES";
+            this.Text = "Sobre o AES";
             this.Load += new System.EventHandler(this.SobreAES_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

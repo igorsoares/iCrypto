@@ -49,7 +49,7 @@ namespace Projeto1_semestre
                 temaEscuro.darkDataGrid(dgvCesar);
 
                 //DataGridMorse
-                temaEscuro.darkDataGrid(dgvCesar);
+                temaEscuro.darkDataGrid(dgvMorse);
 
                 //DataGridEsteganografia
                 temaEscuro.darkDataGrid(dgvHistoricoEsteganografia);

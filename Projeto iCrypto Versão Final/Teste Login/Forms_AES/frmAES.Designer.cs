@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAES));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuSuperior = new System.Windows.Forms.MenuStrip();
             this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arquivosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.menuPaginas = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btSalvarEm = new System.Windows.Forms.Button();
@@ -67,7 +67,7 @@
             this.btEncripta = new System.Windows.Forms.Button();
             this.btFileDialog = new System.Windows.Forms.Button();
             this.tbArquivo = new System.Windows.Forms.TextBox();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.dgvAESFiles = new System.Windows.Forms.DataGridView();
             this.colunaArquivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colunaTamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colunaExtensao = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,30 +76,30 @@
             this.deletarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletarTodosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBarFile = new System.Windows.Forms.ProgressBar();
-            this.menuStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.menuSuperior.SuspendLayout();
+            this.menuPaginas.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAESFiles)).BeginInit();
             this.contextMenuDataGrid.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuSuperior
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.White;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuSuperior.BackColor = System.Drawing.Color.White;
+            this.menuSuperior.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.opçõesToolStripMenuItem,
             this.ajudaToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(783, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuSuperior.Location = new System.Drawing.Point(0, 0);
+            this.menuSuperior.Name = "menuSuperior";
+            this.menuSuperior.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuSuperior.Size = new System.Drawing.Size(783, 24);
+            this.menuSuperior.TabIndex = 1;
+            this.menuSuperior.Text = "menuStrip1";
             // 
             // opçõesToolStripMenuItem
             // 
@@ -138,22 +138,22 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // tabControl1
+            // menuPaginas
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.menuPaginas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tabControl1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(14, 27);
-            this.tabControl1.Multiline = true;
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(757, 401);
-            this.tabControl1.TabIndex = 1;
-            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
+            this.menuPaginas.Controls.Add(this.tabPage1);
+            this.menuPaginas.Controls.Add(this.tabPage2);
+            this.menuPaginas.Cursor = System.Windows.Forms.Cursors.Default;
+            this.menuPaginas.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuPaginas.Location = new System.Drawing.Point(14, 27);
+            this.menuPaginas.Multiline = true;
+            this.menuPaginas.Name = "menuPaginas";
+            this.menuPaginas.SelectedIndex = 0;
+            this.menuPaginas.Size = new System.Drawing.Size(757, 401);
+            this.menuPaginas.TabIndex = 1;
+            this.menuPaginas.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
             // tabPage1
             // 
@@ -337,12 +337,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copiarTextoToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(140, 26);
             // 
             // copiarTextoToolStripMenuItem
             // 
             this.copiarTextoToolStripMenuItem.Name = "copiarTextoToolStripMenuItem";
-            this.copiarTextoToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.copiarTextoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.copiarTextoToolStripMenuItem.Text = "Copiar texto";
             this.copiarTextoToolStripMenuItem.Click += new System.EventHandler(this.copiarTextoToolStripMenuItem_Click);
             // 
@@ -387,7 +387,7 @@
             this.tabPage2.Controls.Add(this.btEncripta);
             this.tabPage2.Controls.Add(this.btFileDialog);
             this.tabPage2.Controls.Add(this.tbArquivo);
-            this.tabPage2.Controls.Add(this.dataGridView);
+            this.tabPage2.Controls.Add(this.dgvAESFiles);
             this.tabPage2.Controls.Add(this.progressBarFile);
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
@@ -476,13 +476,13 @@
             this.tbArquivo.Size = new System.Drawing.Size(604, 22);
             this.tbArquivo.TabIndex = 2;
             // 
-            // dataGridView
+            // dgvAESFiles
             // 
-            this.dataGridView.AllowUserToAddRows = false;
-            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvAESFiles.AllowUserToAddRows = false;
+            this.dgvAESFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAESFiles.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvAESFiles.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvAESFiles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -490,23 +490,23 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvAESFiles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvAESFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAESFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colunaArquivo,
             this.colunaTamanho,
             this.colunaExtensao,
             this.colunaDir});
-            this.dataGridView.ContextMenuStrip = this.contextMenuDataGrid;
-            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dataGridView.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView.MultiSelect = false;
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(743, 256);
-            this.dataGridView.TabIndex = 1;
-            this.dataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView_MouseDown);
+            this.dgvAESFiles.ContextMenuStrip = this.contextMenuDataGrid;
+            this.dgvAESFiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgvAESFiles.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgvAESFiles.Location = new System.Drawing.Point(3, 3);
+            this.dgvAESFiles.MultiSelect = false;
+            this.dgvAESFiles.Name = "dgvAESFiles";
+            this.dgvAESFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAESFiles.Size = new System.Drawing.Size(743, 256);
+            this.dgvAESFiles.TabIndex = 1;
+            this.dgvAESFiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView_MouseDown);
             // 
             // colunaArquivo
             // 
@@ -564,12 +564,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(783, 455);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuPaginas);
+            this.Controls.Add(this.menuSuperior);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuSuperior;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAES";
@@ -577,9 +577,9 @@
             this.Text = "AES";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAES_FormClosed);
             this.Load += new System.EventHandler(this.frmAES_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.menuSuperior.ResumeLayout(false);
+            this.menuSuperior.PerformLayout();
+            this.menuPaginas.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -589,7 +589,7 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAESFiles)).EndInit();
             this.contextMenuDataGrid.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -598,10 +598,10 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuSuperior;
         private System.Windows.Forms.ToolStripMenuItem opçõesToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl menuPaginas;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.RichTextBox richTexto2;
         private System.Windows.Forms.Label lblTexto2;
@@ -614,7 +614,7 @@
         private System.Windows.Forms.Button btEncripta;
         private System.Windows.Forms.Button btFileDialog;
         private System.Windows.Forms.TextBox tbArquivo;
-        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridView dgvAESFiles;
         private System.Windows.Forms.DataGridViewTextBoxColumn colunaArquivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colunaTamanho;
         private System.Windows.Forms.DataGridViewTextBoxColumn colunaExtensao;

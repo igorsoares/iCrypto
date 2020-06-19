@@ -16,10 +16,20 @@ namespace Projeto_AES
     public partial class SecretPass : Form
     {
         Usuario usuario = new Usuario();
-        public SecretPass(Usuario usuarioLogado)
+        bool DarkTheme = false;
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        public SecretPass(Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
             usuario = usuarioLogado;
+            if (DarkTheme)
+            {
+                this.DarkTheme = true;
+                this.BackColor = SystemColors.ControlDarkDark;
+                temaEscuro.darkTextBox(tbSenha, true);
+                temaEscuro.darkComboBox(cmbTamanhoChave);
+                temaEscuro.darkLogo(picLogo, true);
+            }
         }
 
         private void btGuardar_Click(object sender, EventArgs e)
@@ -44,7 +54,7 @@ namespace Projeto_AES
                 if (cmbTamanhoChave.SelectedIndex == 0) { // 128 bits
                     MD5 md5 = MD5.Create();
                     byte[] md5128 = md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(tbSenha.Text));
-                    frmAES obj = new frmAES(md5128, "128", usuario);
+                    frmAES obj = new frmAES(md5128, "128", usuario, DarkTheme);
                     this.Hide();
                     obj.ShowDialog();
                     this.Close();
@@ -56,7 +66,7 @@ namespace Projeto_AES
                     //  logo sendo convertida para uma chave secreta AES
                     SHA256CryptoServiceProvider sha256 = new SHA256CryptoServiceProvider();
                     byte[] hash = sha256.ComputeHash(ASCIIEncoding.ASCII.GetBytes(tbSenha.Text));
-                    frmAES obj = new frmAES(hash,"256", usuario);
+                    frmAES obj = new frmAES(hash,"256", usuario, DarkTheme);
                     this.Hide();
                     obj.ShowDialog();
                     this.Close();

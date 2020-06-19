@@ -494,7 +494,7 @@
             this.MinimizeBox = false;
             this.Name = "SMTPEnvioTexto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SMTP AES";
+            this.Text = "iCrypto : Enviar mensagem por e-mail : AES";
             this.Load += new System.EventHandler(this.SMTPEnvioTexto_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

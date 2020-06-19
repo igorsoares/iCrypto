@@ -24,17 +24,31 @@ namespace Projeto_AES
         Usuario usuario;
         SmtpClient cliente;
         ArrayList arquivos_email;
-        bool DarkTheme;
+        bool DarkTheme =  false;
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
 
-        public SMTPEnvioTexto(string conteudo, ArrayList arquivos_email, Usuario usuario)
+        public SMTPEnvioTexto(string conteudo, ArrayList arquivos_email, Usuario usuario, bool DarkTheme)
         {
             InitializeComponent();
+
+            if (DarkTheme)
+            {
+                this.BackColor = SystemColors.ControlDarkDark;
+                this.DarkTheme = true;
+                temaEscuro.darkDataGrid(dataGridViewAnexo);
+                temaEscuro.darkTextBox(tbEmail, true);
+                temaEscuro.darkTextBox(tbEmailTo, true);
+                temaEscuro.darkTextBox(tbPorta, true);
+                temaEscuro.darkTextBox(tbSenha, true);
+                temaEscuro.darkTextBox(tbSmtp, true);
+                temaEscuro.darkRichTextBox(richAssunto);
+                temaEscuro.darkRichTextBox(richConteudo);
+            }
+
             conteudo_enviar = conteudo;
             this.arquivos_email = arquivos_email;
             this.usuario = usuario;
             SmtpDefault();
-
-
         }
         private void SmtpDefault()
         {

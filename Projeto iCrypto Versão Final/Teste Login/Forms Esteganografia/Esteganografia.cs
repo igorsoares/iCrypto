@@ -392,7 +392,7 @@ namespace Esteganografia_versao_final
 
         private void lbAjudaWinRAR_Click(object sender, EventArgs e)
         {
-            HelpAbrirWinRarEsteganografia frmAjudaWinRar = new HelpAbrirWinRarEsteganografia();
+            HelpAbrirWinRarEsteganografia frmAjudaWinRar = new HelpAbrirWinRarEsteganografia(DarkTheme);
             frmAjudaWinRar.Show();
         }
 

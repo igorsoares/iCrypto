@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,12 @@ namespace Teste_Login
             dataGrid.DefaultCellStyle.SelectionForeColor = Color.White;
             dataGrid.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
             dataGrid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGrid.ColumnHeadersDefaultCellStyle.SelectionBackColor = SystemColors.ControlDarkDark;
+            dataGrid.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            dataGrid.RowHeadersDefaultCellStyle.BackColor = Color.White;
+            dataGrid.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dataGrid.RowHeadersDefaultCellStyle.SelectionBackColor = SystemColors.ControlDarkDark;
+            dataGrid.RowHeadersDefaultCellStyle.SelectionForeColor = Color.White;
         }
 
         public void darkTextBox(TextBox textBox, bool dark)
@@ -48,6 +55,25 @@ namespace Teste_Login
             botao.BackColor = SystemColors.ControlDarkDark;
         }
 
+        public void darkContextMenuStrip(ContextMenuStrip menu)
+        {
+            menu.BackColor = SystemColors.ControlDark;
+            foreach (ToolStripMenuItem item in menu.Items)
+            {
+                item.ForeColor = SystemColors.AppWorkspace;
+                item.BackColor = Color.Black;
+                foreach (ToolStripDropDownItem teste in item.DropDownItems)
+                {
+                    teste.BackColor = SystemColors.ControlDark;
+                }
+            }
+        }
+
+        public void darkRichTextBox(RichTextBox textBox)
+        {
+            textBox.BackColor = SystemColors.ControlDark;
+        }
+
         public void darkMenuStrip(MenuStrip menu, bool dark)
         {
             if (dark)
@@ -61,7 +87,6 @@ namespace Teste_Login
                     {
                         teste.BackColor = SystemColors.ControlDark;
                     }
-
                 }
             }
             else

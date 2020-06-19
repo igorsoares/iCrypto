@@ -30,6 +30,11 @@ namespace Teste_Login
            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto"))
                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto");
 
+           if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme"))
+           {
+                cboxDarkTheme.Checked = true;
+           }
+
             banco = Db4oFactory.OpenFile(caminhoBanco);
             txtUsuario.Focus();
         }
@@ -170,6 +175,8 @@ namespace Teste_Login
                 colorIn = SystemColors.ScrollBar;
                 darkTheme.darkLogo(picLogo, true);
                 DarkTheme = true;
+                if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme"))
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme");
             }
             else
             {
@@ -178,6 +185,8 @@ namespace Teste_Login
                 colorIn = Color.Blue;
                 darkTheme.darkLogo(picLogo, false);
                 DarkTheme = false;
+                if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme"))
+                    Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme");
             }
         }
     }

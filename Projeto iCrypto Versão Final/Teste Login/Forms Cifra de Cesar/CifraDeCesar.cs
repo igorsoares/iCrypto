@@ -20,13 +20,25 @@ namespace CifraDeCesarProjeto1
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         int cont;
         bool DarkTheme = false;
-        public CifraCesar(Usuario usuarioLogado)
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        public CifraCesar(Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
             tbxChave.Text = "0";
             cbxModo.SelectedIndex = 0;
             rtbxTPuro.Focus();
             usuario= usuarioLogado;
+
+            if (DarkTheme)
+            {
+                this.BackColor = SystemColors.ControlDarkDark;
+                temaEscuro.darkRichTextBox(rtbxTPuro);
+                temaEscuro.darkRichTextBox(rtbxTextoCifrado);
+                temaEscuro.darkComboBox(cbxModo);
+                temaEscuro.darkTextBox(tbxChave, true);
+                this.DarkTheme = true;
+            }
+
             try
             {
                 banco.Close();

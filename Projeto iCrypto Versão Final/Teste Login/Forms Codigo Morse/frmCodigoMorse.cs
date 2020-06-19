@@ -21,8 +21,10 @@ namespace CodigoMorseProjeto1
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         int cont;
         bool DarkTheme = false;
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+
         static Dictionary<char, string> chaveTexto = new Dictionary<char, string>()
-       {
+        {
             {'a', ".-"},
             {'b', "-..."},
             {'c', "-.-."},
@@ -136,11 +138,21 @@ namespace CodigoMorseProjeto1
 
         };
 
-        public frmCodigoMorse(Usuario usuarioLogado)
+        public frmCodigoMorse(Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
             cbxModo.SelectedIndex = 0;
             usuario = usuarioLogado;
+
+            if (DarkTheme)
+            {
+                this.BackColor = SystemColors.ControlDarkDark;
+                temaEscuro.darkRichTextBox(rtbxCripto);
+                temaEscuro.darkRichTextBox(rtbxTPuro);
+                temaEscuro.darkComboBox(cbxModo);
+                this.DarkTheme = true;
+            }
+
             try
             {
                 banco.Close();

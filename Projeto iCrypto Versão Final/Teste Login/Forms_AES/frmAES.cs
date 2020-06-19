@@ -34,10 +34,28 @@ namespace Projeto_AES
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         IObjectContainer banco;
         Usuario usuario = new Usuario();
+        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        bool DarkTheme = false;
         
-        public frmAES(byte[] hashTamanho,string tamanho_chave, Usuario usuarioLogado)
+        public frmAES(byte[] hashTamanho,string tamanho_chave, Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
+
+            if (DarkTheme)
+            {
+                this.BackColor = SystemColors.ControlDarkDark;
+                temaEscuro.darkMenuStrip(menuSuperior, true);
+                temaEscuro.darkTabControl(menuPaginas, true);
+                temaEscuro.darkDataGrid(dgvAESFiles);
+                temaEscuro.darkTextBox(tbArquivo, true);
+                temaEscuro.darkComboBox(cmbModo);
+                temaEscuro.darkContextMenuStrip(contextMenuDataGrid);
+                temaEscuro.darkContextMenuStrip(contextMenuStrip1);
+                temaEscuro.darkRichTextBox(richTexto1);
+                temaEscuro.darkRichTextBox(richTexto2);
+                this.DarkTheme = true;
+            }
+
             this.hash = hashTamanho;
             this.tamanho_chave = tamanho_chave;
             usuario = usuarioLogado;
@@ -122,7 +140,7 @@ namespace Projeto_AES
                 string arquivo = obj.FileName;
                 tbArquivo.Text = arquivo;
                 // Verifica se o arquivo ja está no dataGrid
-                if (dataGridView.Rows.Count >= 1)
+                if (dgvAESFiles.Rows.Count >= 1)
                 {
                     //MessageBox.Show(dataGridView["colunaArquivo", 0].Value.ToString());
                     if (!VerificaAmbiguidade(arquivo)) { return; } // se é ambiguo, saia..
@@ -133,7 +151,7 @@ namespace Projeto_AES
 
                 // Pega as infos do arquivo
                 FileInfo infos = new FileInfo(arquivo);
-                dataGridView.Rows.Add(infos.Name, infos.Length.ToString(),infos.Extension, infos.DirectoryName);
+                dgvAESFiles.Rows.Add(infos.Name, infos.Length.ToString(),infos.Extension, infos.DirectoryName);
 
 
             }catch(System.ArgumentException ex)
@@ -150,7 +168,7 @@ namespace Projeto_AES
 
         private void arquivosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SecretPass password = new SecretPass(usuario);
+            SecretPass password = new SecretPass(usuario, DarkTheme);
             this.Hide();
             password.ShowDialog();
             
@@ -321,13 +339,13 @@ namespace Projeto_AES
 
         private bool VerificaAmbiguidade(string filename)
         {
-            int nlinhas = dataGridView.Rows.Count;
+            int nlinhas = dgvAESFiles.Rows.Count;
             // pegue a ultima ocorrencia do split do filename
             string nome_arquivo= filename.Split('\\')[filename.Split('\\').Length-1];
 
             for (int i=0; i<nlinhas; i++)
             {
-                if (dataGridView["colunaArquivo", i].Value.ToString().Equals(nome_arquivo))
+                if (dgvAESFiles["colunaArquivo", i].Value.ToString().Equals(nome_arquivo))
                     return false;
 
             }
@@ -419,15 +437,15 @@ namespace Projeto_AES
 
             ArrayList apagar_linha = new ArrayList();
             ArrayList arquivos_email = new ArrayList();
-            int nlinhas = dataGridView.Rows.Count;
+            int nlinhas = dgvAESFiles.Rows.Count;
             for (int i = 0; i < nlinhas; i++)
             {
                 // Encripta o arquivo com nomearquivo.extensao.aes
-                string fileName = dataGridView.Rows[i].Cells[0].Value.ToString();
+                string fileName = dgvAESFiles.Rows[i].Cells[0].Value.ToString();
 
                 // VERIFICA SE O ARQUIVO EXISTE, SE NÃO EXISTIR, TIRE DA LISTA
                 // Por que? R: O usuario pode ter excluido o arquivo.  
-                if (!File.Exists(dataGridView.Rows[i].Cells[3].Value.ToString() + @"\" + fileName))
+                if (!File.Exists(dgvAESFiles.Rows[i].Cells[3].Value.ToString() + @"\" + fileName))
                 {
                     apagar_linha.Add(fileName);
                     continue;
@@ -437,15 +455,15 @@ namespace Projeto_AES
                 if (fileName.Contains(".aes"))
                 {
                     lblStatus.Text = "Ambíguo";
-                    DataGridViewRow linha = dataGridView.Rows[i];
-                    dataGridView.Rows.Remove(linha);
+                    DataGridViewRow linha = dgvAESFiles.Rows[i];
+                    dgvAESFiles.Rows.Remove(linha);
                     lblStatus.ForeColor = System.Drawing.Color.Red;
                     nlinhas -= 1;
                     i -= 1;
                     
                     continue;
                 }
-                string arquivo_en = EncriptaArquivo(fileName, dataGridView.Rows[i].Cells[3].Value.ToString());
+                string arquivo_en = EncriptaArquivo(fileName, dgvAESFiles.Rows[i].Cells[3].Value.ToString());
 
                 // JOGA O NOME DO ARQUIVO NO BANCO
                 JogaemBancoArquivo("Criptografar", fileName, arquivo_en.Split('\\')[arquivo_en.Split('\\').Length-1]);
@@ -459,17 +477,17 @@ namespace Projeto_AES
 
                 // Apagar arquivos do datagrid
                 arquivo_original = fileName;
-                for (int y = 0; y < dataGridView.Rows.Count; y++)
+                for (int y = 0; y < dgvAESFiles.Rows.Count; y++)
                 {
-                    if (dataGridView["colunaArquivo", y].Value == arquivo_original)
+                    if (dgvAESFiles["colunaArquivo", y].Value == arquivo_original)
                     {
                         apagar_linha.Add(arquivo_original); //linha x coluna 1
                     }
                 }
 
                 FileInfo infos = new FileInfo(arquivo_en);
-                dataGridView.Rows.Add(infos.Name, infos.Length.ToString(), infos.Extension, infos.DirectoryName);
-                dataGridView.Refresh();
+                dgvAESFiles.Rows.Add(infos.Name, infos.Length.ToString(), infos.Extension, infos.DirectoryName);
+                dgvAESFiles.Refresh();
 
                 IncrementaProgressBar();
 
@@ -482,12 +500,12 @@ namespace Projeto_AES
             foreach (string arquivos in apagar_linha)
             {
                 // busca pela linha
-                for (int i = 0; i < dataGridView.Rows.Count; i++)
+                for (int i = 0; i < dgvAESFiles.Rows.Count; i++)
                 {
-                    if (dataGridView["colunaArquivo", i].Value.ToString().Equals(arquivos))
+                    if (dgvAESFiles["colunaArquivo", i].Value.ToString().Equals(arquivos))
                     {
-                        DataGridViewRow obj = dataGridView.Rows[i];
-                        dataGridView.Rows.Remove(obj);
+                        DataGridViewRow obj = dgvAESFiles.Rows[i];
+                        dgvAESFiles.Rows.Remove(obj);
                     }
 
                 }
@@ -504,7 +522,7 @@ namespace Projeto_AES
 
                 if (VerificaMBArquivos(arquivos_email))
                 {
-                    SMTPEnvioTexto envioEmail = new SMTPEnvioTexto("",arquivos_email,usuario);
+                    SMTPEnvioTexto envioEmail = new SMTPEnvioTexto("",arquivos_email,usuario, DarkTheme);
                     envioEmail.ShowDialog();
                 }
                 else
@@ -548,7 +566,7 @@ namespace Projeto_AES
                         }
                         else
                         {
-                            SMTPEnvioTexto envioEmail = new SMTPEnvioTexto("", tmp,usuario);
+                            SMTPEnvioTexto envioEmail = new SMTPEnvioTexto("", tmp,usuario, DarkTheme);
                             envioEmail.ShowDialog();
                         }
                         // APAGA O ZIPADO (QUE É UM ARQUIVO TEMPORARIO)
@@ -571,7 +589,7 @@ namespace Projeto_AES
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            SecretPass obj = new SecretPass(usuario);
+            SecretPass obj = new SecretPass(usuario, DarkTheme);
             this.Hide();
             obj.ShowDialog();
             
@@ -583,7 +601,7 @@ namespace Projeto_AES
             if (conteudo.Length > 0)
             {
                 ArrayList trash = new ArrayList(); //nao é usada, criada somente para passagem de argumento obrigatoria
-                SMTPEnvioTexto obj = new SMTPEnvioTexto(conteudo,trash,usuario);
+                SMTPEnvioTexto obj = new SMTPEnvioTexto(conteudo,trash,usuario, DarkTheme);
                 obj.ShowDialog();
 
             }
@@ -659,22 +677,22 @@ namespace Projeto_AES
 
 
 
-                int nlinhas = dataGridView.Rows.Count;
+                int nlinhas = dgvAESFiles.Rows.Count;
                 ArrayList apagar_linha = new ArrayList();
                 ArrayList arquivos_email = new ArrayList();
                 for (int i = 0; i < nlinhas; i++)
                 {
                     lblStatus.Text = "";
                     // Encripta o arquivo com nomearquivo.extensao.aes
-                    string fileName = dataGridView.Rows[i].Cells[0].Value.ToString();
+                    string fileName = dgvAESFiles.Rows[i].Cells[0].Value.ToString();
                     if (!fileName.Contains(".aes"))
                     {
                         MessageBox.Show("Arquivo "+fileName+" sem extensão .aes. Impossível de descriptografar.",
                             "Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                        DataGridViewRow obj = dataGridView.Rows[i];
+                        DataGridViewRow obj = dgvAESFiles.Rows[i];
 
-                        dataGridView.Rows.Remove(obj);
-                        dataGridView.Refresh();
+                        dgvAESFiles.Rows.Remove(obj);
+                        dgvAESFiles.Refresh();
 
                         nlinhas -= 1;
                         i -= 1;
@@ -684,7 +702,7 @@ namespace Projeto_AES
                         continue;
                     }
 
-                    if (!File.Exists(dataGridView.Rows[i].Cells[3].Value.ToString() + @"\" + fileName))
+                    if (!File.Exists(dgvAESFiles.Rows[i].Cells[3].Value.ToString() + @"\" + fileName))
                     {
                         apagar_linha.Add(fileName);
                         continue;
@@ -693,7 +711,7 @@ namespace Projeto_AES
                     arquivo_original = fileName;
 
                     //DECRIPTA O ARQUIVO
-                    string caminho_inteiro = dataGridView.Rows[i].Cells[3].Value.ToString() + @"\" + arquivo_original;
+                    string caminho_inteiro = dgvAESFiles.Rows[i].Cells[3].Value.ToString() + @"\" + arquivo_original;
                     // VOLTAR ARQUI DEPOIS... PRECISO FAZER COM QUE NAO SEJA OBRIGATORIAMENTE
                     JogaemBancoArquivo("Descriptografar", fileName, fileName.Replace(".aes", "")); 
                     
@@ -702,9 +720,9 @@ namespace Projeto_AES
                     // verifica se a checkbox está ativa, se estiver, add na arraylist para enviar o email posteriormente
                     if (chkEnviaArquivo.Checked) { arquivos_email.Add(caminho_inteiro.Replace(".aes","")); }
                     // VAI RODAR O DATAGRID INTEIRO, VERIFICANDO CADA ARQUIVO DO ARRAYLIST A SER APAGADO, E APAGA.
-                    for (int y = 0; y < dataGridView.Rows.Count; y++)
+                    for (int y = 0; y < dgvAESFiles.Rows.Count; y++)
                     {
-                        if (dataGridView["colunaArquivo", y].Value == arquivo_original)
+                        if (dgvAESFiles["colunaArquivo", y].Value == arquivo_original)
                         {
                             apagar_linha.Add(arquivo_original); //linha x coluna 1
                         }
@@ -717,15 +735,15 @@ namespace Projeto_AES
                     catch (System.UnauthorizedAccessException ex)
                     {
                         MessageBox.Show("Erro. Verifique se o arquivo " + caminho_inteiro + " está funcional.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        DataGridViewRow linha = dataGridView.Rows[i];
-                        dataGridView.Rows.Remove(linha);
+                        DataGridViewRow linha = dgvAESFiles.Rows[i];
+                        dgvAESFiles.Rows.Remove(linha);
                         return;
                     }
 
 
                     FileInfo infos = new FileInfo(caminho_inteiro);
-                    dataGridView.Rows.Add(infos.Name.Replace(".aes",""), infos.Length.ToString(), infos.Extension, infos.DirectoryName);
-                    dataGridView.Refresh();
+                    dgvAESFiles.Rows.Add(infos.Name.Replace(".aes",""), infos.Length.ToString(), infos.Extension, infos.DirectoryName);
+                    dgvAESFiles.Refresh();
 
                     IncrementaProgressBar();
                     progressBarFile.Value = 0;
@@ -739,12 +757,12 @@ namespace Projeto_AES
                 foreach (string arquivos in apagar_linha)
                 {
                     // busca pela linha
-                    for (int i = 0; i < dataGridView.Rows.Count; i++)
+                    for (int i = 0; i < dgvAESFiles.Rows.Count; i++)
                     {
-                        if (dataGridView["colunaArquivo", i].Value.ToString().Equals(arquivos))
+                        if (dgvAESFiles["colunaArquivo", i].Value.ToString().Equals(arquivos))
                         {
-                            DataGridViewRow obj = dataGridView.Rows[i];
-                            dataGridView.Rows.Remove(obj);
+                            DataGridViewRow obj = dgvAESFiles.Rows[i];
+                            dgvAESFiles.Rows.Remove(obj);
                         }
 
                     }
@@ -760,7 +778,7 @@ namespace Projeto_AES
 
                     if (VerificaMBArquivos(arquivos_email) && error == 0)
                     {
-                        SMTPEnvioTexto envioEmail = new SMTPEnvioTexto("", arquivos_email,usuario);
+                        SMTPEnvioTexto envioEmail = new SMTPEnvioTexto("", arquivos_email,usuario, DarkTheme);
                         envioEmail.ShowDialog();
                     }
                     else
@@ -804,7 +822,7 @@ namespace Projeto_AES
                             }
                             else
                             {
-                                SMTPEnvioTexto envioEmail = new SMTPEnvioTexto("", tmp,usuario);
+                                SMTPEnvioTexto envioEmail = new SMTPEnvioTexto("", tmp,usuario, DarkTheme);
                                 envioEmail.ShowDialog();
                             }
                             // APAGA O ZIPADO (QUE É UM ARQUIVO TEMPORARIO)
@@ -842,18 +860,18 @@ namespace Projeto_AES
             {
                 if (e.Button == MouseButtons.Right)
                 {
-                    DataGridView.HitTestInfo infos = dataGridView.HitTest(e.X, e.Y);
-                    dataGridView.Rows[infos.RowIndex].Selected = true; //seleciona a linha inteira
+                    DataGridView.HitTestInfo infos = dgvAESFiles.HitTest(e.X, e.Y);
+                    dgvAESFiles.Rows[infos.RowIndex].Selected = true; //seleciona a linha inteira
                     linha_selecionada = infos.RowIndex;
                 }
 
                 if(e.Button == MouseButtons.Left)
                 {
-                    DataGridView.HitTestInfo infos = dataGridView.HitTest(e.X, e.Y);
-                    dataGridView.Rows[infos.RowIndex].Selected = true;
+                    DataGridView.HitTestInfo infos = dgvAESFiles.HitTest(e.X, e.Y);
+                    dgvAESFiles.Rows[infos.RowIndex].Selected = true;
                     // joga as infos da linha clicada no textbox
                     //string diretorio = ;
-                    tbArquivo.Text = dataGridView[3, infos.RowIndex].Value.ToString() + @"\" +dataGridView[0,infos.RowIndex].Value.ToString(); //coluna,linha
+                    tbArquivo.Text = dgvAESFiles[3, infos.RowIndex].Value.ToString() + @"\" +dgvAESFiles[0,infos.RowIndex].Value.ToString(); //coluna,linha
 
                 }
 
@@ -875,8 +893,8 @@ namespace Projeto_AES
                 if(linha_selecionada > -1)
                 {
                     DataGridCell celula;
-                    DataGridViewRow linha = dataGridView.Rows[linha_selecionada];
-                    dataGridView.Rows.Remove(linha);
+                    DataGridViewRow linha = dgvAESFiles.Rows[linha_selecionada];
+                    dgvAESFiles.Rows.Remove(linha);
                     tbArquivo.Clear(); // Limpa textbox do caminho de arquivo
                 }
                 lblStatus.Text="";
@@ -890,13 +908,13 @@ namespace Projeto_AES
         {
             try
             {
-                int quantidade = dataGridView.Rows.Count;
+                int quantidade = dgvAESFiles.Rows.Count;
 
                 for (int i = 0; i < quantidade; i++)
                 {
 
-                    DataGridViewRow linha = dataGridView.Rows[0];
-                    dataGridView.Rows.Remove(linha);
+                    DataGridViewRow linha = dgvAESFiles.Rows[0];
+                    dgvAESFiles.Rows.Remove(linha);
 
                 }
 
@@ -977,7 +995,7 @@ namespace Projeto_AES
                         FileInfo infos = new FileInfo(arquivo);
                         if (!VerificaAmbiguidade(arquivo)) { continue; } // se é ambiguo, saia..
 
-                        dataGridView.Rows.Add(infos.Name, infos.Length.ToString(),
+                        dgvAESFiles.Rows.Add(infos.Name, infos.Length.ToString(),
                             infos.Extension, infos.DirectoryName);
                         tbArquivo.Text = arquivo;
                     }
@@ -1002,14 +1020,14 @@ namespace Projeto_AES
 
         private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SobreAES obj = new SobreAES();
+            SobreAES obj = new SobreAES(DarkTheme);
             obj.Show();
 
         }
 
         private void frmAES_FormClosed(object sender, FormClosedEventArgs e)
         {
-            SecretPass password = new SecretPass(usuario);
+            SecretPass password = new SecretPass(usuario, DarkTheme);
             this.Hide();
             password.ShowDialog();
         }

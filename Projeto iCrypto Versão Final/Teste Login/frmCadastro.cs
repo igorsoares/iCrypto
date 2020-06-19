@@ -41,6 +41,7 @@ namespace Teste_Login
                             "\nautomáticos para que você também possa utilizar esta função.";
 
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
+        ShowMessageBox MessageBox = new ShowMessageBox();
         public frmCadastro(bool DarkTheme)
         {
             InitializeComponent();
@@ -57,25 +58,25 @@ namespace Teste_Login
             {
                 if (String.IsNullOrEmpty(txtEmailSMTP.Text))
                 {
-                    MessageBox.Show("O e-mail do SMTP é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                    MessageBox.ShowMessageBoxOK("warning", "O e-mail do SMTP é obrigatório", "Aviso", DarkTheme);
                     txtEmailSMTP.Focus();
                     return false;
                 }
                 else if (String.IsNullOrEmpty(txtSenhaSMTP.Text))
                 {
-                    MessageBox.Show("A senha do e-mail SMTP é obrigatória", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                    MessageBox.ShowMessageBoxOK("warning", "A senha do e-mail SMTP é obrigatória", "Aviso", DarkTheme); 
                     txtSenhaSMTP.Focus();
                     return false;
                 }
                 else if (String.IsNullOrEmpty(txtServidor.Text))
                 {
-                    MessageBox.Show("O servidor SMTP é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                    MessageBox.ShowMessageBoxOK("warning", "O servidor SMTP é obrigatório", "Aviso", DarkTheme); 
                     txtServidor.Focus();
                     return false;
                 }
                 else if (String.IsNullOrEmpty(txtPorta.Text))
                 {
-                    MessageBox.Show("A porta do servidor SMTP é obrigatória", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                    MessageBox.ShowMessageBoxOK("warning", "A porta do servidor SMTP é obrigatória", "Aviso", DarkTheme);
                     txtPorta.Focus();
                     return false;
                 }
@@ -109,19 +110,19 @@ namespace Teste_Login
 
             if (String.IsNullOrEmpty(caracteres))
             {
-                MessageBox.Show("A senha deve conter pelo menos 4 caracteres!", "Senha inválida!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warining", "A senha deve conter pelo menos 4 caracteres!", "Senha inválida!", DarkTheme);
                 txtSenha.Focus();
                 return false;
             }
             else if (caracteres.Length != 4 && caracteres.Length != 9)
             {
-                MessageBox.Show("A senha deve conter 4 ou 9 caracteres!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warining", "A senha deve conter 4 ou 9 caracteres!", "Aviso", DarkTheme);
                 txtSenha.Focus();
                 return false;
             }
             else if (numeros == null)
             {
-                MessageBox.Show("A senha deve conter pelo menos um número!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warining", "A senha deve conter pelo menos um número!", "Aviso", DarkTheme);
                 txtSenha.Focus();
                 return false;
             }
@@ -135,49 +136,49 @@ namespace Teste_Login
         {
             if (String.IsNullOrEmpty(txtNome.Text))
             {
-                MessageBox.Show("O nome é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "O nome é obrigatório", "Aviso", DarkTheme);
                 txtNome.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtEmail.Text))
             {
-                MessageBox.Show("O e-mail é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                MessageBox.ShowMessageBoxOK("warning", "O e-mail é obrigatório", "Aviso", DarkTheme);
                 txtEmail.Focus();
                 return false;
             }
             else if (!txtEmail.Text.Contains('@') || !txtEmail.Text.Contains('.'))
             {
-                MessageBox.Show("O e-mail digitado é inválido", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                MessageBox.ShowMessageBoxOK("warning", "O e-mail digitado é inválido", "Aviso", DarkTheme); 
                 txtEmail.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtUsuario.Text))
             {
-                MessageBox.Show("O usuário é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "O usuário é obrigatório", "Aviso", DarkTheme);
                 txtUsuario.Focus();
                 return false;
             }
             else if (txtUsuario.Text.Length < 8)
             {
-                MessageBox.Show("O usuário deve conter 8 ou mais caracteres!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "O usuário deve conter 8 ou mais caracteres!", "Aviso", DarkTheme);
                 txtUsuario.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtSenha.Text))
             {
-                MessageBox.Show("A senha é obrigatória", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "A senha é obrigatória", "Aviso", DarkTheme);
                 txtSenha.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtConfirmarSenha.Text))
             {
-                MessageBox.Show("A senha deve ser confirmada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "A senha deve ser confirmada", "Aviso", DarkTheme);
                 txtConfirmarSenha.Focus();
                 return false;
             }
             else if (txtSenha.Text != txtConfirmarSenha.Text)
             {
-                MessageBox.Show("As senhas não coincidem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "As senhas não coincidem", "Aviso", DarkTheme);
                 txtConfirmarSenha.Focus();
                 return false;
             }
@@ -205,7 +206,7 @@ namespace Teste_Login
 
                         if (determinante > Convert.ToInt32(numeros))
                         {
-                            MessageBox.Show("O número da sua senha deve ser maior que " + determinante);
+                            MessageBox.ShowMessageBoxOK("warning", "O número da sua senha deve ser maior que " + determinante, "Senha inválida!", DarkTheme);
                             txtSenha.Focus();
                             return false;
                         }
@@ -303,7 +304,7 @@ namespace Teste_Login
 
                         if (determinante > Convert.ToInt32(numeros))
                         {
-                            MessageBox.Show("O número da sua senha deve ser maior que " + determinante);
+                            MessageBox.ShowMessageBoxOK("warning", "O número da sua senha deve ser maior que " + determinante, "Senha inválida", DarkTheme);
                             txtSenha.Focus();
                             return false;
                         }
@@ -356,7 +357,7 @@ namespace Teste_Login
                     }
                     catch (FormatException)
                     {
-                        MessageBox.Show("A porta deve ser um número!", "Formato incorreto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.ShowMessageBoxOK("error", "A porta deve ser um número!", "Formato incorreto", DarkTheme);
                         txtPorta.Focus();
                         return;
                     }
@@ -369,7 +370,7 @@ namespace Teste_Login
                     usuario = (Usuario)procurar.Next();
                     if (usuario.nome.Equals(txtNome.Text))
                     {
-                        MessageBox.Show("Este nome já está sendo utilizado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Este nome já está sendo utilizado", "Aviso", DarkTheme);
                         txtNome.Focus();
                         return;
                     }
@@ -384,7 +385,7 @@ namespace Teste_Login
                     Usuario u = (Usuario)p2.Next();
                     if (u.email.Equals(txtEmail.Text))
                     {
-                        MessageBox.Show("Este e-mail já está sendo utilizado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Este e-mail já está sendo utilizado", "Aviso", DarkTheme);
                         txtEmail.Focus();
                         return;
                     }
@@ -399,7 +400,7 @@ namespace Teste_Login
                     Usuario u = (Usuario)p3.Next();
                     if (u.usuario.Equals(txtUsuario.Text))
                     {
-                        MessageBox.Show("Este usuário já está sendo utilizado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Este usuário já está sendo utilizado", "Aviso", DarkTheme);
                         txtEmail.Focus();
                         return;
                     }
@@ -420,11 +421,9 @@ namespace Teste_Login
 
                 usuario.senha = stringg.ToString();
                 u4.senha = txtSenha.Text;
-                
-
 
                 banco.Store(usuario);
-                MessageBox.Show("Cadastro realizado com sucesso!");
+                MessageBox.ShowMessageBoxOK("correct", "Cadastro realizado com sucesso!", "", DarkTheme);
                 banco.Close();
                 this.Close();
             }

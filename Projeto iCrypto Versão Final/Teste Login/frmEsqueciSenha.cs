@@ -27,6 +27,7 @@ namespace Teste_Login
             "\nfor inválido, utilize outro endereço de e-mail" +
             "\nque possa acessar";
         bool DarkTheme;
+        ShowMessageBox MessageBox = new ShowMessageBox();
 
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         public frmEsqueciSenha(bool DarkTheme)
@@ -40,7 +41,7 @@ namespace Teste_Login
         {
             if (String.IsNullOrEmpty(txtEmail.Text))
             {
-                System.Windows.Forms.MessageBox.Show("Insira um endereço de e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Insira um endereço de e-mail", "Aviso", DarkTheme);
                 return;
             }
             else
@@ -82,7 +83,7 @@ namespace Teste_Login
                     }
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Este e-mail não está cadastrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Este e-mail não está cadastrado", "Aviso", DarkTheme);
                         txtEmail.Focus();
                         return;
                     }
@@ -91,7 +92,7 @@ namespace Teste_Login
                 {
                     if (String.IsNullOrEmpty(txtNome.Text))
                     {
-                        System.Windows.Forms.MessageBox.Show("Você deve digitar um nome!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Você deve digitar um nome!", "Aviso", DarkTheme);
                         txtNome.Focus();
                         return;
                     }
@@ -129,7 +130,7 @@ namespace Teste_Login
                     }
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Este nome não está cadastrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Este nome não está cadastrado", "Aviso", DarkTheme);
                         return;
                     }
                 }
@@ -149,13 +150,13 @@ namespace Teste_Login
                         cliente.EnableSsl = true;
                         cliente.Send(email);
                     }
-                    System.Windows.Forms.MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.ShowMessageBoxOK("warning", "E-mail enviado com sucesso!", "Aviso", DarkTheme);
                     banco.Close();
                     this.Close();
                 }
                 catch (Exception erro)
                 {
-                    System.Windows.Forms.MessageBox.Show(erro.Message);
+                    MessageBox.ShowMessageBoxOK("null", erro.Message, "", DarkTheme);
                 }
             }
         }

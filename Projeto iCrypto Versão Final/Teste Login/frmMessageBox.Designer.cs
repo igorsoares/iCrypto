@@ -49,6 +49,7 @@
             // btn1
             // 
             this.btn1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn1.Location = new System.Drawing.Point(191, 80);
             this.btn1.Name = "btn1";
@@ -61,6 +62,7 @@
             // btn2
             // 
             this.btn2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn2.Location = new System.Drawing.Point(110, 80);
             this.btn2.Name = "btn2";

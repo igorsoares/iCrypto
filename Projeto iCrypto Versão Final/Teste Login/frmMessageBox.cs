@@ -41,6 +41,28 @@ namespace Teste_Login
                 case "warning":
                     picIcon.Image = DarkTheme ? Resources.DarkWarning : Resources.Warning; 
                     break;
+
+                case "question":
+                    picIcon.Image = DarkTheme ? Resources.DarkQuestion : Resources.Question;
+                    break;
+
+                case "information":
+                    picIcon.Image = DarkTheme ? Resources.DarkInformation : Resources.Information;
+                    break;
+
+                case "correct":
+                    picIcon.Image = DarkTheme ? Resources.DarkCorrect : Resources.Correct;
+                    break;
+
+                case "error":
+                    picIcon.Image = DarkTheme ? Resources.DarkError : Resources.Error;
+                    break;
+
+                case "null":
+                    picIcon.Hide();
+                    this.Width -= 55;
+                    lbTexto.Location = new Point(20, 35);
+                    break;
             } 
 
             lbTexto.Text = texto;

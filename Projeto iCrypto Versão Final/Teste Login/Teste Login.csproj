@@ -183,6 +183,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServidorSMTP.cs" />
+    <Compile Include="ShowMessageBox.cs" />
     <Compile Include="Usuario.cs" />
     <EmbeddedResource Include="EnviarMensagem.resx">
       <DependentUpon>EnviarMensagem.cs</DependentUpon>
@@ -309,6 +310,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DarkWarning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Correct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DarkCorrect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DarkError.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DarkInformation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DarkQuestion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DarkWarning1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

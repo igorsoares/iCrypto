@@ -22,7 +22,7 @@ namespace Teste_Login
         Color colorIn, colorOut = Color.Black;
         bool DarkTheme;
         metodosDarkTheme darkTheme = new metodosDarkTheme();
-        frmMessageBox MessageBox;
+        ShowMessageBox MessageBox = new ShowMessageBox();
 
         public frmLogin()
         {
@@ -48,8 +48,7 @@ namespace Teste_Login
                 MessageBox.Show("O usuário é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUsuario.Focus();
                 */
-                MessageBox = new frmMessageBox("Warning", "O usuário é obrigatório", "Aviso", DarkTheme, false);
-                MessageBox.ShowDialog();
+                MessageBox.ShowMessageBoxOK("Warning", "O usuário é obrigatório", "Aviso", DarkTheme);
                 return false;
             }
             if (String.IsNullOrEmpty(txtSenha.Text))
@@ -57,8 +56,7 @@ namespace Teste_Login
                 /*
                 MessageBox.Show("A senha é obrigatória", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 */
-                MessageBox = new frmMessageBox("Warning", "A senha é obrigatória", "Aviso", DarkTheme, false);
-                MessageBox.ShowDialog();
+                MessageBox.ShowMessageBoxOK("Warning", "A senha é obrigatória", "Aviso", DarkTheme);
                 txtSenha.Focus();
                 return false;
             }
@@ -130,8 +128,8 @@ namespace Teste_Login
                         /*
                         MessageBox.Show("Senha incorreta!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         */
-                        MessageBox = new frmMessageBox("Warning", "Senha incorreta!", "Aviso", DarkTheme, false);
-                        MessageBox.ShowDialog();
+                        MessageBox.ShowMessageBoxOK("Warning", "Senha incorreta!", "Aviso", DarkTheme);
+
                     }
                 }
                 else
@@ -139,8 +137,7 @@ namespace Teste_Login
                     /*
                     MessageBox.Show("Usuário não cadastrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     */
-                    MessageBox = new frmMessageBox("Warning", "Usuário não cadastrado!", "Aviso", DarkTheme, false);
-                    MessageBox.ShowDialog();
+                    MessageBox.ShowMessageBoxOK("Warning", "Usuário não cadastrado!", "Aviso", DarkTheme);
                 }
             }
         }

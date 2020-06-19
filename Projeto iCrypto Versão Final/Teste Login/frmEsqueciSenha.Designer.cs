@@ -114,16 +114,17 @@
             // ttpMensagem
             // 
             this.ttpMensagem.AutoPopDelay = 30000;
+            this.ttpMensagem.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ttpMensagem.InitialDelay = 100;
             this.ttpMensagem.ReshowDelay = 100;
-            this.ttpMensagem.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.ttpMensagem.ToolTipTitle = "Quando utilizar esta caixa?";
+            this.ttpMensagem.UseAnimation = false;
             // 
             // picHelp
             // 
             this.picHelp.Cursor = System.Windows.Forms.Cursors.Help;
-            this.picHelp.Image = ((System.Drawing.Image)(resources.GetObject("picHelp.Image")));
-            this.picHelp.Location = new System.Drawing.Point(546, 78);
+            this.picHelp.Image = global::Teste_Login.Properties.Resources.Information;
+            this.picHelp.Location = new System.Drawing.Point(547, 77);
             this.picHelp.Name = "picHelp";
             this.picHelp.Size = new System.Drawing.Size(23, 23);
             this.picHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

@@ -512,6 +512,8 @@ namespace Teste_Login
                 this.BackColor = SystemColors.ControlDarkDark;
                 mudarTextBoxes(true);
                 temaEscuro.darkLogo(picLogo, true);
+                picAjudaSenha.Image = Resources.DarkInformation;
+                picHelpSMTP.Image = Resources.DarkInformation;
                 DarkTheme = true;
             }
             else
@@ -519,6 +521,8 @@ namespace Teste_Login
                 this.BackColor = SystemColors.ActiveCaption;
                 mudarTextBoxes(false);
                 temaEscuro.darkLogo(picLogo, false);
+                picAjudaSenha.Image = Resources.Information;
+                picHelpSMTP.Image = Resources.Information;
                 DarkTheme = false;
             }
         }

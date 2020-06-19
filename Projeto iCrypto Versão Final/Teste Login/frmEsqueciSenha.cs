@@ -34,6 +34,7 @@ namespace Teste_Login
         {
             InitializeComponent();
             cboxDarkTheme.Checked = DarkTheme;
+            this.DarkTheme = DarkTheme;
             banco = Db4oFactory.OpenFile(caminhoBanco);
         }
 
@@ -197,6 +198,8 @@ namespace Teste_Login
                 this.BackColor = SystemColors.ControlDarkDark;
                 mudarTextBoxes(true);
                 temaEscuro.darkLogo(picLogo, true);
+                picHelp.Image = Resources.DarkInformation;
+                temaEscuro.darkToolTip(ttpMensagem, true);
                 DarkTheme = true;
             }
             else
@@ -204,6 +207,8 @@ namespace Teste_Login
                 this.BackColor = SystemColors.ActiveCaption;
                 mudarTextBoxes(false);
                 temaEscuro.darkLogo(picLogo, false);
+                picHelp.Image = Resources.Information;
+                temaEscuro.darkToolTip(ttpMensagem, false);
                 DarkTheme = false;
             }
         }

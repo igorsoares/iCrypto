@@ -198,7 +198,7 @@
             // picAjudaSenha
             // 
             this.picAjudaSenha.Cursor = System.Windows.Forms.Cursors.Help;
-            this.picAjudaSenha.Image = ((System.Drawing.Image)(resources.GetObject("picAjudaSenha.Image")));
+            this.picAjudaSenha.Image = global::Teste_Login.Properties.Resources.Information;
             this.picAjudaSenha.Location = new System.Drawing.Point(461, 151);
             this.picAjudaSenha.Name = "picAjudaSenha";
             this.picAjudaSenha.Size = new System.Drawing.Size(23, 23);
@@ -213,7 +213,6 @@
             this.ttpMensagem.AutoPopDelay = 30000;
             this.ttpMensagem.InitialDelay = 100;
             this.ttpMensagem.ReshowDelay = 100;
-            this.ttpMensagem.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.ttpMensagem.ToolTipTitle = "Parâmetros da senha";
             // 
             // gboxSMTP
@@ -309,7 +308,7 @@
             // picHelpSMTP
             // 
             this.picHelpSMTP.Cursor = System.Windows.Forms.Cursors.Help;
-            this.picHelpSMTP.Image = ((System.Drawing.Image)(resources.GetObject("picHelpSMTP.Image")));
+            this.picHelpSMTP.Image = global::Teste_Login.Properties.Resources.Information;
             this.picHelpSMTP.Location = new System.Drawing.Point(446, 231);
             this.picHelpSMTP.Name = "picHelpSMTP";
             this.picHelpSMTP.Size = new System.Drawing.Size(23, 23);

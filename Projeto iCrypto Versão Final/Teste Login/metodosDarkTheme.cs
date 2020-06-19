@@ -115,5 +115,19 @@ namespace Teste_Login
                     pagina.BackColor = SystemColors.ActiveCaption;
             }
         }
+
+        public void darkToolTip(ToolTip ToolTip, bool DarkTheme)
+        {
+            if (DarkTheme)
+            {
+                ToolTip.BackColor = SystemColors.ControlDarkDark;
+                ToolTip.ForeColor = SystemColors.ScrollBar;
+            }
+            else
+            {
+                ToolTip.BackColor = Color.White;
+                ToolTip.ForeColor = Color.Black;
+            }
+        }
     }
 }

@@ -24,8 +24,9 @@ namespace Teste_Login
 
             if (botaoYesNo)
             {
-                btn1.Text = "No";
-                btn2.Text = "Yes";
+                btn2.Focus();
+                btn1.Text = "Não";
+                btn2.Text = "Sim";
                 btn2.Show();
                 btn2.Enabled = true;
                 YesNo = true;
@@ -87,7 +88,7 @@ namespace Teste_Login
             }
             else
             {
-                simNao = "sim";
+                simNao = "nao";
                 this.Close();
             }
         }
@@ -99,7 +100,7 @@ namespace Teste_Login
 
         private void btn2_Click(object sender, EventArgs e)
         {
-            simNao = "nao";
+            simNao = "sim";
             this.Close();
         }
     }

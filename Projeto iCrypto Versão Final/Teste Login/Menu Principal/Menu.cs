@@ -24,6 +24,7 @@ namespace Projeto1_semestre
     {
         Usuario usuario = new Usuario();
         metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        ShowMessageBox MessageBox = new ShowMessageBox();
         IObjectContainer banco;
         bool validar, letra, DarkTheme;
         int[] algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -167,19 +168,19 @@ namespace Projeto1_semestre
 
             if (String.IsNullOrEmpty(caracteres))
             {
-                System.Windows.Forms.MessageBox.Show("A senha deve conter pelo menos 4 caracteres!", "Senha inválida!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "A senha deve conter pelo menos 4 caracteres!", "Senha inválida!", DarkTheme);
                 tbxNovaSenha.Focus();
                 return false;
             }
             else if (caracteres.Length != 4 && caracteres.Length != 9)
             {
-                System.Windows.Forms.MessageBox.Show("A senha deve conter 4 ou 9 caracteres!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "A senha deve conter 4 ou 9 caracteres!", "Aviso", DarkTheme);
                 tbxNovaSenha.Focus();
                 return false;
             }
             else if (numeros == null)
             {
-                System.Windows.Forms.MessageBox.Show("A senha deve conter pelo menos um número!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "A senha deve conter pelo menos um número!", "Aviso", DarkTheme);
                 tbxNovaSenha.Focus();
                 return false;
             }
@@ -205,7 +206,7 @@ namespace Projeto1_semestre
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes.Equals(System.Windows.Forms.MessageBox.Show("Deseja realmente excluir sua conta?", "Excluir conta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)))
+            if (MessageBox.ShowMessageBoxYesNo("question", "Deseja realmente excluir sua conta?", "Excluir conta", DarkTheme).Equals("sim"))
             {
                 Usuario user = new Usuario();
                 user.nome = tbxNome.Text;
@@ -225,25 +226,25 @@ namespace Projeto1_semestre
         {
             if (String.IsNullOrEmpty(txtEmailSMTP.Text))
             {
-                System.Windows.Forms.MessageBox.Show("O e-mail do SMTP é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                MessageBox.ShowMessageBoxOK("warning", "O e-mail do SMTP é obrigatório", "Aviso", DarkTheme);
                 txtEmailSMTP.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtSenhaSMTP.Text))
             {
-                System.Windows.Forms.MessageBox.Show("A senha do e-mail SMTP é obrigatória", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                MessageBox.ShowMessageBoxOK("warning", "A senha do e-mail SMTP é obrigatória", "Aviso", DarkTheme);
                 txtSenhaSMTP.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtServidor.Text))
             {
-                System.Windows.Forms.MessageBox.Show("O servidor SMTP é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                MessageBox.ShowMessageBoxOK("warning", "O servidor SMTP é obrigatório", "Aviso", DarkTheme);
                 txtServidor.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtPorta.Text))
             {
-                System.Windows.Forms.MessageBox.Show("A porta do servidor SMTP é obrigatória", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                MessageBox.ShowMessageBoxOK("warning", "A porta do servidor SMTP é obrigatória", "Aviso", DarkTheme);
                 txtPorta.Focus();
                 return false;
             }
@@ -271,15 +272,15 @@ namespace Projeto1_semestre
                         smtp.portaSMTP = Convert.ToInt32(txtPorta.Text);
                         usuario.servidorSMTP = smtp;
                         banco.Store(usuario);
-                        System.Windows.Forms.MessageBox.Show("Servidor SMTP cadastrado com sucesso!", "Servidor cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("correct", "Servidor SMTP cadastrado com sucesso!", "Servidor cadastrado", DarkTheme);
                         banco.Close();
                         banco = Db4oFactory.OpenFile(caminhoBanco);
-                        System.Windows.Forms.MessageBox.Show("Reinicie o iCrypto para que as mudanças tenham efeitos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("information", "Reinicie o iCrypto para que as mudanças tenham efeitos.", "Aviso", DarkTheme);
 
                     }
                     catch (FormatException)
                     {
-                        System.Windows.Forms.MessageBox.Show("A porta deve ser um número!", "Formato incorreto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.ShowMessageBoxOK("error", "A porta deve ser um número!", "Formato incorreto", DarkTheme);
                         txtPorta.Focus();
                         return;
                     }
@@ -291,7 +292,7 @@ namespace Projeto1_semestre
         {
             if (validarSMTP())
             {
-                if (DialogResult.Yes.Equals(System.Windows.Forms.MessageBox.Show("Deseja realmente excluir seus dados do servidor SMTP atual?", "Excluir conta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)))
+                if (MessageBox.ShowMessageBoxYesNo("question", "Deseja realmente excluir seus dados do servidor SMTP atual?", "Excluir conta", DarkTheme).Equals("sim"))
                 {
                     Usuario user = new Usuario();
                     user.nome = tbxNome.Text;
@@ -303,7 +304,7 @@ namespace Projeto1_semestre
                         ServidorSMTP newServer = new ServidorSMTP();
                         user.servidorSMTP = newServer;
                         banco.Store(user);
-                        System.Windows.Forms.MessageBox.Show("Reinicie o iCrypto para que as mudanças tenham efeitos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("information", "Reinicie o iCrypto para que as mudanças tenham efeitos.", "Reinicialização necessária", DarkTheme);
 
                     }
                     banco.Close();
@@ -346,15 +347,15 @@ namespace Projeto1_semestre
                         smtp.portaSMTP = Convert.ToInt32(txtPorta.Text);
                         usuario.servidorSMTP = smtp;
                         banco.Store(usuario);
-                        System.Windows.Forms.MessageBox.Show("Servidor SMTP alterado com sucesso!", "Servidor cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("information", "Servidor SMTP alterado com sucesso!", "Servidor cadastrado", DarkTheme);
                         banco.Close();
                         banco = Db4oFactory.OpenFile(caminhoBanco);
-                        System.Windows.Forms.MessageBox.Show("Reinicie o iCrypto para que as mudanças tenham efeitos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("information", "Reinicie o iCrypto para que as mudanças tenham efeitos.", "Reinicialização necessária", DarkTheme);
 
                     }
                     catch (FormatException)
                     {
-                        System.Windows.Forms.MessageBox.Show("A porta deve ser um número!", "Formato incorreto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.ShowMessageBoxOK("error", "A porta deve ser um número!", "Formato incorreto", DarkTheme);
                         txtPorta.Focus();
                         return;
                     }
@@ -423,7 +424,7 @@ namespace Projeto1_semestre
 
         private void btnLimparTodosHistoricos_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes.Equals(System.Windows.Forms.MessageBox.Show("Deseja realmente excluir todos os históricos?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)))
+            if (MessageBox.ShowMessageBoxYesNo("question", "Deseja realmente excluir todos os históricos?", "Confirmar exclusão", DarkTheme).Equals("sim"))
             {
                 Usuario user = new Usuario();
                 user.nome = tbxNome.Text;
@@ -438,7 +439,7 @@ namespace Projeto1_semestre
                     user.historicoMorse = string.Empty;
                     user.historicoEsteganografia = string.Empty;
                     banco.Store(user);
-                    System.Windows.Forms.MessageBox.Show("Todos os históricos foram excluídos com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.ShowMessageBoxOK("information", "Todos os históricos foram excluídos com sucesso!", "Históricos excluídos!", DarkTheme);
                 }
                 banco.Close();
                 banco = Db4oFactory.OpenFile(caminhoBanco);
@@ -543,7 +544,7 @@ namespace Projeto1_semestre
 
         private void btnLimparEspecifico_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes.Equals(System.Windows.Forms.MessageBox.Show("Deseja realmente limpar este histórico?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)))
+            if (MessageBox.ShowMessageBoxYesNo("question", "Deseja realmente limpar este histórico?", "Confirmar exclusão", DarkTheme).Equals("sim"))
             {
                 Usuario user = new Usuario();
                 user.nome = tbxNome.Text;
@@ -578,7 +579,7 @@ namespace Projeto1_semestre
                             break;
                     }
 
-                    System.Windows.Forms.MessageBox.Show("Histórico excluído com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.ShowMessageBoxOK("correct", "Histórico excluído com sucesso!", "", DarkTheme);
                     banco.Store(user);
                 }
                 banco.Close();
@@ -590,36 +591,36 @@ namespace Projeto1_semestre
         {
             if (!cboxAlterarInfos.Checked && !cboxAlterarSenha.Checked)
             {
-                System.Windows.Forms.MessageBox.Show("Nenhuma informação foi selecionada para alterar!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                MessageBox.ShowMessageBoxOK("warning", "Nenhuma informação foi selecionada para alterar!", "Aviso", DarkTheme); 
                 return false;
             }
             else if (!String.IsNullOrEmpty(tbxEmail.Text) && (!tbxEmail.Text.Contains('@') || !tbxEmail.Text.Contains('.')))
             {
-                System.Windows.Forms.MessageBox.Show("O e-mail digitado é inválido", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                MessageBox.ShowMessageBoxOK("warning", "O e-mail digitado é inválido", "Aviso", DarkTheme); 
                 tbxEmail.Focus();
                 return false;
             }
             else if (!String.IsNullOrEmpty(tbxUser.Text) && tbxUser.Text.Length < 8)
             {
-                System.Windows.Forms.MessageBox.Show("O usuário deve conter 8 ou mais caracteres!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "O usuário deve conter 8 ou mais caracteres!", "Aviso", DarkTheme);
                 tbxUser.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(tbxNovaSenha.Text) && cboxAlterarSenha.Checked)
             {
-                System.Windows.Forms.MessageBox.Show("Nenhuma nova senha foi digitada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhuma nova senha foi digitada!", "Aviso", DarkTheme);
                 tbxNovaSenhaConfirm.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(tbxNovaSenhaConfirm.Text) && cboxAlterarSenha.Checked)
             {
-                System.Windows.Forms.MessageBox.Show("A senha deve ser confirmada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "A senha deve ser confirmada", "Aviso", DarkTheme);
                 tbxNovaSenhaConfirm.Focus();
                 return false;
             }
             else if (tbxNovaSenha.Text != tbxNovaSenhaConfirm.Text && cboxAlterarSenha.Checked)
             {
-                System.Windows.Forms.MessageBox.Show("As senhas não coincidem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "As senhas não coincidem", "Aviso", DarkTheme);
                 tbxNovaSenhaConfirm.Focus();
                 return false;
             }
@@ -647,7 +648,7 @@ namespace Projeto1_semestre
 
                         if (determinante > Convert.ToInt32(numeros))
                         {
-                            System.Windows.Forms.MessageBox.Show("O número da sua senha deve ser maior que " + determinante);
+                            MessageBox.ShowMessageBoxOK("warning", "O número da sua senha deve ser maior que " + determinante, "Senha inválida", DarkTheme);
                             tbxNovaSenha.Focus();
                             return false;
                         }
@@ -745,7 +746,7 @@ namespace Projeto1_semestre
 
                         if (determinante > Convert.ToInt32(numeros))
                         {
-                            System.Windows.Forms.MessageBox.Show("O número da sua senha deve ser maior que " + determinante);
+                            MessageBox.ShowMessageBoxOK("warning", "O número da sua senha deve ser maior que " + determinante, "Senha inválida", DarkTheme);
                             tbxNovaSenha.Focus();
                             return false;
                         }
@@ -780,7 +781,7 @@ namespace Projeto1_semestre
                     {
                         if (tbxEmail.Text.Equals(usuario.email) && tbxUser.Text.Equals(usuario.usuario))
                         {
-                            System.Windows.Forms.MessageBox.Show("Nenhuma informação foi alterada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.ShowMessageBoxOK("warning", "Nenhuma informação foi alterada!", "Aviso", DarkTheme);
                             return;
                         }
 
@@ -794,7 +795,7 @@ namespace Projeto1_semestre
                                 Usuario u = (Usuario)p2.Next();
                                 if (u.email.Equals(tbxEmail.Text))
                                 {
-                                    System.Windows.Forms.MessageBox.Show("Este e-mail já está sendo utilizado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    MessageBox.ShowMessageBoxOK("warning", "Este e-mail já está sendo utilizado", "Aviso", DarkTheme);
                                     tbxEmail.Focus();
                                     return;
                                 }
@@ -812,7 +813,7 @@ namespace Projeto1_semestre
                                 Usuario u = (Usuario)p1.Next();
                                 if (u.usuario.Equals(tbxUser.Text))
                                 {
-                                    System.Windows.Forms.MessageBox.Show("Este usuário já está sendo utilizado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    MessageBox.ShowMessageBoxOK("warning", "Este usuário já está sendo utilizado", "Aviso", DarkTheme);
                                     tbxUser.Focus();
                                     return;
                                 }
@@ -834,17 +835,17 @@ namespace Projeto1_semestre
                         testeSenha = stringg.ToString();
                         if (testeSenha.Equals(usuario.senha))
                         {
-                            System.Windows.Forms.MessageBox.Show("A senha digitada é a senha atual", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.ShowMessageBoxOK("warning", "A senha digitada é a senha atual", "Aviso", DarkTheme);
                             return;
                         }
                         usuario.senha = stringg.ToString();
                     }
 
-                    if (DialogResult.Yes.Equals(System.Windows.Forms.MessageBox.Show("Deseja realmente alterar as informações da sua conta?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)))
+                    if (MessageBox.ShowMessageBoxYesNo("question", "Deseja realmente alterar as informações da sua conta?", "Confirmar exclusão de conta", DarkTheme).Equals("sim"))
                     {
                         banco.Store(usuario);
 
-                        System.Windows.Forms.MessageBox.Show("Informações alteradas com sucesso!", "Cadastro atualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("information", "Informações alteradas com sucesso!", "Cadastro atualizado", DarkTheme);
                         banco.Close();
                         banco = Db4oFactory.OpenFile(caminhoBanco);
                     }

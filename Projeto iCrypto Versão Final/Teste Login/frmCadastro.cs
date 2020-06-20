@@ -87,7 +87,7 @@ namespace Teste_Login
                 return true;
         }
 
-        private bool validarTamanhoSenha()
+        public bool validarTamanhoSenha()
         {
             caracteres = null;
             numeros = null;

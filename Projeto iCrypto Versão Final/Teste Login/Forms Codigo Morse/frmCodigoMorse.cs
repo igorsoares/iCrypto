@@ -22,7 +22,7 @@ namespace CodigoMorseProjeto1
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         int cont;
         bool DarkTheme = false;
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
 
         static Dictionary<char, string> chaveTexto = new Dictionary<char, string>()
         {

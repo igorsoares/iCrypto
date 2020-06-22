@@ -19,7 +19,7 @@ namespace Teste_Login
     {
         IObjectContainer banco;
         Random gerador = new Random();
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
         string informacoes, novaSenha = "";
         string mensagem = "Marque esta caixa apenas se quiser utilizar" +
             "\num e-mail na qual você possui acesso, porém " +

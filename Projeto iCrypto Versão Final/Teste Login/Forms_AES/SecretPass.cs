@@ -17,7 +17,7 @@ namespace Projeto_AES
     {
         Usuario usuario = new Usuario();
         bool DarkTheme = false;
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
 
         ShowMessageBox MessageBox = new ShowMessageBox();
         public SecretPass(Usuario usuarioLogado, bool DarkTheme)

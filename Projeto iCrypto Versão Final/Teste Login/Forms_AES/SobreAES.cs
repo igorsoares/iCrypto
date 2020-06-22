@@ -25,10 +25,5 @@ namespace Teste_Login.Forms_AES
         {
             System.Diagnostics.Process.Start("https://pplware.sapo.pt/tutoriais/networking/criptografia-simetrica-e-assimetrica-sabe-a-diferenca/");
         }
-
-        private void SobreAES_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

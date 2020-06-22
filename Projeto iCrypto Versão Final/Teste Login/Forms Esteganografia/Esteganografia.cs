@@ -31,7 +31,7 @@ namespace Esteganografia_versao_final
         int porta;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         string respostaGmail;
-        metodosDarkTheme metodosDarkTheme = new metodosDarkTheme();
+        metodosEDarkTheme metodosDarkTheme = new metodosEDarkTheme();
         ShowMessageBox MessageBox = new ShowMessageBox();
         bool DarkTheme;
         Color cor = Color.Blue;

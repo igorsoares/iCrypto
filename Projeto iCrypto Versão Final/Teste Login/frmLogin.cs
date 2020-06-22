@@ -21,7 +21,7 @@ namespace Teste_Login
         string caminhoBanco =  Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         Color colorIn, colorOut = Color.Black;
         bool DarkTheme;
-        metodosDarkTheme darkTheme = new metodosDarkTheme();
+        metodosEDarkTheme darkTheme = new metodosEDarkTheme();
         ShowMessageBox MessageBox = new ShowMessageBox();
 
         public frmLogin()

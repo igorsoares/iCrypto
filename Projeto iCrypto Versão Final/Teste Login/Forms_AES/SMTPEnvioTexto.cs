@@ -25,7 +25,7 @@ namespace Projeto_AES
         SmtpClient cliente;
         ArrayList arquivos_email;
         bool DarkTheme =  false;
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
         ShowMessageBox MessageBox = new ShowMessageBox();
 
         public SMTPEnvioTexto(string conteudo, ArrayList arquivos_email, Usuario usuario, bool DarkTheme)
@@ -205,16 +205,12 @@ namespace Projeto_AES
                     }
                     if (tamanho_arquivos > 26214400L)
                     {
-                        System.Windows.Forms.MessageBox.Show("Os arquivos anexados resultam em um espaço maior que" +
-                            " 25MB. Email não será enviado.", "Erro", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                        MessageBox.ShowMessageBoxOK("error", "Os arquivos anexados resultam em um espaço maior que" +
+                            " 25MB. Email não será enviado.", "Erro", DarkTheme);
                         return;
                     }
 
                 }
-
-
-
 
                 cliente.EnableSsl = true; // + segurança, envio criptografado
 
@@ -232,16 +228,16 @@ namespace Projeto_AES
                         {
                             System.Diagnostics.Process.Start("https://myaccount.google.com/lesssecureapps");
                             System.Threading.Thread.Sleep(1000);
-                            DialogResult ativou = System.Windows.Forms.MessageBox.Show("A opção menos segura foi ativada?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                            if (ativou.Equals(DialogResult.Yes))
+                            if (MessageBox.ShowMessageBoxYesNo("question", "A opção menos segura foi ativada?", "Confirmar ativação", DarkTheme).Equals("sim"))
                             {
                                 cliente.Send(messageMail);
-                                System.Windows.Forms.MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.ShowMessageBoxOK("information", "E-mail enviado para " + tbEmailTo.Text, "Aviso", DarkTheme);
                                 return;
                             }
                             else
                             {
-                                System.Windows.Forms.MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            
+                                MessageBox.ShowMessageBoxOK("information", "Não será possível enviar o e-mail", "Aviso", DarkTheme);
                                 return;
                             }
                         }
@@ -250,34 +246,33 @@ namespace Projeto_AES
                             try
                             {
                                 cliente.Send(messageMail);
-                                System.Windows.Forms.MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.ShowMessageBoxOK("correct", "E-mail enviado para " + tbEmailTo.Text, "Aviso", DarkTheme);
 
                             }
                             catch (Exception ex)
                             {
-                                System.Windows.Forms.MessageBox.Show("O envio falhou!" +
-                    "\n" +
-                    "\nCertifique que o e-mail está correto e é válido" +
-                    "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
-                    "\nCaso seja gmail, certique que a opção 'Acesso a apps menos seguros' está ativada", "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.ShowMessageBoxOK("error", "O envio falhou!" +
+                                    "\n" +
+                                    "\nCertifique que o e-mail está correto e é válido" +
+                                    "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
+                                    "\nCaso seja gmail, certique que a opção 'Acesso a apps menos seguros' está ativada", "Ocorreu um erro", DarkTheme);
 
                             }
                         }
                         else
                         {
-                            System.Windows.Forms.MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.ShowMessageBoxOK("information", "Não será possível enviar o e-mail", "Aviso", DarkTheme);
                             return;
                         }
                     }
                     else
                     {
                         cliente.Send(messageMail);
-                        System.Windows.Forms.MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("correct", "E-mail enviado para " + tbEmailTo.Text, "Aviso", DarkTheme);
 
                     }
                 }
-
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return;
                 }
@@ -285,27 +280,26 @@ namespace Projeto_AES
                 //cliente.Send(messageMail);
                 //MessageBox.Show("E-mail enviado para " + tbEmailTo.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (SmtpException ex)
+            catch (SmtpException)
             {
-                System.Windows.Forms.MessageBox.Show("Informações de configurações erradas.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", "Informações de configurações erradas.", "Erro", DarkTheme);
                 return;
             }
             catch (FormatException ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", ex.Message, "Erro", DarkTheme);
                 return;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("O envio falhou!" +
+                MessageBox.ShowMessageBoxOK("error", "O envio falhou!" +
                     "\n" +
                     "\nCertifique que o e-mail está correto e é válido" +
                     "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
-                    "\nCaso seja gmail, certique que a opção 'Acesso a apps menos seguros' está ativada", "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "\nCaso seja gmail, certique que a opção 'Acesso a apps menos seguros' está ativada", "Ocorreu um erro", DarkTheme);
                 return;
             }
-
+        
 
         }
 
@@ -322,7 +316,7 @@ namespace Projeto_AES
                 //lbArquivos.Items.Remove(arquivoSelecionado);
                 if (dataGridViewAnexo.SelectedRows.Count == 0)
                 {
-                    System.Windows.Forms.MessageBox.Show("Nenhum arquivo foi selecionado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.ShowMessageBoxOK("warning", "Nenhum arquivo foi selecionado!", "Aviso", DarkTheme);
                     return;
                 }
                 else
@@ -338,7 +332,7 @@ namespace Projeto_AES
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                MessageBox.ShowMessageBoxOK("null", ex.Message, "", DarkTheme);
                 return;
             }
         }
@@ -398,8 +392,7 @@ namespace Projeto_AES
 
                 if (nome_arquivo.EndsWith(".exe"))
                 {
-                    System.Windows.Forms.MessageBox.Show("Arquivos executáveis não podem ser enviados.", "Erro",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "Arquivos executáveis não podem ser enviados.", "Erro", DarkTheme);
                     return;
                 }
                 // Verifica se o arquivo selecionado é maior que 25MB
@@ -407,8 +400,7 @@ namespace Projeto_AES
                 arquivo.Add(nome_arquivo);
                 if (!VerificaMBArquivos(arquivo))
                 {
-                    System.Windows.Forms.MessageBox.Show(nome_arquivo.Split('\\')[nome_arquivo.Split('\\').Length - 1] + " maior que 25MB. Impossível de ser enviado", "Erro",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", nome_arquivo.Split('\\')[nome_arquivo.Split('\\').Length - 1] + " maior que 25MB. Impossível de ser enviado", "Erro", DarkTheme);
                     return;
                 }
                 FileInfo tmp = new FileInfo(nome_arquivo);
@@ -416,7 +408,7 @@ namespace Projeto_AES
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return;
             }
@@ -460,11 +452,6 @@ namespace Projeto_AES
                 tbSenha.Text = senha;
                 cbkMostra.Text = "Mostrar";
             }
-        }
-
-        private void lbArquivos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

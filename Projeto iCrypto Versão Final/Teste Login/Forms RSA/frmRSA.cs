@@ -25,7 +25,7 @@ namespace RSA_versao_final
         int numCaracter = 0;
         bool DarkTheme = false;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
         ShowMessageBox MessageBox = new ShowMessageBox();
         public frmRSA(Usuario usuarioLogado, bool DarkTheme)
         {

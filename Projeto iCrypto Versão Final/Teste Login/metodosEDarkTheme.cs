@@ -10,7 +10,7 @@ using Teste_Login.Properties;
 
 namespace Teste_Login
 {
-    class metodosDarkTheme
+    class metodosEDarkTheme
     {
         public void darkDataGrid(DataGridView dataGrid)
         {

@@ -23,7 +23,7 @@ namespace Projeto1_semestre
     public partial class frmMenu : Form
     {
         Usuario usuario = new Usuario();
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
         ShowMessageBox MessageBox = new ShowMessageBox();
         IObjectContainer banco;
         bool validar, letra, DarkTheme;

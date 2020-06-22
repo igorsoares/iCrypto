@@ -17,6 +17,7 @@ namespace Projeto1_semestre
     {
         string[] teste = new string[4];
         string[] teste2 = new string[5];
+        bool DarkTheme = false;
         string write = "";
         int cont;
         int contador_entra = 0; // "correção de bug ", mensagem de AES aparecendo antes do form
@@ -24,7 +25,8 @@ namespace Projeto1_semestre
         IObjectContainer banco;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         const char delimitadorFinal = 'ק';
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
+        ShowMessageBox MessageBox = new ShowMessageBox();
         public Historico(Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
@@ -33,6 +35,7 @@ namespace Projeto1_semestre
             if (DarkTheme)
             {
                 this.BackColor = SystemColors.ControlDarkDark;
+                this.DarkTheme = DarkTheme;
                 //TabPages
                 temaEscuro.darkTabControl(tbcMenuHistorico, true);
 
@@ -137,7 +140,7 @@ namespace Projeto1_semestre
                     else
                     {
                         banco.Close();
-                        System.Windows.Forms.MessageBox.Show("Não há atividades registradas no AES!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Não há atividades registradas no AES!", "Histórico vazio", DarkTheme);
                         return false;
                     }
 
@@ -212,7 +215,7 @@ namespace Projeto1_semestre
                 else
                 {
                     banco.Close();
-                    System.Windows.Forms.MessageBox.Show("Não há atividades com arquivos registradas no AES!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.ShowMessageBoxOK("warning", "Não há atividades com arquivos registradas no AES!", "Histórico vazio", DarkTheme);
                     return false;
                 }
             }
@@ -244,7 +247,7 @@ namespace Projeto1_semestre
 
                     if (String.IsNullOrEmpty(usuarioRSA.historicoRSA))
                     {
-                        System.Windows.Forms.MessageBox.Show("Não há atividades registradas no RSA!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Não há atividades registradas no RSA!", "Histórico vazio", DarkTheme);
                         return;
                     }
 
@@ -316,7 +319,7 @@ namespace Projeto1_semestre
                     if (String.IsNullOrEmpty(usuarioEsteganografia.historicoEsteganografia))
                     {
                         banco.Close();
-                        System.Windows.Forms.MessageBox.Show("Não há atividades registradas na Esteganografia!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Não há atividades registradas na Esteganografia!", "Histórico vazio", DarkTheme);
                         return;
                     }
 
@@ -401,7 +404,7 @@ namespace Projeto1_semestre
                     if (String.IsNullOrEmpty(usuarioCesar.historicoCesar))
                     {
                         banco.Close();
-                        System.Windows.Forms.MessageBox.Show("Não foi salva nenhuma atividade em Cifra de Cesar!!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Não foi salva nenhuma atividade em Cifra de Cesar!!", "Histórico vazio", DarkTheme);
                         return;
                     }
                     for (int pos = 0; pos < 5; pos++)
@@ -473,7 +476,7 @@ namespace Projeto1_semestre
                     if (String.IsNullOrEmpty(usuarioMorse.historicoMorse))
                     {
                         banco.Close();
-                        System.Windows.Forms.MessageBox.Show("Não foi salva nenhuma atividade em Código Morse!!", "Histórico vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Não foi salva nenhuma atividade em Código Morse!!", "Histórico vazio", DarkTheme);
                         return;
                     }
                     for (int pos = 0; pos < 4; pos++)
@@ -669,8 +672,8 @@ namespace Projeto1_semestre
                     }
                     if (contador == x - 1)
                         return;
-                    DialogResult resu = System.Windows.Forms.MessageBox.Show("Deseja realmente excluir ?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (resu.Equals(DialogResult.Yes))
+                    //DialogResult resu = System.Windows.Forms.MessageBox.Show("Deseja realmente excluir ?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (MessageBox.ShowMessageBoxYesNo("question", "Deseja realmente excluir ?", "Confirmar exclusão",DarkTheme).Equals("sim"))
                     {
                         RemoveLinhaUnica(datagrid, e);
                         DataGridViewRow linha_select = datagrid.Rows[e.RowIndex];
@@ -683,8 +686,6 @@ namespace Projeto1_semestre
             {
                 return;
             }
-
-
         }
 
 

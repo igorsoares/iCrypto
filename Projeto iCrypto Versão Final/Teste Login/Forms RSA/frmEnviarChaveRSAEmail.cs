@@ -17,7 +17,7 @@ namespace Teste_Login
     public partial class frmEnviarChaveRSAEmail : Form
     {
         Usuario usuario = new Usuario();
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
         ShowMessageBox MessageBox = new ShowMessageBox();
         string servidor, chaveExportar, tipoChave, caminhoArquivo, respostaGmail, retornoGmail;
         int porta;

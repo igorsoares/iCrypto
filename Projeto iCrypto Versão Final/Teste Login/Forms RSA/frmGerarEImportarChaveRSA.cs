@@ -13,12 +13,15 @@ namespace Teste_Login
     public partial class frmGerarEImportarChaveRSA : Form
     {
         string chaveImportar = string.Empty;
+        bool DarkTheme = false;
+        ShowMessageBox MessageBox = new ShowMessageBox();
         public frmGerarEImportarChaveRSA(bool DarkTheme)
         {
             InitializeComponent();
             if (DarkTheme)
             {
                 this.BackColor = SystemColors.ControlDarkDark;
+                this.DarkTheme = DarkTheme;
             }
         }
 
@@ -41,7 +44,7 @@ namespace Teste_Login
             }
             else
             {
-                MessageBox.Show("Selecione um tipo de chave para importar", "Nenhuma chave selecionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Selecione um tipo de chave para importar", "Nenhuma chave selecionada", DarkTheme);
                 return;
             }
         }

@@ -68,18 +68,16 @@ namespace Projeto1_semestre
             banco = Db4oFactory.OpenFile(caminhoBanco);
         }
 
+        
         private void sairToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            DialogResult resposta = System.Windows.Forms.MessageBox.Show("Deseja realmente sair ?", "Saída", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (resposta.Equals(DialogResult.Yes))
+            if (MessageBox.ShowMessageBoxYesNo("question", "Deseja realmente sair do iCrypto?", "Fechar aplicativo", DarkTheme).Equals("sim"))
             {
                 banco.Close();
                 Application.Exit();
             }
         }
-
-
+        
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             banco.Close();

@@ -16,6 +16,7 @@ namespace CifraDeCesarProjeto1
     public partial class CifraCesar : Form
     {
         Usuario usuario = new Usuario();
+        ShowMessageBox MessageBox = new ShowMessageBox();
         IObjectContainer banco;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         int cont;
@@ -374,7 +375,7 @@ namespace CifraDeCesarProjeto1
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                MessageBox.ShowMessageBoxOK("null", ex.Message, "", DarkTheme);
             }
 
 
@@ -473,7 +474,7 @@ namespace CifraDeCesarProjeto1
                         }
                         banco.Store(usuario);
 
-                    System.Windows.Forms.MessageBox.Show("Informações salvas com sucesso!!", "Informações", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("correct", "Informações salvas com sucesso!!", "Atividade registrada", DarkTheme);
                     }
                     
 
@@ -481,7 +482,7 @@ namespace CifraDeCesarProjeto1
                 }
                 catch (Exception ex)
                 {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                    MessageBox.ShowMessageBoxOK("null", ex.Message, "", DarkTheme);
                 }
            
         }
@@ -489,11 +490,6 @@ namespace CifraDeCesarProjeto1
         private void CifraCesar_FormClosing(object sender, FormClosingEventArgs e)
         {
             banco.Close();
-        }
-
-        private void CifraCesar_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnEnviarEmail_Click(object sender, EventArgs e)

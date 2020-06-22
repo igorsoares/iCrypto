@@ -26,6 +26,7 @@ namespace Projeto_AES
         ArrayList arquivos_email;
         bool DarkTheme =  false;
         metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        ShowMessageBox MessageBox = new ShowMessageBox();
 
         public SMTPEnvioTexto(string conteudo, ArrayList arquivos_email, Usuario usuario, bool DarkTheme)
         {
@@ -65,7 +66,7 @@ namespace Projeto_AES
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // se cair aqui, nao existe configuração configurada para email
                 return;
@@ -101,7 +102,7 @@ namespace Projeto_AES
             }
             if (!verifyEmail)
             {
-                System.Windows.Forms.MessageBox.Show("Insira um e-mail válido", "Erro");
+                MessageBox.ShowMessageBoxOK("erro", "Insira um e-mail válido", "Erro", DarkTheme);
                 tbEmail.Focus();
                 return false;
             }
@@ -119,20 +120,20 @@ namespace Projeto_AES
 
                 if (String.IsNullOrEmpty(tbEmail.Text))
                 {
-                    System.Windows.Forms.MessageBox.Show("Insira um e-mail válido", "Erro");
+                    MessageBox.ShowMessageBoxOK("error", "Insira um e-mail válido", "Erro", DarkTheme);
                     tbEmail.Focus();
                     return;
                 }
                 if (!tbEmail.Text.Split('@')[1].Contains('.'))
                 {
-                    System.Windows.Forms.MessageBox.Show("Insira um e-mail com domínio válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "Insira um e-mail com domínio válido.", "Erro", DarkTheme);
                     tbEmail.Focus();
                     return;
                 }
 
                 if (String.IsNullOrEmpty(tbSenha.Text))
                 {
-                    System.Windows.Forms.MessageBox.Show("Insira uma senha", "Erro");
+                    MessageBox.ShowMessageBoxOK("error", "Insira uma senha", "Erro", DarkTheme);
                     tbSenha.Focus();
                     return;
                 }
@@ -144,15 +145,13 @@ namespace Projeto_AES
                 string servidor = tbSmtp.Text;
                 if (servidor.Length <= 0)
                 {
-                    System.Windows.Forms.MessageBox.Show("Digite um servidor SMTP", "Erro", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "Digite um servidor SMTP", "Erro", DarkTheme);
                     return;
                 }
                 int porta = 0;
                 if (String.IsNullOrEmpty(tbPorta.Text.ToString()))
                 {
-                    System.Windows.Forms.MessageBox.Show("Campo de porta é obrigatório.", "Erro", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "Campo de porta é obrigatório.", "Erro", DarkTheme);
                     return;
                 }
                 try
@@ -160,10 +159,9 @@ namespace Projeto_AES
                     porta = Convert.ToInt32(tbPorta.Text);
 
                 }
-                catch (FormatException ex)
+                catch (FormatException)
                 {
-                    System.Windows.Forms.MessageBox.Show("Porta só deve ser digitada com números inteiros", "Erro", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "Porta só deve ser digitada com números inteiros", "Erro", DarkTheme);
                     return;
                 }
 
@@ -177,8 +175,7 @@ namespace Projeto_AES
 
                 if (tbEmailTo.Text.Length == 0)
                 {
-                    System.Windows.Forms.MessageBox.Show("Digite um email destinatário", "Erro", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "Digite um email destinatário", "Erro", DarkTheme);
                     return;
                 }
 

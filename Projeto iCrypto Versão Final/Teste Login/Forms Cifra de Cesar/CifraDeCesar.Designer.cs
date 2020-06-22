@@ -323,7 +323,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "iCrypto: Cifra de Cesar";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CifraCesar_FormClosing);
-            this.Load += new System.EventHandler(this.CifraCesar_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

@@ -17,6 +17,7 @@ namespace CodigoMorseProjeto1
     {
      
         Usuario usuario = new Usuario();
+        ShowMessageBox MessageBox = new ShowMessageBox();
         IObjectContainer banco;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         int cont;
@@ -231,7 +232,7 @@ namespace CodigoMorseProjeto1
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                MessageBox.ShowMessageBoxOK("null", ex.Message, "", DarkTheme);
             }
         }
 
@@ -312,14 +313,14 @@ namespace CodigoMorseProjeto1
                         }
                         banco.Store(usuario);
 
-                    System.Windows.Forms.MessageBox.Show("Informações salvas com sucesso!!", "Informações", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("correct", "Informações salvas com sucesso!!", "Atividade registrada", DarkTheme);
                     }
                 
 
                 }
                 catch (Exception ex)
                 {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                    MessageBox.ShowMessageBoxOK("null", ex.Message, "", DarkTheme);
                 }
           
         }

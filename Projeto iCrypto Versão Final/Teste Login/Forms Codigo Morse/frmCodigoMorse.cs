@@ -391,5 +391,39 @@ namespace CodigoMorseProjeto1
         {
             rtbxTPuro.Text = Clipboard.GetText();
         }
+
+        private void somMorseBackgorund_DoWork(object sender, DoWorkEventArgs e)
+        {
+            foreach (char simbolo in rtbxCripto.Text)
+            {
+                switch (simbolo)
+                {
+                    case '.':
+                        Console.Beep(1000, 150);
+                        break;
+
+                    case '-':
+                        Console.Beep(1000, 450);
+                        break;
+
+                    default:
+                        System.Threading.Thread.Sleep(150);
+                        break;
+                }
+            }
+
+        }
+
+        private void btnReproduzirSom_Click(object sender, EventArgs e)
+        {
+            if (cbxModo.SelectedIndex == 0 && !String.IsNullOrEmpty(rtbxCripto.Text))
+            {
+                somMorseBackgorund.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.ShowMessageBoxOK("warning", "Você deve cifrar algo em morse!", "", DarkTheme);
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Media;
 using System.Net.Mail;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,7 @@ namespace Esteganografia_versao_final
     {
         string[] arquivo = new string[3];
         string[] fileAnexo = new string[4];
+        string[] tamanhoArquivos;
         string gerado, extensao, mensagem, retornoGmail;
         IObjectContainer banco;
         ArrayList anexos = new ArrayList();
@@ -30,7 +32,7 @@ namespace Esteganografia_versao_final
         string servidor, extensaoHide, nomeArqOriginal, nomeArqOculto, nomeArqFinal, nome;
         int porta;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
-        string respostaGmail;
+        long tamanhoAnexos = 0;
         metodosEDarkTheme metodosDarkTheme = new metodosEDarkTheme();
         ShowMessageBox MessageBox = new ShowMessageBox();
         bool DarkTheme;
@@ -294,13 +296,37 @@ namespace Esteganografia_versao_final
                     email.Subject = txtAssunto.Text;
                     email.Body = txtMensagem.Text;
 
+                    foreach (DataGridViewRow linha in dgvAnexos.Rows)
+                    {
+                        try
+                        {
+                            tamanhoArquivos = linha.Cells[1].Value.ToString().Split(' ');
+                            tamanhoAnexos += Convert.ToInt64(tamanhoArquivos[0]);
+                            if (linha.Cells[2].Value.ToString().Equals(".exe"))
+                            {
+                                MessageBox.ShowMessageBoxOK("warning", "Arquivos .exe não podem ser enviados por e-mail.", "Arquivo .exe encontrado", DarkTheme);
+                                return;
+                            }
+                        }
+                        catch (NullReferenceException)
+                        {
+
+                        }
+                    }
+
+                    if (tamanhoAnexos > 26214400L)
+                    {
+                        MessageBox.ShowMessageBoxOK("warning", "O e-mail suporta envios de até 25Mb de arquivos em anexo. Remova alguns anexos.", "Limite de tamanho de anexos", DarkTheme);
+                        return;
+                    }
 
                     foreach (string anexo in anexos)
                     {
                         email.Attachments.Add(new Attachment(anexo));
                     }
 
-
+                    metodosDarkTheme.enviarEmail(servidor, porta, rbSMTP.Checked, usuario.servidorSMTP.SSL, email, txtEmail.Text, txtSenha.Text, DarkTheme);
+                    /*
                     SmtpClient cliente = new SmtpClient(servidor, porta);
                     using (cliente)
                     {
@@ -382,7 +408,9 @@ namespace Esteganografia_versao_final
                                 throw;
                             }
                         }
+                        
                     }
+                    */
                 }
             }
             catch (Exception)

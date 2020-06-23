@@ -12,6 +12,7 @@ namespace Teste_Login
         public string senhaSMTP { get; set; }
         public string servidorSMTP { get; set; }
         public int portaSMTP { get; set; }
+        public bool SSL { get; set; }
 
     }
 }

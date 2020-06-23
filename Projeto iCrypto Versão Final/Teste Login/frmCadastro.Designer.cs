@@ -57,6 +57,7 @@
             this.picHelpSMTP = new System.Windows.Forms.PictureBox();
             this.cboxSMTP = new System.Windows.Forms.CheckBox();
             this.cboxDarkTheme = new System.Windows.Forms.CheckBox();
+            this.cboxSSL = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAjudaSenha)).BeginInit();
             this.gboxSMTP.SuspendLayout();
@@ -217,6 +218,7 @@
             // 
             // gboxSMTP
             // 
+            this.gboxSMTP.Controls.Add(this.cboxSSL);
             this.gboxSMTP.Controls.Add(this.txtPorta);
             this.gboxSMTP.Controls.Add(this.label9);
             this.gboxSMTP.Controls.Add(this.txtServidor);
@@ -342,6 +344,16 @@
             this.cboxDarkTheme.UseVisualStyleBackColor = true;
             this.cboxDarkTheme.CheckedChanged += new System.EventHandler(this.cboxDarkTheme_CheckedChanged);
             // 
+            // cboxSSL
+            // 
+            this.cboxSSL.AutoSize = true;
+            this.cboxSSL.Location = new System.Drawing.Point(8, 206);
+            this.cboxSSL.Name = "cboxSSL";
+            this.cboxSSL.Size = new System.Drawing.Size(96, 18);
+            this.cboxSSL.TabIndex = 31;
+            this.cboxSSL.Text = "Utilizar SSL";
+            this.cboxSSL.UseVisualStyleBackColor = true;
+            // 
             // frmCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,5 +424,6 @@
         private System.Windows.Forms.PictureBox picHelpSMTP;
         private System.Windows.Forms.CheckBox cboxSMTP;
         public System.Windows.Forms.CheckBox cboxDarkTheme;
+        private System.Windows.Forms.CheckBox cboxSSL;
     }
 }

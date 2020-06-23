@@ -26,7 +26,7 @@ namespace Projeto1_semestre
         metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
         ShowMessageBox MessageBox = new ShowMessageBox();
         IObjectContainer banco;
-        bool validar, letra, DarkTheme;
+        bool validar, letra, DarkTheme, reiniciar = false;
         int[] algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         string caracteres, numeros, qualHistorico, testeSenha;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
@@ -60,6 +60,7 @@ namespace Projeto1_semestre
                 }
                 txtSenhaSMTP.Text = usuario.servidorSMTP.senhaSMTP;
                 txtServidor.Text = usuario.servidorSMTP.servidorSMTP;
+                cboxSSL.Checked = usuario.servidorSMTP.SSL;
             }
             catch (Exception)
             {
@@ -268,13 +269,13 @@ namespace Projeto1_semestre
                         smtp.senhaSMTP = txtSenhaSMTP.Text;
                         smtp.servidorSMTP = txtServidor.Text;
                         smtp.portaSMTP = Convert.ToInt32(txtPorta.Text);
+                        smtp.SSL = cboxSSL.Checked;
                         usuario.servidorSMTP = smtp;
                         banco.Store(usuario);
                         MessageBox.ShowMessageBoxOK("correct", "Servidor SMTP cadastrado com sucesso!", "Servidor cadastrado", DarkTheme);
                         banco.Close();
                         banco = Db4oFactory.OpenFile(caminhoBanco);
-                        MessageBox.ShowMessageBoxOK("information", "Reinicie o iCrypto para que as mudanças tenham efeitos.", "Aviso", DarkTheme);
-
+                        reiniciarSistema();
                     }
                     catch (FormatException)
                     {
@@ -302,14 +303,20 @@ namespace Projeto1_semestre
                         ServidorSMTP newServer = new ServidorSMTP();
                         user.servidorSMTP = newServer;
                         banco.Store(user);
-                        MessageBox.ShowMessageBoxOK("information", "Reinicie o iCrypto para que as mudanças tenham efeitos.", "Reinicialização necessária", DarkTheme);
-
+                        reiniciarSistema();
                     }
                     banco.Close();
                     banco = Db4oFactory.OpenFile(caminhoBanco);
                 }
             }
             
+        }
+
+        private void reiniciarSistema()
+        {
+            MessageBox.ShowMessageBoxOK("information", "O sistema será reiciado para confirmar as alterações.", "Reinicialização necessária", DarkTheme);
+            reiniciar = true;
+            this.Close();
         }
 
         private void btnAlterarSMTP_Click(object sender, EventArgs e)
@@ -343,13 +350,13 @@ namespace Projeto1_semestre
                         smtp.senhaSMTP = txtSenhaSMTP.Text;
                         smtp.servidorSMTP = txtServidor.Text;
                         smtp.portaSMTP = Convert.ToInt32(txtPorta.Text);
+                        smtp.SSL = cboxSSL.Checked;
                         usuario.servidorSMTP = smtp;
                         banco.Store(usuario);
-                        MessageBox.ShowMessageBoxOK("information", "Servidor SMTP alterado com sucesso!", "Servidor cadastrado", DarkTheme);
+                        MessageBox.ShowMessageBoxOK("correct", "Servidor SMTP alterado com sucesso!", "Servidor cadastrado", DarkTheme);
                         banco.Close();
                         banco = Db4oFactory.OpenFile(caminhoBanco);
-                        MessageBox.ShowMessageBoxOK("information", "Reinicie o iCrypto para que as mudanças tenham efeitos.", "Reinicialização necessária", DarkTheme);
-
+                        reiniciarSistema();
                     }
                     catch (FormatException)
                     {
@@ -359,6 +366,11 @@ namespace Projeto1_semestre
                     }
                 }
             }
+        }
+
+        public bool reiniciarSMTP()
+        {
+            return reiniciar;
         }
 
         private void cboxMostrarSenha_CheckedChanged(object sender, EventArgs e)

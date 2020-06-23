@@ -353,6 +353,7 @@ namespace Teste_Login
                         smtp.senhaSMTP = txtSenhaSMTP.Text;
                         smtp.servidorSMTP = txtServidor.Text;
                         smtp.portaSMTP = Convert.ToInt32(txtPorta.Text);
+                        smtp.SSL = cboxSSL.Checked;
                         usuario.servidorSMTP = smtp;
                     }
                     catch (FormatException)

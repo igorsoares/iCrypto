@@ -22,6 +22,7 @@ namespace Teste_Login
         string[] enderecoEmail;
         bool DarkTheme = false;
         ShowMessageBox MessageBox = new ShowMessageBox();
+        metodosEDarkTheme metodos = new metodosEDarkTheme();
 
         public EnviarMensagem(string textoSaida, Usuario usuarioLogado, bool DarkTheme)
         {
@@ -165,8 +166,8 @@ namespace Teste_Login
                         "\n" +
                         "" + textoSaida;
 
-
-
+                    metodos.enviarEmail(servidor, porta, rbSMTP.Checked, usuario.servidorSMTP.SSL, email, txtEmail.Text, txtSenha.Text, DarkTheme);
+                    /*
                     SmtpClient cliente = new SmtpClient(servidor, porta);
                     using (cliente)
                     {
@@ -249,6 +250,7 @@ namespace Teste_Login
                             }
                         }
                     }
+                    */
                 }
             }
             catch (Exception)

@@ -83,6 +83,7 @@
             this.rbRSA = new System.Windows.Forms.RadioButton();
             this.rbFileAES = new System.Windows.Forms.RadioButton();
             this.rbAES = new System.Windows.Forms.RadioButton();
+            this.cboxSSL = new System.Windows.Forms.CheckBox();
             this.menuSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo1)).BeginInit();
             this.tpMinhaConta.SuspendLayout();
@@ -188,14 +189,14 @@
             // temaEscuroOn
             // 
             this.temaEscuroOn.Name = "temaEscuroOn";
-            this.temaEscuroOn.Size = new System.Drawing.Size(180, 22);
+            this.temaEscuroOn.Size = new System.Drawing.Size(109, 22);
             this.temaEscuroOn.Text = "Escuro";
             this.temaEscuroOn.Click += new System.EventHandler(this.temaEscuroOn_Click);
             // 
             // temaEscuroOff
             // 
             this.temaEscuroOff.Name = "temaEscuroOff";
-            this.temaEscuroOff.Size = new System.Drawing.Size(180, 22);
+            this.temaEscuroOff.Size = new System.Drawing.Size(109, 22);
             this.temaEscuroOff.Text = "Claro";
             this.temaEscuroOff.Click += new System.EventHandler(this.temaEscuroOff_Click);
             // 
@@ -379,6 +380,7 @@
             // tpServerSMTP
             // 
             this.tpServerSMTP.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tpServerSMTP.Controls.Add(this.cboxSSL);
             this.tpServerSMTP.Controls.Add(this.cboxMostrarSenha);
             this.tpServerSMTP.Controls.Add(this.btnCadastrar);
             this.tpServerSMTP.Controls.Add(this.btnExcluirSMTP);
@@ -650,6 +652,16 @@
             this.rbAES.UseVisualStyleBackColor = true;
             this.rbAES.CheckedChanged += new System.EventHandler(this.rbAES_CheckedChanged);
             // 
+            // cboxSSL
+            // 
+            this.cboxSSL.AutoSize = true;
+            this.cboxSSL.Location = new System.Drawing.Point(23, 193);
+            this.cboxSSL.Name = "cboxSSL";
+            this.cboxSSL.Size = new System.Drawing.Size(91, 17);
+            this.cboxSSL.TabIndex = 44;
+            this.cboxSSL.Text = "Utilizar SSL";
+            this.cboxSSL.UseVisualStyleBackColor = true;
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -741,6 +753,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiTema;
         private System.Windows.Forms.ToolStripMenuItem temaEscuroOn;
         private System.Windows.Forms.ToolStripMenuItem temaEscuroOff;
+        private System.Windows.Forms.CheckBox cboxSSL;
     }
 }
 

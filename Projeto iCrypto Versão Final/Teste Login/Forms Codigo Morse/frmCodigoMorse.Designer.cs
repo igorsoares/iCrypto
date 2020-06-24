@@ -43,11 +43,13 @@
             this.btnResetar = new System.Windows.Forms.Button();
             this.btnCopiar2 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnColar = new System.Windows.Forms.Button();
             this.cbxAutoSalvar = new System.Windows.Forms.CheckBox();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnCopiar1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnColar = new System.Windows.Forms.Button();
+            this.btnReproduzirSom = new System.Windows.Forms.Button();
+            this.somMorseBackgorund = new System.ComponentModel.BackgroundWorker();
             this.gbxTPuro.SuspendLayout();
             this.gbxCripto.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -216,6 +218,17 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Opções";
             // 
+            // btnColar
+            // 
+            this.btnColar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnColar.Location = new System.Drawing.Point(36, 71);
+            this.btnColar.Name = "btnColar";
+            this.btnColar.Size = new System.Drawing.Size(87, 27);
+            this.btnColar.TabIndex = 11;
+            this.btnColar.Text = "Colar";
+            this.btnColar.UseVisualStyleBackColor = true;
+            this.btnColar.Click += new System.EventHandler(this.btnColar_Click);
+            // 
             // cbxAutoSalvar
             // 
             this.cbxAutoSalvar.AutoSize = true;
@@ -254,16 +267,21 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnColar
+            // btnReproduzirSom
             // 
-            this.btnColar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnColar.Location = new System.Drawing.Point(36, 71);
-            this.btnColar.Name = "btnColar";
-            this.btnColar.Size = new System.Drawing.Size(87, 27);
-            this.btnColar.TabIndex = 11;
-            this.btnColar.Text = "Colar";
-            this.btnColar.UseVisualStyleBackColor = true;
-            this.btnColar.Click += new System.EventHandler(this.btnColar_Click);
+            this.btnReproduzirSom.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReproduzirSom.Location = new System.Drawing.Point(201, 207);
+            this.btnReproduzirSom.Name = "btnReproduzirSom";
+            this.btnReproduzirSom.Size = new System.Drawing.Size(124, 23);
+            this.btnReproduzirSom.TabIndex = 12;
+            this.btnReproduzirSom.Text = "Reproduzir som";
+            this.btnReproduzirSom.UseVisualStyleBackColor = true;
+            this.btnReproduzirSom.Click += new System.EventHandler(this.btnReproduzirSom_Click);
+            // 
+            // somMorseBackgorund
+            // 
+            this.somMorseBackgorund.WorkerSupportsCancellation = true;
+            this.somMorseBackgorund.DoWork += new System.ComponentModel.DoWorkEventHandler(this.somMorseBackgorund_DoWork);
             // 
             // frmCodigoMorse
             // 
@@ -271,6 +289,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1050, 490);
+            this.Controls.Add(this.btnReproduzirSom);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label1);
@@ -313,6 +332,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox cbxAutoSalvar;
         private System.Windows.Forms.Button btnColar;
+        private System.Windows.Forms.Button btnReproduzirSom;
+        private System.ComponentModel.BackgroundWorker somMorseBackgorund;
     }
 }
 

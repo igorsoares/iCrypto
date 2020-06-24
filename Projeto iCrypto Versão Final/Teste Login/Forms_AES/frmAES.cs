@@ -34,7 +34,8 @@ namespace Projeto_AES
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         IObjectContainer banco;
         Usuario usuario = new Usuario();
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
+        ShowMessageBox MessageBox = new ShowMessageBox();
         bool DarkTheme = false;
         
         public frmAES(byte[] hashTamanho,string tamanho_chave, Usuario usuarioLogado, bool DarkTheme)
@@ -119,15 +120,6 @@ namespace Projeto_AES
         }
 
         // MÉTODOS CLICK -------------------------------------------
-        private void CifraTexto_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Cifra");
-        }
-
-        private void DecifraTexto_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Decifra");
-        }
 
         private void btFileDialog_Click(object sender, EventArgs e)
         {
@@ -154,14 +146,16 @@ namespace Projeto_AES
                 dgvAESFiles.Rows.Add(infos.Name, infos.Length.ToString(),infos.Extension, infos.DirectoryName);
 
 
-            }catch(System.ArgumentException ex)
+            }
+            catch(ArgumentException)
             {
                 //Caso entre aqui, é pq o usuario fechou o filedialog sem selecionar..
                 //Só saia..
                 return;
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
-                MessageBox.Show(ex.Message,"Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", ex.Message,"Erro", DarkTheme);
                 return;
             }
         }
@@ -188,7 +182,7 @@ namespace Projeto_AES
             }
             else
             {
-                if(cmbModo.SelectedItem == "Descriptografar")
+                if(cmbModo.SelectedItem.ToString() == "Descriptografar")
                 {
                     lblTexto1.Text = "Conteúdo cifrado";
                     btAcao.Text = "Descriptografar";
@@ -237,7 +231,7 @@ namespace Projeto_AES
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message,"Erro");
+                MessageBox.ShowMessageBoxOK("error", ex.Message, "Erro", DarkTheme);
                 return;
             }
             
@@ -252,8 +246,7 @@ namespace Projeto_AES
 
                 if (richTexto1.Text.Length == 0)
                 {
-                    MessageBox.Show("Digite algum texto", "Erro", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "Digite algum texto", "Erro", DarkTheme);
                     return;
                 }
 
@@ -277,10 +270,9 @@ namespace Projeto_AES
                 }
 
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                MessageBox.Show("Erro ao processar. Chave pode estar incorreta.", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", "Erro ao processar. Chave pode estar incorreta.", "Erro", DarkTheme);
                 return;
             }
             
@@ -312,7 +304,7 @@ namespace Projeto_AES
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erro");
+                MessageBox.ShowMessageBoxOK("error", ex.Message, "Erro", DarkTheme);
                 
             }
             return encriptedFile;
@@ -365,8 +357,8 @@ namespace Projeto_AES
                 {
                     if (arquivo.EndsWith(".exe"))
                     {
-                        MessageBox.Show("Ocorreu um erro. Arquivos executáveis não podem ser enviados por email.",
-                            "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.ShowMessageBoxOK("error", "Ocorreu um erro. Arquivos executáveis não podem ser enviados por email.",
+                            "Erro", DarkTheme);
                         arquivos_email.Remove(arquivo);
                         error = 1;
                         return false;
@@ -383,7 +375,7 @@ namespace Projeto_AES
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 // o erro que dará é no foreach, caso encontre algum executavel..
                 return false;
@@ -422,7 +414,7 @@ namespace Projeto_AES
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.ShowMessageBoxOK("null", ex.Message, "", DarkTheme);
                 return;
             }
 
@@ -494,7 +486,7 @@ namespace Projeto_AES
                 // Reseta Progressbar e mostra o "LOG"
                 progressBarFile.Value = 0;
                 lblStatus.Text = "Encriptado";
-                lblStatus.ForeColor = System.Drawing.Color.Green;
+                lblStatus.ForeColor = Color.Green;
             }
             // apagar todos encriptados (do arraylist que deve ser apagado)
             foreach (string arquivos in apagar_linha)
@@ -530,12 +522,15 @@ namespace Projeto_AES
                     if (error == 1)
                         return;
                     // comprime o arquivo
-                    DialogResult retorno = MessageBox.Show("Arquivos resultam em um espaço maior que 25MB.. Deseja " +
+                    /*
+                    DialogResult retorno = System.Windows.Forms.MessageBox.Show("Arquivos resultam em um espaço maior que 25MB.. Deseja " +
                         "comprimir esses arquivos ? ", "Aviso", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
+                    */
                     string defaultDirectory= @"C:\iCrypto\AESFile\";
 
-                    if (retorno.Equals(DialogResult.Yes))
+                    if (MessageBox.ShowMessageBoxYesNo("question", "Arquivos resultam em um espaço maior que 25MB.. Deseja " +
+                        "comprimir esses arquivos ? ", "Aviso", DarkTheme).Equals("sim"))
                     {
                         if (File.Exists(@"C:\iCrypto\"+"ZipadoAES.rar"))
                             File.Delete(@"C:\iCrypto\" + "ZipadoAES.rar");
@@ -560,8 +555,8 @@ namespace Projeto_AES
                         ArrayList tmp = new ArrayList() { @"C:\iCrypto\ZipadoAES.rar" };
                         if (!VerificaMBArquivos(tmp))
                         {
-                            MessageBox.Show("Arquivo comprimido maior que 25MB, impossível ser enviado.",
-                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.ShowMessageBoxOK("error", "Arquivo comprimido maior que 25MB, impossível ser enviado.",
+                                "Erro", DarkTheme);
                             return;
                         }
                         else
@@ -574,8 +569,7 @@ namespace Projeto_AES
                     }
                     else
                     {
-                        MessageBox.Show("Impossível de ser anexado.", "Erro",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.ShowMessageBoxOK("error", "Impossível de ser anexado.", "Erro", DarkTheme);
                         return;
                     }
 
@@ -607,7 +601,7 @@ namespace Projeto_AES
             }
             else
             {
-                MessageBox.Show("Cifre algo primeiro ..","Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", "Cifre algo primeiro ...","Erro", DarkTheme);
                 return;
             }
             
@@ -654,18 +648,16 @@ namespace Projeto_AES
                 abreLeitura.Close();
                 output.Close();
                 return mem.ToArray();
-            }catch(System.Security.Cryptography.CryptographicException ex)
+            }catch(CryptographicException)
             {
                 throw;
                 
             }
-            catch(System.UnauthorizedAccessException ex)
+            catch(UnauthorizedAccessException)
             {
                 
                 throw;
             }
-            byte[] trash = new byte[20];
-            return trash;
         }
 
         private void btDescripta_Click(object sender, EventArgs e)
@@ -687,8 +679,8 @@ namespace Projeto_AES
                     string fileName = dgvAESFiles.Rows[i].Cells[0].Value.ToString();
                     if (!fileName.Contains(".aes"))
                     {
-                        MessageBox.Show("Arquivo "+fileName+" sem extensão .aes. Impossível de descriptografar.",
-                            "Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.ShowMessageBoxOK("error", "Arquivo "+ fileName + " sem extensão .aes. Impossível de descriptografar.",
+                            "Erro", DarkTheme);
                         DataGridViewRow obj = dgvAESFiles.Rows[i];
 
                         dgvAESFiles.Rows.Remove(obj);
@@ -698,7 +690,7 @@ namespace Projeto_AES
                         i -= 1;
 
                         lblStatus.Text = "Sem .aes";
-                        lblStatus.ForeColor = System.Drawing.Color.Red;
+                        lblStatus.ForeColor = Color.Red;
                         continue;
                     }
 
@@ -732,9 +724,9 @@ namespace Projeto_AES
                         byte[] memoryReturn = DescriptaArquivo(caminho_inteiro);
                         File.WriteAllBytes(caminho_inteiro.Replace(".aes", ""), memoryReturn.ToArray()); // joga o conteudo descriptografado no arquivo original
                     }
-                    catch (System.UnauthorizedAccessException ex)
+                    catch (UnauthorizedAccessException)
                     {
-                        MessageBox.Show("Erro. Verifique se o arquivo " + caminho_inteiro + " está funcional.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.ShowMessageBoxOK("error", "Erro. Verifique se o arquivo " + caminho_inteiro + " está funcional.", "Erro", DarkTheme);
                         DataGridViewRow linha = dgvAESFiles.Rows[i];
                         dgvAESFiles.Rows.Remove(linha);
                         return;
@@ -748,7 +740,7 @@ namespace Projeto_AES
                     IncrementaProgressBar();
                     progressBarFile.Value = 0;
                     lblStatus.Text = "Descriptografado";
-                    lblStatus.ForeColor = System.Drawing.Color.Green;
+                    lblStatus.ForeColor = Color.Green;
 
 
                 }
@@ -786,12 +778,15 @@ namespace Projeto_AES
                         if (error == 1)
                             return;
                         // comprime o arquivo
-                        DialogResult retorno = MessageBox.Show("Arquivos resultam em um espaço maior que 25MB.. Deseja " +
+                        /*
+                        DialogResult retorno = System.Windows.Forms.MessageBox.Show("Arquivos resultam em um espaço maior que 25MB.. Deseja " +
                             "comprimir esses arquivos ? ", "Aviso", MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question);
+                        */
                         string defaultDirectory = @"C:\iCrypto\AESFile\";
 
-                        if (retorno.Equals(DialogResult.Yes))
+                        if (MessageBox.ShowMessageBoxYesNo("question", "Arquivos resultam em um espaço maior que 25MB.. Deseja " +
+                            "comprimir esses arquivos ? ", "Aviso", DarkTheme).Equals("sim"))
                         {
                             if (File.Exists(defaultDirectory + "ZipadoAES.rar"))
                                 File.Delete(defaultDirectory + "ZipadoAES.rar");
@@ -816,8 +811,8 @@ namespace Projeto_AES
                             ArrayList tmp = new ArrayList() { @"C:\iCrypto\ZipadoAES.rar" };
                             if (!VerificaMBArquivos(tmp))
                             {
-                                MessageBox.Show("Arquivo comprimido maior que 25MB, impossível ser enviado.",
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.ShowMessageBoxOK("error", "Arquivo comprimido maior que 25MB, impossível ser enviado.",
+                                    "Erro", DarkTheme);
                                 return;
                             }
                             else
@@ -834,22 +829,19 @@ namespace Projeto_AES
                         }
 
                     }
-
-
-
-
                 }
             }
-            catch (System.Security.SecurityException ex)
+            catch (System.Security.SecurityException)
             {
                 
                 lblStatus.Text = "Erro em descriptografar";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                lblStatus.ForeColor = Color.Red;
                 return;
-            }catch(System.Security.Cryptography.CryptographicException ex)
+            }
+            catch(CryptographicException)
             {
-                MessageBox.Show("Erro ao descriptografar. Chave pode estar errada.",
-                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", "Erro ao descriptografar. Chave pode estar errada.",
+                    "Erro", DarkTheme);
             }
             
         }
@@ -876,7 +868,7 @@ namespace Projeto_AES
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // se o usuario clicar com o botao esquerdo em qualquer lugar
                 // fora das linhas dentro do datagrid
@@ -898,7 +890,7 @@ namespace Projeto_AES
                     tbArquivo.Clear(); // Limpa textbox do caminho de arquivo
                 }
                 lblStatus.Text="";
-            }catch(Exception ex)
+            }catch(Exception)
             {
                 return;
             }
@@ -917,14 +909,10 @@ namespace Projeto_AES
                     dgvAESFiles.Rows.Remove(linha);
 
                 }
-
-
-
-
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.ShowMessageBoxOK("null", ex.Message, "", DarkTheme);
                 return;
             }
             
@@ -932,8 +920,6 @@ namespace Projeto_AES
 
         private void btSalvarEm_Click(object sender, EventArgs e)
         {
-            
-
             if (richTexto2.Text.Length > 0)
             {
                 try
@@ -956,14 +942,12 @@ namespace Projeto_AES
                     salva.Write(texto);
                     salva.Close();
 
-                    MessageBox.Show("Salvamento realizado com sucesso.", "Aviso");
-                }catch(Exception ex)
+                    MessageBox.ShowMessageBoxOK("correct", "Salvamento realizado com sucesso.", "Aviso", DarkTheme);
+                }catch(Exception)
                 {
                     // unica excessao : quando fecha sem selecionar.. Só saia.
                     return;
                 }
-
-
             }
             else
             {

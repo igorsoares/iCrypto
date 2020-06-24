@@ -11,6 +11,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Media;
 using System.Net.Mail;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,7 +23,8 @@ namespace Esteganografia_versao_final
     {
         string[] arquivo = new string[3];
         string[] fileAnexo = new string[4];
-        string gerado, extensao, mensagem;
+        string[] tamanhoArquivos;
+        string gerado, extensao, mensagem, retornoGmail;
         IObjectContainer banco;
         ArrayList anexos = new ArrayList();
         Usuario usuario = new Usuario();
@@ -30,8 +32,9 @@ namespace Esteganografia_versao_final
         string servidor, extensaoHide, nomeArqOriginal, nomeArqOculto, nomeArqFinal, nome;
         int porta;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
-        string respostaGmail;
-        metodosDarkTheme metodosDarkTheme = new metodosDarkTheme();
+        long tamanhoAnexos = 0;
+        metodosEDarkTheme metodosDarkTheme = new metodosEDarkTheme();
+        ShowMessageBox MessageBox = new ShowMessageBox();
         bool DarkTheme;
         Color cor = Color.Blue;
 
@@ -75,25 +78,25 @@ namespace Esteganografia_versao_final
         {
             if (String.IsNullOrEmpty(txtEmail.Text))
             {
-                MessageBox.Show("Nenhum endereço de e-mail foi inserido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum endereço de e-mail foi inserido!", "Aviso", DarkTheme);
                 txtEmail.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtSenha.Text))
             {
-                MessageBox.Show("A senha do e-mail é necessária!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "A senha do e-mail é necessária!", "Aviso", DarkTheme);
                 txtSenha.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtDestinatario.Text))
             {
-                MessageBox.Show("Nenhum endereço de e-mail destinatário foi inserido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum endereço de e-mail destinatário foi inserido!", "Aviso", DarkTheme);
                 txtDestinatario.Focus();
                 return false;
             }
             else if (anexos.Count == 0)
             {
-                MessageBox.Show("Nenhum arquivo foi anexado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum arquivo foi anexado!", "Aviso", DarkTheme);
                 btnSelecionarAnexo.Focus();
                 return false;
             }
@@ -106,25 +109,25 @@ namespace Esteganografia_versao_final
         {
             if (String.IsNullOrEmpty(txtArquivoOriginal.Text))
             {
-                MessageBox.Show("Nenhum arquivo original foi selecionado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum arquivo original foi selecionado!", "Aviso", DarkTheme);
                 btnArquivoOriginal.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtFileHide.Text))
             {
-                MessageBox.Show("Nenhum arquivo foi selecionado para ser escondido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum arquivo foi selecionado para ser escondido!", "Aviso", DarkTheme);
                 btnFileHide.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtSalvarArquivo.Text))
             {
-                MessageBox.Show("Nenhuma pasta foi selecionada para salvar o arquivo esteganografado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhuma pasta foi selecionada para salvar o arquivo esteganografado!", "Aviso", DarkTheme);
                 btnPasta.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtNomeArquivo.Text))
             {
-                MessageBox.Show("Digite um nome para o arquivo gerado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Digite um nome para o arquivo gerado!", "Aviso", DarkTheme);
                 txtNomeArquivo.Focus();
                 return false;
             }
@@ -235,7 +238,7 @@ namespace Esteganografia_versao_final
             }
             else
             {
-                MessageBox.Show("Nenhum arquivo foi selecionado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum arquivo foi selecionado!", "Aviso", DarkTheme);
                 btnSelecionarAnexo.Focus();
             }
         }
@@ -280,9 +283,9 @@ namespace Esteganografia_versao_final
                     }
                     else
                     {
-                        MessageBox.Show("Não temos suporte para este tipo de servidor." +
+                        MessageBox.ShowMessageBoxOK("warning", "Não temos suporte para este tipo de servidor." +
                             "\nTente utilizar um email do google (gmail), hotmail, live.com ou" +
-                            "\noutlook e confira se o e-mail está correto", "Servidor sem suporte", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            "\noutlook e confira se o e-mail está correto", "Servidor sem suporte", DarkTheme);
                         return;
                     }
 
@@ -293,11 +296,37 @@ namespace Esteganografia_versao_final
                     email.Subject = txtAssunto.Text;
                     email.Body = txtMensagem.Text;
 
+                    foreach (DataGridViewRow linha in dgvAnexos.Rows)
+                    {
+                        try
+                        {
+                            tamanhoArquivos = linha.Cells[1].Value.ToString().Split(' ');
+                            tamanhoAnexos += Convert.ToInt64(tamanhoArquivos[0]);
+                            if (linha.Cells[2].Value.ToString().Equals(".exe"))
+                            {
+                                MessageBox.ShowMessageBoxOK("warning", "Arquivos .exe não podem ser enviados por e-mail.", "Arquivo .exe encontrado", DarkTheme);
+                                return;
+                            }
+                        }
+                        catch (NullReferenceException)
+                        {
+
+                        }
+                    }
+
+                    if (tamanhoAnexos > 26214400L)
+                    {
+                        MessageBox.ShowMessageBoxOK("warning", "O e-mail suporta envios de até 25Mb de arquivos em anexo. Remova alguns anexos.", "Limite de tamanho de anexos", DarkTheme);
+                        return;
+                    }
 
                     foreach (string anexo in anexos)
                     {
                         email.Attachments.Add(new Attachment(anexo));
                     }
+
+                    metodosDarkTheme.enviarEmail(servidor, porta, rbSMTP.Checked, usuario.servidorSMTP.SSL, email, txtEmail.Text, txtSenha.Text, DarkTheme);
+                    /*
                     SmtpClient cliente = new SmtpClient(servidor, porta);
                     using (cliente)
                     {
@@ -309,7 +338,7 @@ namespace Esteganografia_versao_final
                             try
                             {
                                 cliente.Send(email);
-                                MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.ShowMessageBoxOK("correct", "E-mail enviado com sucesso!", "Aviso", DarkTheme);
                                 return;
                             }
                             catch (Exception)
@@ -327,23 +356,29 @@ namespace Esteganografia_versao_final
                             {
                                 Process.Start("https://myaccount.google.com/lesssecureapps");
                                 System.Threading.Thread.Sleep(1000);
-                                DialogResult ativou = MessageBox.Show("A opção menos segura foi ativada?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                                if (ativou.Equals(DialogResult.Yes))
+                                retornoGmail = MessageBox.ShowMessageBoxYesNo("question", "A opção menos segura foi ativada?", "", DarkTheme);
+                                if (retornoGmail.Equals("sim"))
                                 {
-                                    cliente.Send(email);
-                                    MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    resetarCamposEmail();
-                                    return;
+                                    try
+                                    {
+                                        cliente.Send(email);
+                                        MessageBox.ShowMessageBoxOK("correct", "E-mail enviado com sucesso!", "Aviso", DarkTheme);
+                                        return;
+                                    }
+                                    catch
+                                    {
+                                        throw;
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.ShowMessageBoxOK("information", "Não será possível enviar o e-mail", "", DarkTheme);
                                     return;
                                 }
                             }
                             else if (respostaGmail.Equals("nao"))
                             {
-                                MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.ShowMessageBoxOK("information", "Não será possível enviar o e-mail", "", DarkTheme);
                                 return;
                             }
                             else if (respostaGmail.Equals("ativado"))
@@ -351,15 +386,12 @@ namespace Esteganografia_versao_final
                                 try
                                 {
                                     cliente.Send(email);
-                                    MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    resetarCamposEmail();
+                                    MessageBox.ShowMessageBoxOK("correct", "E-mail enviado com sucesso!", "Aviso", DarkTheme);
                                     return;
                                 }
                                 catch (Exception)
                                 {
-                                    DialogResult google2 = MessageBox.Show("Certifique-se de que a opção " +
-                                        "'Menos Seguro' está ativa em sua conta google", "Falha ao enviar o e-mail", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
+                                    throw;
                                 }
                             }
                         }
@@ -368,8 +400,7 @@ namespace Esteganografia_versao_final
                             try
                             {
                                 cliente.Send(email);
-                                MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                resetarCamposEmail();
+                                MessageBox.ShowMessageBoxOK("correct", "E-mail enviado com sucesso!", "Aviso", DarkTheme);
                                 return;
                             }
                             catch (Exception)
@@ -377,16 +408,18 @@ namespace Esteganografia_versao_final
                                 throw;
                             }
                         }
+                        
                     }
+                    */
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("O envio falhou!" +
-                    "\n" +
-                    "\nCertifique que o e-mail está correto e é válido" +
-                    "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
-                    "\nCaso seja gmail, certique que a opção 'Acesso a apps menos seguros' está ativada", "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", "O envio falhou!" +
+                   "\n" +
+                   "\nCertifique que o e-mail está correto e é válido" +
+                   "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
+                   "\nCaso seja gmail, certique que a opção 'Acesso a apps menos seguros' está ativada", "Ocorreu um erro", DarkTheme);
             }
         }
 
@@ -448,7 +481,7 @@ namespace Esteganografia_versao_final
         {
             if (dgvAnexos.SelectedRows.Count == 0)
             {
-                MessageBox.Show("A linha inteira deve ser selecionada!", "Nenhum arquivo foi selecionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "A linha inteira deve ser selecionada!", "Nenhum arquivo foi selecionado", DarkTheme);
                 return;
             }
             else
@@ -488,8 +521,8 @@ namespace Esteganografia_versao_final
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Certifique-se de que você possui um " +
-                        "\nservidor SMTP personalizado em seu cadastro", "Um erro inesperado aconteceu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "Certifique-se de que você possui um " +
+                        "\nservidor SMTP personalizado em seu cadastro", "Um erro inesperado aconteceu", DarkTheme);
                 }
             }
         }
@@ -506,9 +539,9 @@ namespace Esteganografia_versao_final
         {
             if (txtNomeArquivo.Text.Contains("!") || txtNomeArquivo.Text.Contains("^") || txtNomeArquivo.Text.Contains("*") || txtNomeArquivo.Text.Contains("(") || txtNomeArquivo.Text.Contains(")") || txtNomeArquivo.Text.Contains("=") || txtNomeArquivo.Text.Contains(".") || txtNomeArquivo.Text.Contains("|") || txtNomeArquivo.Text.Contains("}") || txtNomeArquivo.Text.Contains("{") || txtNomeArquivo.Text.Contains('"') || txtNomeArquivo.Text.Contains("?") || txtNomeArquivo.Text.Contains(">") || txtNomeArquivo.Text.Contains("<") || txtNomeArquivo.Text.Contains(":") || txtNomeArquivo.Text.Contains(";") || txtNomeArquivo.Text.Contains("&") || txtNomeArquivo.Text.Contains(@"\") || txtNomeArquivo.Text.Contains("/") || txtNomeArquivo.Text.Contains(","))
             {
-                MessageBox.Show("O nome do arquivo não pode conter os seguintes caracteres:" +
+                MessageBox.ShowMessageBoxOK("warning", "O nome do arquivo não pode conter os seguintes caracteres:" +
                     "\n"
-                    + "\n" + @"!, ^, *, \, /, (, ), =, ., |, <, >, ?, :, ;, &, {, } e " + '"', "Caracteres inválidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    + "\n" + @"!, ^, *, \, /, (, ), =, ., |, <, >, ?, :, ;, &, {, } e " + '"', "Caracteres inválidos", DarkTheme);
                 return false;
             }
             else
@@ -558,7 +591,7 @@ namespace Esteganografia_versao_final
                         "\n" +
                         "\n" + gerado;
 
-                    MessageBox.Show(mensagem, "Processo concluído!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.ShowMessageBoxOK("correct", mensagem, "Processo concluído!", DarkTheme);
 
                     timerAntiBug.Start();
 
@@ -608,7 +641,7 @@ namespace Esteganografia_versao_final
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show(erro.Message, "Ocorreu um erro inesperado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", erro.Message, "Ocorreu um erro inesperado", DarkTheme);
                 }
             }
         }

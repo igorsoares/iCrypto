@@ -17,7 +17,9 @@ namespace Projeto_AES
     {
         Usuario usuario = new Usuario();
         bool DarkTheme = false;
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
+
+        ShowMessageBox MessageBox = new ShowMessageBox();
         public SecretPass(Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
@@ -36,8 +38,7 @@ namespace Projeto_AES
         {
             if (String.IsNullOrEmpty(tbSenha.Text))
             {
-                MessageBox.Show("Insira uma senha secreta", "Erro", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", "Insira uma senha secreta", "Erro", DarkTheme);
                 return;
             }
             else

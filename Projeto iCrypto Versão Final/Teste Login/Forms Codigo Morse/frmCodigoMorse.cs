@@ -17,11 +17,12 @@ namespace CodigoMorseProjeto1
     {
      
         Usuario usuario = new Usuario();
+        ShowMessageBox MessageBox = new ShowMessageBox();
         IObjectContainer banco;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         int cont;
         bool DarkTheme = false;
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
 
         static Dictionary<char, string> chaveTexto = new Dictionary<char, string>()
         {
@@ -231,7 +232,7 @@ namespace CodigoMorseProjeto1
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.ShowMessageBoxOK("null", ex.Message, "", DarkTheme);
             }
         }
 
@@ -312,14 +313,14 @@ namespace CodigoMorseProjeto1
                         }
                         banco.Store(usuario);
 
-                        MessageBox.Show("Informações salvas com sucesso!!", "Informações", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("correct", "Informações salvas com sucesso!!", "Atividade registrada", DarkTheme);
                     }
                 
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.ShowMessageBoxOK("null", ex.Message, "", DarkTheme);
                 }
           
         }
@@ -389,6 +390,40 @@ namespace CodigoMorseProjeto1
         private void btnColar_Click(object sender, EventArgs e)
         {
             rtbxTPuro.Text = Clipboard.GetText();
+        }
+
+        private void somMorseBackgorund_DoWork(object sender, DoWorkEventArgs e)
+        {
+            foreach (char simbolo in rtbxCripto.Text)
+            {
+                switch (simbolo)
+                {
+                    case '.':
+                        Console.Beep(1000, 150);
+                        break;
+
+                    case '-':
+                        Console.Beep(1000, 450);
+                        break;
+
+                    default:
+                        System.Threading.Thread.Sleep(150);
+                        break;
+                }
+            }
+
+        }
+
+        private void btnReproduzirSom_Click(object sender, EventArgs e)
+        {
+            if (cbxModo.SelectedIndex == 0 && !String.IsNullOrEmpty(rtbxCripto.Text))
+            {
+                somMorseBackgorund.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.ShowMessageBoxOK("warning", "Você deve cifrar algo em morse!", "", DarkTheme);
+            }
         }
     }
 }

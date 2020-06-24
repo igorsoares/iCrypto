@@ -25,7 +25,8 @@ namespace RSA_versao_final
         int numCaracter = 0;
         bool DarkTheme = false;
         string caminhoBanco = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
-        metodosDarkTheme temaEscuro = new metodosDarkTheme();
+        metodosEDarkTheme temaEscuro = new metodosEDarkTheme();
+        ShowMessageBox MessageBox = new ShowMessageBox();
         public frmRSA(Usuario usuarioLogado, bool DarkTheme)
         {
             InitializeComponent();
@@ -62,14 +63,20 @@ namespace RSA_versao_final
         {
             if (String.IsNullOrEmpty(txtOriginal.Text))
             {
-                MessageBox.Show("Nenhum texto foi digitado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum texto foi digitado!", "Aviso", DarkTheme);
                 txtOriginal.Focus();
                 return false;
             }
             else if (cboxModo.SelectedIndex == -1)
             {
-                MessageBox.Show("Nenhum modo foi selecionado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum modo foi selecionado!", "Aviso", DarkTheme);
                 cboxModo.Focus();
+                return false;
+            }
+            if (lbTipoChaveAtual.Text.Equals("Sem chave"))
+            {
+                MessageBox.ShowMessageBoxOK("error", "Nenhuma chave foi importada!", "Chave inexistente", DarkTheme);
+                tcMenuRSA.SelectedIndex = 1;
                 return false;
             }
             return true;
@@ -111,17 +118,12 @@ namespace RSA_versao_final
 
                 return;
             }
-            catch (ArgumentNullException)
-            {
-                MessageBox.Show("Nenhuma chave foi importada!", "Chave inexistente", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tcMenuRSA.SelectedIndex = 1;
-                return;
-            }
             catch (Exception)
             {
-                MessageBox.Show("-> Certifique que o processo está correto e as chaves coincidem" +
+                MessageBox.ShowMessageBoxOK("error", "-> Certifique que o processo está correto e as chaves coincidem" +
                     "\n-> Tente cifrar uma quantidade menor de texto" +
-                    "\n-> Caso seja necessário cifrar um texto maior, cifre-o em partes", "Um erro inesperado ocorreu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "\n-> Tente utilizar uma chave maior" +
+                    "\n-> Caso seja necessário cifrar um texto maior, cifre-o em partes", "Um erro aconteceu", DarkTheme);
             }
         }
 
@@ -152,17 +154,12 @@ namespace RSA_versao_final
                     banco.Store(usuario);
                 }
             }
-            catch (ArgumentNullException)
-            {
-                MessageBox.Show("Nenhuma chave foi importada!", "Chave inexistente", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tcMenuRSA.SelectedIndex = 1;
-                return;
-            }
             catch (Exception)
             {
-                MessageBox.Show("-> Certifique que o processo está correto e as chaves coincidem" +
-                    "\n-> Tente cifrar uma quantidade menor de texto" +
-                    "\n-> Caso seja necessário cifrar um texto maior, cifre-o em partes", "Um erro inesperado ocorreu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", "-> Certifique que o processo está correto e as chaves coincidem" +
+                   "\n-> Tente cifrar uma quantidade menor de texto" +
+                   "\n-> Tente utilizar uma chave maior" +
+                   "\n-> Caso seja necessário cifrar um texto maior, cifre-o em partes", "Um erro aconteceu", DarkTheme);
             }
         }
 
@@ -170,7 +167,6 @@ namespace RSA_versao_final
         {
             if (validarCampos())
             {
-                
                 if (cboxModo.SelectedItem.Equals("Criptografar"))
                 { 
                     criptografarRSA(chave);
@@ -203,6 +199,7 @@ namespace RSA_versao_final
                 btnSelecionarTxt.Enabled = false;
                 cboxTamanhoChaves.Enabled = true;
                 btnDigitarChave.Enabled = false;
+                btnImportarToExportar.Enabled = false;
             }
             else
             {
@@ -214,6 +211,7 @@ namespace RSA_versao_final
                 cboxTamanhoChaves.Enabled = false;
                 cboxTipoChave.Enabled = true;
                 btnDigitarChave.Enabled = true;
+                btnImportarToExportar.Enabled = true;
             }
         }
 
@@ -226,7 +224,7 @@ namespace RSA_versao_final
         {
             if (cboxGerarImportar.SelectedIndex == -1)
             {
-                MessageBox.Show("Nenhum modo foi selecionado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum modo foi selecionado!", "Aviso", DarkTheme);
                 return false;
             }
             return true;
@@ -296,18 +294,18 @@ namespace RSA_versao_final
                                 break;
                         }
 
-                        MessageBox.Show("Chave importada com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.ShowMessageBoxOK("correct", "Chave importada com sucesso!", "Aviso", DarkTheme);
                         return;
                     }
 
-                    MessageBox.Show("Utilize o campo 'Exportar' para guardá-las ou" +
-                        "\no modo 'Importar' para utilizá-las", "Chaves geradas com sucesso!", MessageBoxButtons.OK);
+                    MessageBox.ShowMessageBoxOK("information", "Utilize o campo 'Exportar' para guardá-las ou" +
+                        "\no modo 'Importar' para utilizá-las", "Chaves geradas com sucesso!", DarkTheme);
                     cboxExportarChave.SelectedIndex = -1;
                     return;
                 }
                 else if(cboxGerarImportar.SelectedIndex == 0 && cboxTamanhoChaves.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Nenhum tamanho de chave foi selecionado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.ShowMessageBoxOK("warning", "Nenhum tamanho de chave foi selecionado!", "Aviso", DarkTheme);
                     return;
                 }
                 else if (cboxGerarImportar.SelectedIndex == 1 && !String.IsNullOrEmpty(txtChave.Text))
@@ -319,7 +317,7 @@ namespace RSA_versao_final
                         modo = "decifrar";
                     else
                     {
-                        MessageBox.Show("Nenhum tipo de chave foi selecionado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.ShowMessageBoxOK("warning", "Nenhum tipo de chave foi selecionado!", "Aviso", DarkTheme);
                         return;
                     }
 
@@ -330,17 +328,17 @@ namespace RSA_versao_final
                     }
                     catch(Exception)
                     {
-                        MessageBox.Show("O formato da chave está incorreto", "Erro ao importar chave", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.ShowMessageBoxOK("error", "O formato da chave está incorreto", "Erro ao importar chave", DarkTheme);
                         return;
                     }
 
-                    MessageBox.Show("Acesse a área 'Algoritmo RSA' para " + modo +
-                        "\nmensagens com esta chave", "Chave importada com sucesso!", MessageBoxButtons.OK);
+                    MessageBox.ShowMessageBoxOK("information", "Acesse a área 'Algoritmo RSA' para " + modo +
+                        "\nmensagens com esta chave", "Chave importada com sucesso!", DarkTheme);
                     return;
                 }
                 else
                 {
-                    MessageBox.Show("Nenhuma chave foi digitada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.ShowMessageBoxOK("warning", "Nenhuma chave foi inserida!", "Aviso", DarkTheme);
                     return;
                 }
             }
@@ -396,7 +394,7 @@ namespace RSA_versao_final
                 }
                 else
                 {
-                    MessageBox.Show("O arquivo deve possuir a extensão .txt", "Extensão inválida!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "O arquivo deve possuir a extensão .txt", "Extensão inválida!", DarkTheme);
                 }
             }
         }
@@ -418,7 +416,7 @@ namespace RSA_versao_final
                     else if (rbCopiar.Checked)
                     {
                         Clipboard.SetText(chaveExportar);
-                        MessageBox.Show("Chave copiada!");
+                        System.Windows.Forms.MessageBox.Show("Chave copiada!");
                     }
                     else if (rbSalvarTxt.Checked)
                     {
@@ -444,13 +442,13 @@ namespace RSA_versao_final
                 }
                 else
                 {
-                    MessageBox.Show("Nenhuma chave foi gerada ou inserida!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.ShowMessageBoxOK("warning", "Nenhuma chave foi gerada ou inserida!", "Aviso", DarkTheme);
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("Selecione uma chave para exportar!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Selecione uma chave para exportar!", "Aviso", DarkTheme);
                 return;
             }
         }
@@ -496,7 +494,7 @@ namespace RSA_versao_final
             }
             else
             {
-                MessageBox.Show("Nenhuma mensagem de saída foi gerada!", "Não há mensagens para enviar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhuma mensagem de saída foi gerada!", "Não há mensagens para enviar", DarkTheme);
             }
         }
 
@@ -521,7 +519,14 @@ namespace RSA_versao_final
 
         private void btnCopiar_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(txtTextoFinal.Text);
+            try
+            {
+                Clipboard.SetText(txtTextoFinal.Text);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void btnImportarToExportar_Click(object sender, EventArgs e)
@@ -538,13 +543,20 @@ namespace RSA_versao_final
             }
             else
             {
-                MessageBox.Show("Você deve inserir uma chave e selecionar seu tipo", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Você deve inserir uma chave e selecionar seu tipo", "Aviso", DarkTheme);
             }
         }
 
         private void btnColarOirginal_Click(object sender, EventArgs e)
         {
-            txtOriginal.Text = Clipboard.GetText();
+            try
+            {
+                txtOriginal.Text = Clipboard.GetText();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void pdocImprimirChave_PrintPage(object sender, PrintPageEventArgs e)

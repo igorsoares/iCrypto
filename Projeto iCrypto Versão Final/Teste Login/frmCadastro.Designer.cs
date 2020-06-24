@@ -57,6 +57,7 @@
             this.picHelpSMTP = new System.Windows.Forms.PictureBox();
             this.cboxSMTP = new System.Windows.Forms.CheckBox();
             this.cboxDarkTheme = new System.Windows.Forms.CheckBox();
+            this.cboxSSL = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAjudaSenha)).BeginInit();
             this.gboxSMTP.SuspendLayout();
@@ -198,7 +199,7 @@
             // picAjudaSenha
             // 
             this.picAjudaSenha.Cursor = System.Windows.Forms.Cursors.Help;
-            this.picAjudaSenha.Image = ((System.Drawing.Image)(resources.GetObject("picAjudaSenha.Image")));
+            this.picAjudaSenha.Image = global::Teste_Login.Properties.Resources.Information;
             this.picAjudaSenha.Location = new System.Drawing.Point(461, 151);
             this.picAjudaSenha.Name = "picAjudaSenha";
             this.picAjudaSenha.Size = new System.Drawing.Size(23, 23);
@@ -213,11 +214,11 @@
             this.ttpMensagem.AutoPopDelay = 30000;
             this.ttpMensagem.InitialDelay = 100;
             this.ttpMensagem.ReshowDelay = 100;
-            this.ttpMensagem.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.ttpMensagem.ToolTipTitle = "Parâmetros da senha";
             // 
             // gboxSMTP
             // 
+            this.gboxSMTP.Controls.Add(this.cboxSSL);
             this.gboxSMTP.Controls.Add(this.txtPorta);
             this.gboxSMTP.Controls.Add(this.label9);
             this.gboxSMTP.Controls.Add(this.txtServidor);
@@ -309,7 +310,7 @@
             // picHelpSMTP
             // 
             this.picHelpSMTP.Cursor = System.Windows.Forms.Cursors.Help;
-            this.picHelpSMTP.Image = ((System.Drawing.Image)(resources.GetObject("picHelpSMTP.Image")));
+            this.picHelpSMTP.Image = global::Teste_Login.Properties.Resources.Information;
             this.picHelpSMTP.Location = new System.Drawing.Point(446, 231);
             this.picHelpSMTP.Name = "picHelpSMTP";
             this.picHelpSMTP.Size = new System.Drawing.Size(23, 23);
@@ -342,6 +343,16 @@
             this.cboxDarkTheme.Text = "Tema escuro";
             this.cboxDarkTheme.UseVisualStyleBackColor = true;
             this.cboxDarkTheme.CheckedChanged += new System.EventHandler(this.cboxDarkTheme_CheckedChanged);
+            // 
+            // cboxSSL
+            // 
+            this.cboxSSL.AutoSize = true;
+            this.cboxSSL.Location = new System.Drawing.Point(8, 206);
+            this.cboxSSL.Name = "cboxSSL";
+            this.cboxSSL.Size = new System.Drawing.Size(96, 18);
+            this.cboxSSL.TabIndex = 31;
+            this.cboxSSL.Text = "Utilizar SSL";
+            this.cboxSSL.UseVisualStyleBackColor = true;
             // 
             // frmCadastro
             // 
@@ -413,5 +424,6 @@
         private System.Windows.Forms.PictureBox picHelpSMTP;
         private System.Windows.Forms.CheckBox cboxSMTP;
         public System.Windows.Forms.CheckBox cboxDarkTheme;
+        private System.Windows.Forms.CheckBox cboxSSL;
     }
 }

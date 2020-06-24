@@ -20,8 +20,10 @@ namespace Teste_Login
         IObjectContainer banco;
         string caminhoBanco =  Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\database.db";
         Color colorIn, colorOut = Color.Black;
+        bool reiniciou = false;
         bool DarkTheme;
-        metodosDarkTheme darkTheme = new metodosDarkTheme();
+        metodosEDarkTheme metodos = new metodosEDarkTheme();
+        ShowMessageBox MessageBox = new ShowMessageBox();
 
         public frmLogin()
         {
@@ -43,13 +45,19 @@ namespace Teste_Login
         {
             if (String.IsNullOrEmpty(txtUsuario.Text))
             {
+                /*
                 MessageBox.Show("O usuário é obrigatório", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUsuario.Focus();
+                */
+                MessageBox.ShowMessageBoxOK("Warning", "O usuário é obrigatório", "Aviso", DarkTheme);
                 return false;
             }
             if (String.IsNullOrEmpty(txtSenha.Text))
             {
+                /*
                 MessageBox.Show("A senha é obrigatória", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                */
+                MessageBox.ShowMessageBoxOK("Warning", "A senha é obrigatória", "Aviso", DarkTheme);
                 txtSenha.Focus();
                 return false;
             }
@@ -80,8 +88,23 @@ namespace Teste_Login
             banco = Db4oFactory.OpenFile(caminhoBanco);
         }
 
+
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            try
+            {
+                banco = Db4oFactory.OpenFile(caminhoBanco); 
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+
             if (validarCampos())
             {
                 Usuario usuario = new Usuario();
@@ -112,18 +135,31 @@ namespace Teste_Login
                         this.Hide();
                         frmMenu formMenu = new frmMenu(usuario, DarkTheme);
                         formMenu.ShowDialog();
+                        if (formMenu.reiniciarSMTP())
+                        {
+                            banco = Db4oFactory.OpenFile(caminhoBanco);
+                            btnLogin_Click(null, null);
+                            reiniciou = true;
+                        }
                         cboxDarkTheme.Checked = formMenu.TemaEscuro();
                         this.Show();
-                        banco = Db4oFactory.OpenFile(caminhoBanco);
+                        metodos.abreFechaBanco(banco);
                     }
                     else
                     {
+                        /*
                         MessageBox.Show("Senha incorreta!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        */
+                        MessageBox.ShowMessageBoxOK("Warning", "Senha incorreta!", "Aviso", DarkTheme);
+
                     }
                 }
                 else
                 {
+                    /*
                     MessageBox.Show("Usuário não cadastrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    */
+                    MessageBox.ShowMessageBoxOK("Warning", "Usuário não cadastrado!", "Aviso", DarkTheme);
                 }
             }
         }
@@ -162,8 +198,8 @@ namespace Teste_Login
 
         private void mudarTextBoxes(bool dark)
         {
-            darkTheme.darkTextBox(txtSenha, dark);
-            darkTheme.darkTextBox(txtUsuario, dark);
+            metodos.darkTextBox(txtSenha, dark);
+            metodos.darkTextBox(txtUsuario, dark);
         }
 
         private void cboxDarkTheme_CheckedChanged(object sender, EventArgs e)
@@ -173,7 +209,7 @@ namespace Teste_Login
                 this.BackColor = SystemColors.ControlDarkDark;
                 mudarTextBoxes(true);
                 colorIn = SystemColors.ScrollBar;
-                darkTheme.darkLogo(picLogo, true);
+                metodos.darkLogo(picLogo, true);
                 DarkTheme = true;
                 if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme"))
                     Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme");
@@ -183,7 +219,7 @@ namespace Teste_Login
                 this.BackColor = SystemColors.ActiveCaption;
                 mudarTextBoxes(false);
                 colorIn = Color.Blue;
-                darkTheme.darkLogo(picLogo, false);
+                metodos.darkLogo(picLogo, false);
                 DarkTheme = false;
                 if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme"))
                     Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).ToString() + @"\iCrypto\DarkTheme");

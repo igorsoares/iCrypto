@@ -15,12 +15,14 @@ namespace Teste_Login
 {
     public partial class EnviarMensagem : Form
     {
-        string textoSaida;
+        string textoSaida, retornoGmail;
         Usuario usuario;
         string servidor, respostaGmail;
         int porta;
         string[] enderecoEmail;
         bool DarkTheme = false;
+        ShowMessageBox MessageBox = new ShowMessageBox();
+        metodosEDarkTheme metodos = new metodosEDarkTheme();
 
         public EnviarMensagem(string textoSaida, Usuario usuarioLogado, bool DarkTheme)
         {
@@ -77,8 +79,8 @@ namespace Teste_Login
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Certifique-se de que você possui um " +
-                        "\nservidor SMTP personalizado em seu cadastro", "Um erro inesperado aconteceu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.ShowMessageBoxOK("error", "Certifique-se de que você possui um " +
+                        "\nservidor SMTP personalizado em seu cadastro", "Um erro inesperado aconteceu", DarkTheme);
                 }
             }
         }
@@ -101,19 +103,19 @@ namespace Teste_Login
         {
             if (String.IsNullOrEmpty(txtEmail.Text))
             {
-                MessageBox.Show("Nenhum endereço de e-mail foi inserido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum endereço de e-mail foi inserido!", "Aviso", DarkTheme);
                 txtEmail.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtSenha.Text))
             {
-                MessageBox.Show("A senha do e-mail é necessária!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "A senha do e-mail é necessária!", "Aviso", DarkTheme);
                 txtSenha.Focus();
                 return false;
             }
             else if (String.IsNullOrEmpty(txtDestinatario.Text))
             {
-                MessageBox.Show("Nenhum endereço de e-mail destinatário foi inserido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.ShowMessageBoxOK("warning", "Nenhum endereço de e-mail destinatário foi inserido!", "Aviso", DarkTheme);
                 txtDestinatario.Focus();
                 return false;
             }
@@ -148,9 +150,9 @@ namespace Teste_Login
                     }
                     else
                     {
-                        MessageBox.Show("Não temos suporte para este tipo de servidor." +
+                        MessageBox.ShowMessageBoxOK("warning", "Não temos suporte para este tipo de servidor." +
                             "\nTente utilizar um email do google (gmail), hotmail, live.com ou" +
-                            "\noutlook e confira se o e-mail está correto", "Servidor sem suporte", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            "\noutlook e confira se o e-mail está correto", "Servidor sem suporte", DarkTheme);
                         return;
                     }
 
@@ -164,8 +166,8 @@ namespace Teste_Login
                         "\n" +
                         "" + textoSaida;
 
-
-
+                    metodos.enviarEmail(servidor, porta, rbSMTP.Checked, usuario.servidorSMTP.SSL, email, txtEmail.Text, txtSenha.Text, DarkTheme);
+                    /*
                     SmtpClient cliente = new SmtpClient(servidor, porta);
                     using (cliente)
                     {
@@ -177,7 +179,7 @@ namespace Teste_Login
                             try
                             {
                                 cliente.Send(email);
-                                MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.ShowMessageBoxOK("correct", "E-mail enviado com sucesso!", "Aviso", DarkTheme);
                                 return;
                             }
                             catch (Exception)
@@ -195,22 +197,29 @@ namespace Teste_Login
                             {
                                 Process.Start("https://myaccount.google.com/lesssecureapps");
                                 System.Threading.Thread.Sleep(1000);
-                                DialogResult ativou = MessageBox.Show("A opção menos segura foi ativada?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                                if (ativou.Equals(DialogResult.Yes))
+                                retornoGmail = MessageBox.ShowMessageBoxYesNo("question", "A opção menos segura foi ativada?", "", DarkTheme);
+                                if (retornoGmail.Equals("sim"))
                                 {
-                                    cliente.Send(email);
-                                    MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    return;
+                                    try
+                                    {
+                                        cliente.Send(email);
+                                        MessageBox.ShowMessageBoxOK("correct", "E-mail enviado com sucesso!", "Aviso", DarkTheme);
+                                        return;
+                                    }
+                                    catch
+                                    {
+                                        throw;
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.ShowMessageBoxOK("information", "Não será possível enviar o e-mail", "", DarkTheme);
                                     return;
                                 }
                             }
                             else if (respostaGmail.Equals("nao"))
                             {
-                                MessageBox.Show("Não será possível enviar o e-mail", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.ShowMessageBoxOK("information", "Não será possível enviar o e-mail", "", DarkTheme);
                                 return;
                             }
                             else if (respostaGmail.Equals("ativado"))
@@ -218,17 +227,12 @@ namespace Teste_Login
                                 try
                                 {
                                     cliente.Send(email);
-                                    MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.ShowMessageBoxOK("correct", "E-mail enviado com sucesso!", "Aviso", DarkTheme);
                                     return;
                                 }
                                 catch (Exception)
                                 {
-                                    MessageBox.Show("O envio falhou!" +
-                    "\n" +
-                    "\nCertifique que o e-mail está correto e é válido" +
-                    "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
-                    "\nCaso seja gmail, certique que a opção 'Acesso a apps menos seguros' está ativada", "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
+                                    throw;
                                 }
                             }
                         }
@@ -237,7 +241,7 @@ namespace Teste_Login
                             try
                             {
                                 cliente.Send(email);
-                                MessageBox.Show("E-mail enviado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.ShowMessageBoxOK("correct", "E-mail enviado com sucesso!", "Aviso", DarkTheme);
                                 return;
                             }
                             catch (Exception)
@@ -246,15 +250,16 @@ namespace Teste_Login
                             }
                         }
                     }
+                    */
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("O envio falhou!" +
-                    "\n" +
-                    "\nCertifique que o e-mail está correto e é válido" +
-                    "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
-                    "\nCaso seja gmail, certique que a opção 'Acesso a apps menos seguros' está ativada", "Ocorreu um erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.ShowMessageBoxOK("error", "O envio falhou!" +
+                   "\n" +
+                   "\nCertifique que o e-mail está correto e é válido" +
+                   "\nCertifique que a senha está correta (Deve ser a senha do e-mail e não do iCrypto)" +
+                   "\nCaso seja gmail, certique que a opção 'Acesso a apps menos seguros' está ativada", "Ocorreu um erro", DarkTheme);
             }
         }
     }

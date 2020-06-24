@@ -69,12 +69,12 @@ namespace Projeto_AES
             cmbModo.SelectedIndex = 0;
             aes = new AesCryptoServiceProvider();
             aes.Mode = CipherMode.CBC;
-            aes.Padding = PaddingMode.PKCS7;
+            aes.Padding = PaddingMode.ISO10126;
+            //PaddingMode.ISO10126
             aes.KeySize = Convert.ToInt32(this.tamanho_chave);
             aes.Key = hash;
             byte[] IV = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
             aes.IV = IV;
-            //aes.GenerateIV();
             chave = aes.Key;
             new_IV = aes.IV;
 
@@ -82,8 +82,6 @@ namespace Projeto_AES
         private byte[] Encripta(byte[] mensagem)
         {
 
-            //aes.GenerateIV();
-            //new_IV = aes.IV;
             MemoryStream memoria = new MemoryStream();
             CryptoStream cripto = new CryptoStream(memoria, aes.CreateEncryptor(), CryptoStreamMode.Write);
             cripto.Write(mensagem, 0, mensagem.Length);
@@ -101,11 +99,13 @@ namespace Projeto_AES
             byte[] linha_byte = Convert.FromBase64String(linha);
             Aes myAes = Aes.Create();
             myAes.Mode = CipherMode.CBC;
+            myAes.Padding = PaddingMode.ISO10126;
+ 
             myAes.KeySize = Convert.ToInt32(this.tamanho_chave);
             myAes.Key = chave;
             myAes.IV = new_IV;
             
-            myAes.Padding = PaddingMode.PKCS7;
+            //myAes.Padding = PaddingMode.PKCS7;
 
             MemoryStream memoria = new MemoryStream(linha_byte);
             CryptoStream cripto = new CryptoStream(memoria, myAes.CreateDecryptor(), CryptoStreamMode.Read);

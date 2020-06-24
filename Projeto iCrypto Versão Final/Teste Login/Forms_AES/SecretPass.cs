@@ -42,7 +42,13 @@ namespace Projeto_AES
             }
             else
             {
-                while(progressBar1.Value < 100)
+                if(cmbTamanhoChave.SelectedIndex==2)
+                {
+                    cmbTamanhoChave.SelectedIndex = 1;
+                    return;
+                }
+
+                while (progressBar1.Value < 100)
                 {
                     if(progressBar1.Value == 80)
                     {
@@ -60,7 +66,7 @@ namespace Projeto_AES
                     this.Close();
 
                 }
-                else
+                else if (cmbTamanhoChave.SelectedIndex == 1)
                 {
                     // Obtém a hash SHA 256 da chave e joga como argumento no form
                     //  logo sendo convertida para uma chave secreta AES
@@ -71,6 +77,7 @@ namespace Projeto_AES
                     obj.ShowDialog();
                     this.Close();
                 }
+                
 
 
 
@@ -102,8 +109,8 @@ namespace Projeto_AES
 
         private void SecretPass_Load(object sender, EventArgs e)
         {
-            cmbTamanhoChave.SelectedIndex = 1;
-
+            cmbTamanhoChave.SelectedIndex = 2;
+            
         }
     }
 }

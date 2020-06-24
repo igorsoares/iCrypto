@@ -77,6 +77,12 @@
     <Compile Include="Forms_AES\frmAES.Designer.cs">
       <DependentUpon>frmAES.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms_AES\ModoAvancado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms_AES\ModoAvancado.Designer.cs">
+      <DependentUpon>ModoAvancado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms_AES\SecretPass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_AES\frmAES.resx">
       <DependentUpon>frmAES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms_AES\ModoAvancado.resx">
+      <DependentUpon>ModoAvancado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_AES\SecretPass.resx">
       <DependentUpon>SecretPass.cs</DependentUpon>

@@ -52,4 +52,34 @@ Por padrão, o iCrypto utiliza apenas o *padding*(preenchimento) **PKCS** e veto
 
 > PS: Arquivos com extensão .exe e arquivos maiores que 25MB não serão enviados.
 
+## RSA
+![MAINRSA](https://user-images.githubusercontent.com/64047018/91347683-1a093b00-e7b9-11ea-980d-36b39fb93c6b.gif)
+
+A chave RSA pode ser criada com os seguintes tamanhos:
+* 512
+* 1024
+* 2048
+* 4096
+* 8192
+
+## Esteganografia
+
+![Capturar](https://user-images.githubusercontent.com/64047018/91347927-710f1000-e7b9-11ea-899e-4d253f7edacd.PNG)
+
+A "esteganografia" irá esconder seu arquivo dentro de um arquivo compactado (.rar) e o arquivo compactado dentro do arquivo original desejado.
+
+## Cifra de césar
+
+![Cesar](https://user-images.githubusercontent.com/64047018/91348139-bfbcaa00-e7b9-11ea-85c2-056a9d4a3144.gif)
+
+A cifra de césar funcionará em "live-mode".
+
+## Código morse
+
+![Morse](https://user-images.githubusercontent.com/64047018/91348375-0ca08080-e7ba-11ea-8128-aedec373c860.gif)
+
+O código morse irá funcionar em "live-mode"
+
+
+
 

@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SecretPass));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.cmbTamanhoChave = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btGuardar = new System.Windows.Forms.Button();
@@ -44,7 +43,6 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.cmbTamanhoChave);
             this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.btGuardar);
@@ -52,20 +50,10 @@
             this.groupBox1.Controls.Add(this.tbSenha);
             this.groupBox1.Location = new System.Drawing.Point(141, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 168);
+            this.groupBox1.Size = new System.Drawing.Size(323, 135);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Insira a senha secreta";
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(4, 81);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(310, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Modo avançado";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // cmbTamanhoChave
             // 
@@ -90,7 +78,7 @@
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(3, 139);
+            this.progressBar1.Location = new System.Drawing.Point(3, 102);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(312, 23);
             this.progressBar1.TabIndex = 3;
@@ -98,7 +86,7 @@
             // btGuardar
             // 
             this.btGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btGuardar.Location = new System.Drawing.Point(4, 110);
+            this.btGuardar.Location = new System.Drawing.Point(5, 73);
             this.btGuardar.Name = "btGuardar";
             this.btGuardar.Size = new System.Drawing.Size(310, 23);
             this.btGuardar.TabIndex = 2;
@@ -137,7 +125,7 @@
             this.picLogo.Image = global::Teste_Login.Properties.Resources.logo1;
             this.picLogo.Location = new System.Drawing.Point(3, 12);
             this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(135, 187);
+            this.picLogo.Size = new System.Drawing.Size(135, 140);
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picLogo.TabIndex = 1;
             this.picLogo.TabStop = false;
@@ -147,7 +135,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(476, 211);
+            this.ClientSize = new System.Drawing.Size(476, 159);
             this.Controls.Add(this.picLogo);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -175,6 +163,5 @@
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ComboBox cmbTamanhoChave;
-        private System.Windows.Forms.Button button1;
     }
 }

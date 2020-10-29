@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Db4objects.Db4o">
-      <HintPath>..\..\..\db4o-8.0\bin\net-4.0\Db4objects.Db4o.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Db4objects\db4o-7.2\bin\compact-2.0\Db4objects.Db4o.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -76,12 +76,6 @@
     </Compile>
     <Compile Include="Forms_AES\frmAES.Designer.cs">
       <DependentUpon>frmAES.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms_AES\ModoAvancado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms_AES\ModoAvancado.Designer.cs">
-      <DependentUpon>ModoAvancado.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms_AES\SecretPass.cs">
       <SubType>Form</SubType>
@@ -125,16 +119,16 @@
     <Compile Include="Forms_AES\SobreAES.Designer.cs">
       <DependentUpon>SobreAES.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCadastro.cs">
+    <Compile Include="Forms Apresentação\frmCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCadastro.Designer.cs">
+    <Compile Include="Forms Apresentação\frmCadastro.Designer.cs">
       <DependentUpon>frmCadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEsqueciSenha.cs">
+    <Compile Include="Forms Apresentação\frmEsqueciSenha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEsqueciSenha.Designer.cs">
+    <Compile Include="Forms Apresentação\frmEsqueciSenha.Designer.cs">
       <DependentUpon>frmEsqueciSenha.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms Esteganografia\frmHelpGeralEsteganografia.cs">
@@ -149,10 +143,10 @@
     <Compile Include="Forms RSA\frmGerarEImportarChaveRSA.Designer.cs">
       <DependentUpon>frmGerarEImportarChaveRSA.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.cs">
+    <Compile Include="Forms Apresentação\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.cs">
+    <Compile Include="Forms Apresentação\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms Esteganografia\HelpAbrirWinRarEsteganografia.cs">
@@ -185,12 +179,12 @@
     <Compile Include="frmMessageBox.Designer.cs">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="metodosEDarkTheme.cs" />
+    <Compile Include="Classes\metodosEDarkTheme.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServidorSMTP.cs" />
-    <Compile Include="ShowMessageBox.cs" />
-    <Compile Include="Usuario.cs" />
+    <Compile Include="Classes\ServidorSMTP.cs" />
+    <Compile Include="Classes\ShowMessageBox.cs" />
+    <Compile Include="Classes\Usuario.cs" />
     <EmbeddedResource Include="EnviarMensagem.resx">
       <DependentUpon>EnviarMensagem.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,9 +199,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_AES\frmAES.resx">
       <DependentUpon>frmAES.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms_AES\ModoAvancado.resx">
-      <DependentUpon>ModoAvancado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_AES\SecretPass.resx">
       <DependentUpon>SecretPass.cs</DependentUpon>
@@ -230,16 +221,16 @@
     <EmbeddedResource Include="Forms_AES\SobreAES.resx">
       <DependentUpon>SobreAES.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCadastro.resx">
+    <EmbeddedResource Include="Forms Apresentação\frmCadastro.resx">
       <DependentUpon>frmCadastro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEsqueciSenha.resx">
+    <EmbeddedResource Include="Forms Apresentação\frmEsqueciSenha.resx">
       <DependentUpon>frmEsqueciSenha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms Esteganografia\frmHelpGeralEsteganografia.resx">
       <DependentUpon>frmHelpGeralEsteganografia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
+    <EmbeddedResource Include="Forms Apresentação\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms Esteganografia\HelpAbrirWinRarEsteganografia.resx">

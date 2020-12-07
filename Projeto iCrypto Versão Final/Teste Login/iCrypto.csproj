@@ -7,7 +7,7 @@
     <ProjectGuid>{C0CC156F-2BD5-49F6-9443-A1A3F3BCD878}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Teste_Login</RootNamespace>
-    <AssemblyName>Teste Login</AssemblyName>
+    <AssemblyName>iCrypto</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Db4objects.Db4o">
@@ -340,6 +343,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Warning1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo1.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

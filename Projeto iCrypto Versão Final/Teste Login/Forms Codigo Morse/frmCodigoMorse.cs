@@ -330,6 +330,14 @@ namespace CodigoMorseProjeto1
             banco.Close();
             timer1.Stop();
             timer1.Enabled = false;
+            try
+            {
+                somMorseBackgorund.CancelAsync();
+            }
+            catch
+            {
+
+            }
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -393,8 +401,9 @@ namespace CodigoMorseProjeto1
         }
 
         private void somMorseBackgorund_DoWork(object sender, DoWorkEventArgs e)
-        {
-            foreach (char simbolo in rtbxCripto.Text)
+        {   
+            String text = cbxModo.SelectedIndex == 0 ? rtbxCripto.Text : rtbxTPuro.Text;
+            foreach (char simbolo in text)
             {
                 switch (simbolo)
                 {
@@ -416,13 +425,13 @@ namespace CodigoMorseProjeto1
 
         private void btnReproduzirSom_Click(object sender, EventArgs e)
         {
-            if (cbxModo.SelectedIndex == 0 && !String.IsNullOrEmpty(rtbxCripto.Text))
+            try
             {
                 somMorseBackgorund.RunWorkerAsync();
             }
-            else
+            catch
             {
-                MessageBox.ShowMessageBoxOK("warning", "Você deve cifrar algo em morse!", "", DarkTheme);
+                MessageBox.ShowMessageBoxOK("error", "Ocorreu um erro ao reproduzir o som, tente novamente", "Ocorreu um erro", DarkTheme);
             }
         }
     }
